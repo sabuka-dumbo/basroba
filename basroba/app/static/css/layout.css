@@ -36,3 +36,77 @@ nav {
     height: 100%;
     color: white;
 }
+
+.favorite-button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.favorite-icon {
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.cart-button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.cart-icon {
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.lang-text {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+}
+
+.lang-button {
+    position: relative;
+    top: 12px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.lang-icon {
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.lang-part {
+    display: inline-block;
+}
