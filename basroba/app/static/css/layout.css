@@ -22,7 +22,7 @@ nav {
 .search-button {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 40px;
     width: 40px;
     height: 40px;
     background: none;
@@ -112,4 +112,21 @@ nav {
     position: relative;
     display: inline;
     top: -10px;
+}
+
+.navs-div {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    width: max-content;
+    height: max-content;
+    margin-top: 80px;
+}
+
+.website-title1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
 }
