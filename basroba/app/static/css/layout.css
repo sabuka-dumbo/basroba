@@ -202,10 +202,6 @@ nav {
     display: none;
 }
 
-#menu-together {
-    opacity: 1;
-}
-
 @media screen and (max-width: 720px) {
     .burger-menu {
         display: block;
