@@ -209,6 +209,28 @@ nav {
     .search-button {
     }
 
+    .favorite-button {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+    }
+
+    .cart-button {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+    }
+
+    .favorite-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .cart-icon {
+        width: 30px;
+        height: 30px;
+    }
+
     .navs-div {
         position: absolute;
         bottom: 40px;
