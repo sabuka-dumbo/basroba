@@ -4,9 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASROBA</title>
+<title>{% block title %}{% endblock %}</title>
 <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="{% static 'css/layout.css' %}">
+{% block head %}{% endblock %}
 </head>
 <body>
 <nav>
@@ -54,6 +55,7 @@
         <a href="" class="nav nav4">ფასდაკლებები</a>
     </div>
 </nav>
+{% block body %}{% endblock %}
 <script>
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('nav-links');
