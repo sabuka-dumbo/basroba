@@ -202,6 +202,10 @@ nav {
     display: none;
 }
 
+#menu-together {
+    opacity: 1;
+}
+
 @media screen and (max-width: 720px) {
     .burger-menu {
         display: block;
@@ -216,7 +220,7 @@ nav {
         height: 100vh;
         background-color: rgba(68, 68, 68, 0.438);
         z-index: 1000;
-        display: none;
+        opacity: 0;
     }
 
     .navs-navs {
