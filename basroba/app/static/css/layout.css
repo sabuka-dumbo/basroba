@@ -20,7 +20,7 @@ nav {
 }
 
 .search-button {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     width: 40px;
@@ -29,6 +29,7 @@ nav {
     outline: none;
     border: none;
     cursor: pointer;
+    margin-top: 80px;
 }
 
 .search-icon {
