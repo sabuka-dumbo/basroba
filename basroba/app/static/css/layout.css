@@ -180,6 +180,57 @@ nav {
     display: inline-block;
 }
 
-@media screen and (max-width: 720px) {
-    
+/* Burger menu button */
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 85px;
+    margin-left: 40px;
+}
+
+.burger div {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .navs-navs {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        background-color: black;
+        position: absolute;
+        top: 140px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .navs-navs.active {
+        display: flex;
+    }
+
+    .burger {
+        display: flex;
+        position: absolute;
+        right: 40px;
+        top: 85px;
+    }
+
+    .navs-div {
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    .website-titles {
+        padding-top: 20px;
+    }
 }
