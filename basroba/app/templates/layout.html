@@ -67,5 +67,17 @@
 
         {% block body %}
         {% endblock %}
+
+<script>
+    const burger = document.getElementById("burger-menu");
+    const menu = document.getElementById("menu-together");
+
+    burger.addEventListener("click", () => {
+        burger.classList.toggle("active");
+        menu.classList.toggle("active");
+    });
+</script>
+
+
     </body>
 </html>
