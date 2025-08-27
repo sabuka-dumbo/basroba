@@ -313,7 +313,7 @@ nav {
 
 /* Burger animation to "X" */
 .burger-menu.active .span1 {
-    transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(12px, 12px);
 }
 
 .burger-menu.active .span2 {
@@ -321,7 +321,7 @@ nav {
 }
 
 .burger-menu.active .span3 {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(12px, -12px);
 }
 
 /* Menu overlay hidden by default */
