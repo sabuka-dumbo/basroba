@@ -11,7 +11,7 @@ nav {
     top: 0;
     left: 0;
     width: calc(100% - 80px);
-    height: max-content;
+    height: 110px;
     padding: 0;
     margin: 0;
     padding-left: 40px;
@@ -32,6 +32,12 @@ nav {
     border: none;
     cursor: pointer;
     margin-top: 80px;
+}
+
+.website-titles {
+    width: calc(100% - 280px);
+    left: 80px;
+    position: absolute;
 }
 
 .search-icon {
@@ -127,23 +133,46 @@ nav {
 
 .website-title1 {
     position: absolute;
-    top: 60px;
-    left: 45%;
-    transform: translateX(-45%);
-    width: max-content;
+    top: 0;
+    width: 100%;
     height: max-content;
     font-size: 32px;
+    text-align: center;
     font-family: 'Nico Moji';
     color: white;
 }
 
 .website-title2 {
     position: absolute;
-    top: 110px;
-    left: 45%;
-    transform: translateX(-45%);
-    width: max-content;
+    top: 0;
+    width: 100%;
+    text-align: center;
     height: max-content;
     font-size: 15px;
     color: white;
+}
+
+.nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.navs-navs {
+    position: absolute;
+    top: 160px;
+    left: 45%;
+    transform: translateX(-45%);
+
 }
