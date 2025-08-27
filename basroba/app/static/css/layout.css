@@ -198,7 +198,15 @@ nav {
     display: inline-block;
 }
 
+.burger-menu {
+    display: none;
+}
+
 @media screen and (max-width: 720px) {
+    .burger-menu {
+        display: block;
+    }
+
     #menu-together {
         position: fixed;
         z-index: 1;
@@ -267,14 +275,29 @@ nav {
     }
 
     .website-title1 {
+        font-size: 30px;
+    }
+
+    .website-title2 {
         font-size: 20px;
+    }
+
+    .burger-menu {
+        width: 50px;
+    }
+
+    .span {
+        height: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .website-title1 {
+        font-size: 25px;
     }
 
     .website-title2 {
         font-size: 15px;
-    }
-
-    .burger-menu {
-        
     }
 }
