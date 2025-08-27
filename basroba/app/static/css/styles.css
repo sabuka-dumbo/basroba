@@ -28,5 +28,16 @@
     font-weight: bold;
     color: white;
     text-align: center;
-    letter-spacing: 100%;
+    letter-spacing: 2rem;
+}
+
+.categories-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 80%;
+    margin-left: 10%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: 30% 5% 3% 5% 30%;
 }
