@@ -264,6 +264,13 @@ nav {
 @media screen and (max-width: 480px) {
     .website-titles {
         text-align: left;
+    }
+
+    .website-title1 {
         font-size: 20px;
+    }
+
+    .website-title2 {
+        font-size: 15px;
     }
 }
