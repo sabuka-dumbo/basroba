@@ -36,8 +36,7 @@ nav {
 }
 
 .website-titles {
-    width: calc(100% - 280px);
-    left: 80px;
+    width: 100%;
     position: absolute;
 }
 
