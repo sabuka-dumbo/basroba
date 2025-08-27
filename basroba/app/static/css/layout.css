@@ -188,7 +188,12 @@ nav {
         left: 0;
         width: 80%;
         height: 100vh;
-        background-color: aqua;
+        background-color: gray;
+    }
+
+    .navs-navs {
+        position: relative;
+        justify-content:baseline;
     }
 
     .search-button {
@@ -196,5 +201,7 @@ nav {
     }
 
     .navs-div {
+        position: absolute;
+        bottom: 40px;
     }
 }
