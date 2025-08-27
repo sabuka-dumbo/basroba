@@ -7,4 +7,10 @@ body {
 nav {
     position: relative;
     top: 0;
+    left: 0;
+    width: calc(100vw - 80px);
+    height: max-content;
+    padding-top: 70px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
