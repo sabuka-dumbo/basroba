@@ -3,7 +3,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: rgb(66, 65, 65);
+    background-color: black;
 }
 
 nav {
@@ -15,6 +15,8 @@ nav {
     padding-top: 70px;
     padding-left: 40px;
     padding-right: 40px;
+    background-color: black;
+    padding-bottom: 20px;
 }
 
 
@@ -47,9 +49,7 @@ nav {
     left: 0;
     width: 100%;
     height: max-content;
-    background-color: aqua;
     text-align: center;
-    z-index: -2;
 }
 
 .website-title1 {
@@ -81,7 +81,68 @@ nav {
 }
 
 .navs-div {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: max-content;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    margin-top: 80px;
+    margin-right: 40px;
+}
+
+.favorite-button {
+    position: relative;
+    top: 0;
+    left: 0;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.cart-button {
+    position: relative;
+    top: 0;
+    left: 0;
+    background: none;
+    outline: none;
+    border: none;
+    color: white; 
+}
+
+.lang-part {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    left: 0;
+    width: max-content;
+    height: max-content;
+}
+
+.lang-text {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-size: 20px;
+}
+
+.lang-button {
+    position: relative;
+    top: 0;
+    left: 0;
+    background: none;
+    color: white;
+    outline: none;
+    border: none;
+    display: inline-block;
 }
 
 .navs-navs {
@@ -98,6 +159,9 @@ nav {
     color: white;
     align-items: center;
     display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
 
 }
 
