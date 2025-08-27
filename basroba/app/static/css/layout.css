@@ -130,4 +130,7 @@ nav {
     transform: translateX(-50%);
     width: 100px;
     height: 100px;
+    font-size: 25px;
+    font-family: 'Nico Moji';
+    color: white;
 }
