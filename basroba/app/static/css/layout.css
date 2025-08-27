@@ -32,6 +32,7 @@ nav {
     border: none;
     cursor: pointer;
     margin-top: 80px;
+    display: none;
 }
 
 .website-titles {
@@ -129,6 +130,7 @@ nav {
     width: max-content;
     height: max-content;
     margin-top: 80px;
+    display: none;
 }
 
 .website-title1 {
@@ -174,5 +176,4 @@ nav {
     top: 160px;
     left: 45%;
     transform: translateX(-45%);
-
 }
