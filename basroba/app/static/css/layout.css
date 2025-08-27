@@ -193,11 +193,20 @@ nav {
 
     .navs-navs {
         position: relative;
-        justify-content:baseline;
+        justify-content: normal;
+        display: block;
+    }
+
+    .nav {
+        display: block;
+        width: 80%;
+        left: 20%;
+        font-size: 30px;
+        margin-bottom: 10px;
+        top: 150px;
     }
 
     .search-button {
-
     }
 
     .navs-div {
