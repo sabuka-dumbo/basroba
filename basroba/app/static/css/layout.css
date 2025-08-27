@@ -124,9 +124,10 @@ nav {
 }
 
 .website-title1 {
-    position: relative;
+    position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: max-content;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
 }
