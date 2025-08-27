@@ -179,3 +179,7 @@ nav {
     text-decoration: none;
     display: inline-block;
 }
+
+@media screen and (max-width: 720px) {
+    
+}
