@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+    <br>
+
+    <div class="container">
+        <div class="cart-items">
+            <h1>თევზი კალათა (4 ნაჭერი)</h1>
+            <div class="cart-item">
+                <div class="item-image">
+                    <img src="item-image.jpg" alt="Item">
+                </div>
+                <div class="item-details">
+                    <span class="item-name">ბამბის ხალათი</span>
+                    <span class="item-price">₾60.95</span>
+                </div>
+                <div class="quantity">
+                    <button class="btn-decrease">-</button>
+                    <input type="number" value="2" class="quantity-input">
+                    <button class="btn-increase">+</button>
+                </div>
+            </div>
+            <!-- Repeat .cart-item for more items -->
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-item">
+                <span class="summary-label">პროდუქტის(თი) სუბთოტი</span>
+                <span class="summary-value">₾319.92</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">სადასტური (Tax)</span>
+                <span class="summary-value">₾319.92</span>
+            </div>
+            <div class="summary-item total">
+                <span class="summary-label">მოთხოვნა სავალდებულო</span>
+                <span class="summary-value">₾319.92</span>
+            </div>
+            <div class="checkout-btn">
+                <button>შეკვეთის გაფორმება</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+{% endblock %}
