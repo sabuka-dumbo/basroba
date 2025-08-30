@@ -54,10 +54,12 @@
     position: relative;
     top: 0;
     left: 0;
-    width: 100%;
+    width: calc(100% - 40px);
     height: max-content;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: normal;
+    display: block;
     color: white;
     text-decoration: none;
+    padding: 20px;
 }
