@@ -62,4 +62,11 @@
     color: white;
     text-decoration: none;
     padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
+.sidebar a:hover {
+    background-color: rgb(91, 91, 91);
+}
+
