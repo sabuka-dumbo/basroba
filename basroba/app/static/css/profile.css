@@ -1,0 +1,63 @@
+.profile {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 80%;
+    left: 10%;
+    display: grid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    grid-template-columns: 1.3fr 0.2fr 4fr;
+}
+
+.sidebar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    background-color: rgb(58, 58, 58);
+    grid-column: 1;
+}
+
+.main-part {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    background-color: rgb(58, 58, 58);
+    grid-column: 3;
+}
+
+.main-part1 {
+    
+}
+
+.sidebar h1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.sidebar a {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+}
