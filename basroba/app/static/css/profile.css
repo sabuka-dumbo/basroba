@@ -89,6 +89,70 @@
     padding-right: 20px;
 }
 
+.main-part2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+}
+
+.main-part2 h1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.add-address {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 50px;
+}
+
+.address-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 40px);
+    height: max-content;
+    padding: 20px;
+    margin: 0;
+    background-color: rgb(46, 46, 46);
+}
+
+.address {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 15px;
+}
+
 .sidebar h1 {
     position: relative;
     top: 0;
