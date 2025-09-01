@@ -153,6 +153,46 @@
     font-size: 15px;
 }
 
+.change-address {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.delete-address {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+}
+
 .sidebar h1 {
     position: relative;
     top: 0;
