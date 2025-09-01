@@ -284,3 +284,42 @@
 .sidebar a:hover {
     background-color: rgb(91, 91, 91);
 }
+
+@media screen and (max-width: 1000px) {
+    .profile {
+        grid-template-columns: 100%;
+    }
+
+    .sidebar {
+        height: max-content;
+        width: calc(100% - 40px);
+        margin-bottom: 20px;
+    }
+
+    .main-part {
+        grid-column: 1;
+
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .order-item {
+        grid-template-columns: 2fr 0.5fr 3fr;
+    }
+
+    .order-item h1 {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .order-item {
+        grid-template-columns: 3fr 0.5fr 3fr;
+    }
+}
+
+@media screen and (max-width: 225px) {
+    .change-address {
+        
+    }
+}
