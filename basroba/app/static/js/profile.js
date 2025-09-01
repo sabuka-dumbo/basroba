@@ -19,3 +19,7 @@ function open_part3() {
     main_part2.style.display = "none";
     main_part3.style.display = "block";
 }
+
+addEventListener("DOMContentLoaded", function() {
+    open_part1()
+})
