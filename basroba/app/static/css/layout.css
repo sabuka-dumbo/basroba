@@ -1,5 +1,13 @@
 @import url(https://fonts.googleapis.com/earlyaccess/nicomoji.css);
 
+button {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
+
 body {
     padding: 0;
     margin: 0;
