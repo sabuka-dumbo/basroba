@@ -22,16 +22,20 @@
         </div>
 
         <div class="main-part">
-            <h1 class="product-title">პროდუქტის სახელი</h1>
-            <h1 class="product-category">პროდუქტის კატეგორია</h1>
+            <h1 class="product-title">{{ product.Product_name }}</h1>
+            <h1 class="product-category">{{ Product.Product_Category }}</h1>
 
             <div class="old-price1">
-                <h1 class="old-price2">₾79.99</h1>
-                <hr class="old-price3">
-                <h1 class="new-price">₾79.99</h1>
+                {% if product.Product_price_old != "No" %}
+                    <h1 class="old-price2">₾{{ product.Product_price_old }}</h1>
+                    <hr class="old-price3">
+                    <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% else %}
+                    <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% endif %}
             </div>
 
-            <h1 class="payment-method">გადახდა ხდება ადგილზე</h1>
+            <h1 class="payment-method">{{ product.product_description }}</h1>
 
             <div class="rating-div">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill rating-icon" viewBox="0 0 16 16">
@@ -59,8 +63,10 @@
                 <h1 class="color-title">აირჩიეთ ფერი:</h1>
 
                 <div class="color-picker">
-                    <input type="radio" id="red" name="color" value="red" checked>
-                    <label for="red" class="red"></label>
+                    {% if product.Product_color1 != "No" %}
+                        <input type="radio" id="red" name="color" value="red" checked>
+                        <label for="red" class="red"></label>
+                    {% endif %}
 
                     <input type="radio" id="green" name="color" value="green">
                     <label for="green" class="green"></label>

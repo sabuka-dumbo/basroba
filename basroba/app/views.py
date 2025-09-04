@@ -3,13 +3,20 @@ from .models import *
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html")
+    all_products = Product.objects.all()
+
+    return render(request, "index.html", {
+        "all_products": all_products
+    })
 
 def products(request):
     return render(request, "products.html")
 
-def product(request):
-    return render(request, "product.html")
+def product(request, ID):
+    the_product = Product.objects.all().get(id=ID)
+    return render(request, "product.html", {
+        "product": the_product
+    })
 
 def cart(request):
     return render(request, "cart.html")

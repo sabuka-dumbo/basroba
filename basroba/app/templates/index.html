@@ -37,37 +37,15 @@
         <h2 class="section2-title">პროდუქცები</h2>
         
         <div class="products-div">
-            <a href="{% url 'product' %}">
-            <div class="product-card">
-                <img src="{% static 'pics/Dress.png' %}" class="product-image" alt="">
-                <h3 class="product-text">ქალთა კაბა</h3>
-                <p class="product-price">199 ₾</p>
-            </div>
-            </a>
-            
-            <a href="{% url 'product' %}">
-            <div class="product-card">
-                <img src="{% static 'pics/Dress.png' %}" class="product-image" alt="">
-                <h3 class="product-text">ქალთა კაბა</h3>
-                <p class="product-price">159 ₾</p>
-            </div>
-            </a>
-
-            <a href="{% url 'product' %}">
-            <div class="product-card">
-                <img src="{% static 'pics/Dress.png' %}" class="product-image" alt="">
-                <h3 class="product-text">ქალთა კაბა</h3>
-                <p class="product-price">220 ₾</p>
-            </div>
-            </a>
-
-            <a href="{% url 'product' %}">
-            <div class="product-card">
-                <img src="{% static 'pics/Dress.png' %}" class="product-image" alt="">
-                <h3 class="product-text">ქალთა კაბა</h3>
-                <p class="product-price">199 ₾</p>
-            </div>
-            </a>
+            {% for product in all_products %}
+                <a href="{% url 'product' product.pk %}">
+                    <div class="product-card">
+                        <img src="{% static 'pics/Dress.png' %}" class="product-image" alt="">
+                        <h3 class="product-text">ქალთა კაბა</h3>
+                        <p class="product-price">199 ₾</p>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
     </section>
 
