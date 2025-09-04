@@ -71,9 +71,16 @@ class Favorites(models.Model):
     
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name="usercart", on_delete=models.CASCADE)
-    Item = models.ManyToManyField(Product, related_name="cartitem")
+    Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item", default=None)
     Size = models.CharField(max_length=250, default='No')
     Color = models.CharField(max_length=250, default="No")
 
     def __str__(self):
         return f"{self.user} favorites:"
+    
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cartsowner")
+    items = models.ManyToManyField(CartItem, related_name="items")
+
+    def __str__(self):
+        return f"{self.user}'s cart"
