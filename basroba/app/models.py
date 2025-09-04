@@ -58,6 +58,16 @@ class Product(models.Model):
     Product_3Xl = models.IntegerField(default=0)
     Product_4Xl = models.IntegerField(default=0)
     Product_5Xl = models.IntegerField(default=0)
+    Product_image1 = models.ImageField(default='/')
+    Product_image2 = models.ImageField(default='/')
+    Product_image3 = models.ImageField(default='/')
+    Product_image4 = models.ImageField(default='/')
+    Product_image5 = models.ImageField(default='/')
+    Product_image6 = models.ImageField(default='/')
+    Product_image7 = models.ImageField(default='/')
+    Product_image8 = models.ImageField(default='/')
+    Product_image9 = models.ImageField(default='/')
+    Product_image10 = models.ImageField(default='/')
 
     def __str__(self):
         return f"{self.Product_name}"
