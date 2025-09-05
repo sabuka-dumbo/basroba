@@ -10,8 +10,6 @@
 {% endblock %}
 
 {% block body %}
-<div id="message-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
-
 <form class="section1">
     <!-- Product Images -->
     <div class="pictures-div">
@@ -86,93 +84,28 @@
 </form>
 
 <script>
-/* ---------- Size Selection ---------- */
-document.querySelectorAll('.size-button').forEach(button => {
-    button.addEventListener('click', function() {
-        document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        document.querySelector('.size-title').innerText = `ზომა: ${this.dataset.size}`;
+    document.querySelectorAll('.size-button').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+            document.querySelector('.size-title').innerText = `ზომა: ${this.dataset.size}`;
+        });
     });
-});
 
-/* ---------- Thumbnail Swap ---------- */
-const mainPic = document.querySelector('.main-picture');
-const thumbnails = document.querySelectorAll('.other-image');
+        const mainPic = document.querySelector('.main-picture');
+    const thumbnails = document.querySelectorAll('.other-image');
 
-thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', () => {
-        const oldSrc = mainPic.src;
-        mainPic.src = thumbnail.src;
-        thumbnail.src = oldSrc;
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            // Save current main pic src
+            const oldSrc = mainPic.src;
+
+            // Replace main with clicked one
+            mainPic.src = thumbnail.src;
+
+            // Put old main pic into the clicked thumbnail
+            thumbnail.src = oldSrc;
+        });
     });
-});
-
-/* ---------- Animated Messages ---------- */
-function showMessage(text, type='info') {
-    const container = document.getElementById('message-container');
-    const msg = document.createElement('div');
-    msg.classList.add('message', type);
-    msg.innerText = text;
-    container.appendChild(msg);
-
-    // Animate in
-    setTimeout(() => msg.classList.add('show'), 50);
-
-    // Animate out after 2.5s
-    setTimeout(() => {
-        msg.classList.remove('show');
-        setTimeout(() => container.removeChild(msg), 500);
-    }, 2500);
-}
-
-/* ---------- Favorites Toggle ---------- */
-const favoriteButton = document.querySelector('.favorite-button2');
-favoriteButton.addEventListener('click', () => {
-    fetch("{% url 'add_to_favorites' %}", {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": "{{ csrf_token }}",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `product_id={{ product.id }}`
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "added") {
-            showMessage("პროდუქტი დაემატა ფავორიტებში!", "success");
-            favoriteButton.innerText = "ფავორიტიდან ამოღება";
-        } else if (data.status === "removed") {
-            showMessage("პროდუქტი ამოღებულია ფავორიტებიდან!", "info");
-            favoriteButton.innerText = "ფავორიტად არჩევა";
-        } else {
-            showMessage("შეცდომა დაფიქსირდა!", "error");
-        }
-    });
-});
-
-/* ---------- Add to Cart ---------- */
-const cartButton = document.querySelector('.add-to-cart-button2');
-cartButton.addEventListener('click', () => {
-    const selectedSize = document.querySelector('.size-button.selected')?.dataset.size || "No";
-    const selectedColor = document.querySelector('input[name="color"]:checked')?.value || "No";
-
-    fetch("{% url 'add_to_cart' %}", {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": "{{ csrf_token }}",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `product_id={{ product.id }}&size=${selectedSize}&color=${selectedColor}`
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "added") {
-            showMessage("პროდუქტი დაემატა კალათაში!", "success");
-        } else {
-            showMessage("შეცდომა დაფიქსირდა!", "error");
-        }
-    });
-});
 </script>
-
 {% endblock %}

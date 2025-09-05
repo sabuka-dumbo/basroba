@@ -440,6 +440,7 @@
 .Silver    { background-color: silver; color: silver; }
 .Gold      { background-color: gold; color: gold; }
 .Beige     { background-color: beige; color: beige; }
+/* EXTRA COLORS (PRODUCT-LIKE) */
 .Cyan      { background-color: cyan; color: cyan; }
 .Magenta   { background-color: magenta; color: magenta; }
 .Teal      { background-color: teal; color: teal; }
@@ -460,24 +461,3 @@
 .Peach     { background-color: peachpuff; color: peachpuff; }
 .Skyblue   { background-color: skyblue; color: skyblue; }
 .Fuchsia   { background-color: fuchsia; color: fuchsia; }
-
-
-.message {
-    padding: 12px 20px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.5s ease;
-}
-
-.message.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.message.success { background-color: #28a745; }
-.message.error   { background-color: #dc3545; }
-.message.info    { background-color: #007bff; }
