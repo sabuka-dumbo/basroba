@@ -226,3 +226,8 @@
         letter-spacing: 0.5rem;
     }
 }
+
+.White {
+    background-color: white;
+    color: white;
+}

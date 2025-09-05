@@ -506,3 +506,8 @@ h1::selection {
   background: gray;
   color: white;
 }
+
+.White {
+    background-color: white;
+    color: white;
+}

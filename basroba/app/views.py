@@ -15,7 +15,6 @@ def products(request):
 def product(request, ID):
     product = get_object_or_404(Product, id=ID)
 
-    # Collect all images
     product_images = [
         product.Product_image1,
         product.Product_image2,
@@ -29,7 +28,6 @@ def product(request, ID):
         product.Product_image10,
     ]
 
-    # Collect available colors
     product_colors = [c for c in [
         product.Product_color1,
         product.Product_color2,
