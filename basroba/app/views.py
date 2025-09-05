@@ -13,8 +13,10 @@ def products(request):
     return render(request, "products.html")
 
 def product(request, ID):
+    # Get the product
     product = get_object_or_404(Product, id=ID)
 
+    # Collect all product images
     product_images = [
         product.Product_image1,
         product.Product_image2,
@@ -27,9 +29,12 @@ def product(request, ID):
         product.Product_image9,
         product.Product_image10,
     ]
+    # Remove None values
+    product_images = [img for img in product_images if img]
 
-    # ✅ Colors from ManyToManyField
+    # Get colors from ManyToManyField
     product_colors = product.Product_color.all()
+    print(product_colors)
 
     # Available sizes
     available_sizes = []
@@ -48,6 +53,7 @@ def product(request, ID):
         if stock > 0:
             available_sizes.append(size)
 
+    # Render template
     return render(request, "product.html", {
         "product": product,
         "product_images": product_images,

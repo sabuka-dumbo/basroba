@@ -59,9 +59,10 @@
         <div class="color-picker">
             {% for color in product_colors %}
                 <input type="radio" id="color{{ color.id }}" name="color" value="{{ color.name }}" {% if forloop.first %}checked{% endif %}>
-                <label for="color{{ color.id }}" class="{{ color.name }}"></label>
+                <label for="color{{ color.id }}" class="{{ color }}">{{ color.name }}</label>
             {% endfor %}
         </div>
+
 
 
 
