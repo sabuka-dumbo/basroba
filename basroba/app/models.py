@@ -5,6 +5,12 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     pass
 
+class Color(models.Model):
+    colorname = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.colorname
+
 class User_Info(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_info")
     first_name = models.CharField(max_length=150, default="No")
@@ -39,16 +45,16 @@ class Product(models.Model):
     Product_price_old = models.CharField(max_length=250, default='No')
     Product_price_new = models.CharField(max_length=250, default='No')
     Product_rating = models.IntegerField(default=0)
-    Product_color1 = models.CharField(max_length=250, default='No')
-    Product_color2 = models.CharField(max_length=250, default='No')
-    Product_color3 = models.CharField(max_length=250, default='No')
-    Product_color4 = models.CharField(max_length=250, default='No')
-    Product_color5 = models.CharField(max_length=250, default='No')
-    Product_color6 = models.CharField(max_length=250, default='No')
-    Product_color7 = models.CharField(max_length=250, default='No')
-    Product_color8 = models.CharField(max_length=250, default='No')
-    Product_color9 = models.CharField(max_length=250, default='No')
-    Product_color10 = models.CharField(max_length=250, default='No')
+    Product_color1 = models.ForeignKey(Color,)
+    Product_color2 = models.ForeignKey(Color,)
+    Product_color3 = models.ForeignKey(Color,)
+    Product_color4 = models.ForeignKey(Color,)
+    Product_color5 = models.ForeignKey(Color,)
+    Product_color6 = models.ForeignKey(Color,)
+    Product_color7 = models.ForeignKey(Color,)
+    Product_color8 = models.ForeignKey(Color,)
+    Product_color9 = models.ForeignKey(Color,)
+    Product_color10 = models.ForeignKey(Color,)
     Product_XS = models.IntegerField(default=0)
     Product_S = models.IntegerField(default=0)
     Product_M = models.IntegerField(default=0)

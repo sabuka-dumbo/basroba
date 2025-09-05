@@ -426,7 +426,37 @@
     }
 }
 
-.Red {
-    background-color: red;
-    color: red;
-}
+.Red       { background-color: red; color: red; }
+.Blue      { background-color: blue; color: blue; }
+.Green     { background-color: green; color: green; }
+.Yellow    { background-color: yellow; color: yellow; }
+.Orange    { background-color: orange; color: orange; }
+.Purple    { background-color: purple; color: purple; }
+.Pink      { background-color: pink; color: pink; }
+.Brown     { background-color: brown; color: brown; }
+.Black     { background-color: black; color: black; }
+.White     { background-color: white; color: white; border: 1px solid #ccc; }
+.Gray      { background-color: gray; color: gray; }
+.Silver    { background-color: silver; color: silver; }
+.Gold      { background-color: gold; color: gold; }
+.Beige     { background-color: beige; color: beige; }
+.Cyan      { background-color: cyan; color: cyan; }
+.Magenta   { background-color: magenta; color: magenta; }
+.Teal      { background-color: teal; color: teal; }
+.Navy      { background-color: navy; color: navy; }
+.Indigo    { background-color: indigo; color: indigo; }
+.Violet    { background-color: violet; color: violet; }
+.Coral     { background-color: coral; color: coral; }
+.Salmon    { background-color: salmon; color: salmon; }
+.Khaki     { background-color: khaki; color: khaki; }
+.Olive     { background-color: olive; color: olive; }
+.Maroon    { background-color: maroon; color: maroon; }
+.Chocolate { background-color: chocolate; color: chocolate; }
+.Plum      { background-color: plum; color: plum; }
+.Crimson   { background-color: crimson; color: crimson; }
+.Turquoise { background-color: turquoise; color: turquoise; }
+.Lavender  { background-color: lavender; color: lavender; }
+.Mint      { background-color: #98FF98; color: #98FF98; }
+.Peach     { background-color: peachpuff; color: peachpuff; }
+.Skyblue   { background-color: skyblue; color: skyblue; }
+.Fuchsia   { background-color: fuchsia; color: fuchsia; }
