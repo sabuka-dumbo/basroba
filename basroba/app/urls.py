@@ -8,4 +8,7 @@ urlpatterns = [
     path("cart/", views.cart, name="cart"),
     path("profile/", views.profile, name="profile"),
     path("favorites/", views.favorites, name="favorites"),
+
+    path("add-to-cart/", views.add_to_cart, name="add_to_cart"),
+    path("add-to-favorites/", views.add_to_favorites, name="add_to_favorites"),
 ]

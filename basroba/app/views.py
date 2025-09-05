@@ -68,3 +68,34 @@ def favorites(request):
 
 def profile(request):
     return render(request, "profile.html")
+
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def add_to_cart(request):
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        color = request.POST.get("color")
+        size = request.POST.get("size")
+
+        product = Product.objects.get(id=product_id)
+        cart_item, created = Cart.objects.get_or_create(
+            user=request.user,
+            product=product,
+            color=color,
+            size=size
+        )
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+
+        return JsonResponse({"success": True, "message": "Added to cart"})
+
+@login_required
+def add_to_favorites(request):
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        product = Product.objects.get(id=product_id)
+        favorite, created = Favorites.objects.get_or_create(user=request.user, product=product)
+        return JsonResponse({"success": True, "message": "Added to favorites"})
