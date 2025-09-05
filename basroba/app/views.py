@@ -28,18 +28,8 @@ def product(request, ID):
         product.Product_image10,
     ]
 
-    product_colors = [c for c in [
-        product.Product_color1,
-        product.Product_color2,
-        product.Product_color3,
-        product.Product_color4,
-        product.Product_color5,
-        product.Product_color6,
-        product.Product_color7,
-        product.Product_color8,
-        product.Product_color9,
-        product.Product_color10,
-    ] if c != "No"]
+    # ✅ Colors from ManyToManyField
+    product_colors = product.Product_color.all()
 
     # Available sizes
     available_sizes = []
