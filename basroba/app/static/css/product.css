@@ -425,3 +425,8 @@
         grid-template-columns: 80px 5px calc(100% - 85px);
     }
 }
+
+.Red {
+    background-color: red;
+    color: red;
+}
