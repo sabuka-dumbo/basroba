@@ -1,5 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from .models import Product, Favorites, Cart, CartItem
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -69,3 +74,38 @@ def favorites(request):
 
 def profile(request):
     return render(request, "profile.html")
+
+@login_required
+def add_to_favorites(request):
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        product = get_object_or_404(Product, id=product_id)
+        favorites, created = Favorites.objects.get_or_create(user=request.user)
+
+        if product in favorites.favorited.all():
+            favorites.favorited.remove(product)
+            return JsonResponse({"status": "removed"})
+        else:
+            favorites.favorited.add(product)
+            return JsonResponse({"status": "added"})
+    return JsonResponse({"status": "error"})
+
+
+@login_required
+def add_to_cart(request):
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        size = request.POST.get("size", "No")
+        color = request.POST.get("color", "No")
+
+        product = get_object_or_404(Product, id=product_id)
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        cart_item, created = CartItem.objects.get_or_create(
+            user=request.user,
+            Item=product,
+            Size=size,
+            Color=color
+        )
+        cart.items.add(cart_item)
+        return JsonResponse({"status": "added"})
+    return JsonResponse({"status": "error"})
