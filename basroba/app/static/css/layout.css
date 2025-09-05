@@ -499,7 +499,7 @@ nav {
 
 h1::selection {
   background: gray;
-  color: white; /* optional - changes selected text color */
+  color: white;
 }
 
 ::selection {
