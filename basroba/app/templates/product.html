@@ -94,5 +94,21 @@
             document.querySelector('.size-title').innerText = `ზომა: ${this.dataset.size}`;
         });
     });
+
+        const mainPic = document.querySelector('.main-picture');
+    const thumbnails = document.querySelectorAll('.other-image');
+
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            // Save current main pic src
+            const oldSrc = mainPic.src;
+
+            // Replace main with clicked one
+            mainPic.src = thumbnail.src;
+
+            // Put old main pic into the clicked thumbnail
+            thumbnail.src = oldSrc;
+        });
+    });
 </script>
 {% endblock %}
