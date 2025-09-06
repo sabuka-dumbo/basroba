@@ -105,22 +105,31 @@
 
 
     function add_to_cart() {
-        fetch("/api/add_to_cart/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}" 
-            },
-            body: JSON.stringify({ product_id: `{{ product.id }}`, size: document.querySelector('.size-button.selected') ? document.querySelector('.size-button.selected').dataset.size : null, color: document.querySelector('input[name="color"]:checked').value })
+        function add_to_cart() {
+    const selectedColorInput = document.querySelector('input[name="color"]:checked');
+    const selectedSize = document.querySelector('.size-button.selected');
+
+    fetch("/api/add_to_cart/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({
+            product_id: "{{ product.id }}",
+            size: selectedSize ? selectedSize.dataset.size : null,
+            color: selectedColorInput ? selectedColorInput.value : null
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Response:", data);
-            document.getElementById("result").innerText = data.message;
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Response:", data);
+        document.getElementById("result").innerText = data.message;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+};
 
     }; 
 </script>
