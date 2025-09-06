@@ -110,8 +110,6 @@
 
         const colorValue = selectedColorInput ? selectedColorInput.value : null;
 
-        console.log("Selected color:", colorValue);
-
         fetch("/api/add_to_cart/", {
             method: "POST",
             headers: {
@@ -126,8 +124,6 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Response:", data);
-            document.getElementById("result").innerText = data.message;
         })
         .catch(error => {
             console.error("Error:", error);

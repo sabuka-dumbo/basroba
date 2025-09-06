@@ -79,7 +79,18 @@ def add_to_cart(request):
         product_id = data.get("product_id")
         color = data.get("color")
         size = data.get("size")
-        print(f"Received data: {data}")
+
+        find_product = get_object_or_404(Product, id=product_id)
+
+        new_cart_item = CartItem.objects.create(
+            user=request.user,
+            Item=find_product,
+            Size=size,
+            Color=color
+        )
+        new_cart_item.save()
+
+        print(f"new_cart_item: {new_cart_item}")
 
         return JsonResponse({"message": f"Added product {product_id} to cart with color {color} and size {size}."})
 
