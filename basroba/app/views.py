@@ -97,6 +97,7 @@ def add_to_cart(request):
 
     return JsonResponse({"error": "Invalid request"}, status=400)
 
+@csrf_exempt
 def remove_from_cart(request):
     if request.method == "POST":
         data = json.loads(request.body)
