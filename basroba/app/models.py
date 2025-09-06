@@ -83,11 +83,4 @@ class CartItem(models.Model):
     Color = models.CharField(max_length=250, default="No")
 
     def __str__(self):
-        return f"{self.user} favorites:"
-    
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cartsowner")
-    items = models.ManyToManyField(CartItem, related_name="items")
-
-    def __str__(self):
-        return f"{self.user}'s cart"
+        return f"{self.user} saved to cart:"
