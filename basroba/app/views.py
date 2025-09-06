@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 def index(request):
