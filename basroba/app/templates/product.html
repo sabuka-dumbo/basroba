@@ -78,7 +78,7 @@
         <!-- Buttons -->
         <div class="buttons-div">
             <button class="first-button favorite-button2">ფავორიტად არჩევა</button>
-            <button class="second-button add-to-cart-button2">კალათაში დამატება</button>
+            <button class="second-button add-to-cart-button2" id="cart-add" type="button">კალათაში დამატება</button>
         </div>
     </div>
 </form>
@@ -97,15 +97,27 @@
 
     thumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', () => {
-            // Save current main pic src
             const oldSrc = mainPic.src;
-
-            // Replace main with clicked one
             mainPic.src = thumbnail.src;
-
-            // Put old main pic into the clicked thumbnail
             thumbnail.src = oldSrc;
         });
     });
+
+    document.getElementById("cart-add").addEventListener("click", function() {
+        alert("დავიწყეთ პროდუქტის კალათში დამატება!");
+
+        fetch("/api/add_to_cart/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                body: JSON.stringify({  })
+            })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("response").textContent = data.message;
+        });
+    })
 </script>
 {% endblock %}
