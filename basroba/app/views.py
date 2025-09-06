@@ -69,7 +69,13 @@ def cart(request):
     return render(request, "cart.html")
 
 def favorites(request):
-    return render(request, "favorites.html")
+    user_favorites = []
+    if request.user.is_authenticated:
+        user_favorites = FavoriteItem.objects.filter(user=request.user)
+
+    return render(request, "favorites.html", {
+        "user_favorites": user_favorites
+    })
 
 def profile(request):
     return render(request, "profile.html")

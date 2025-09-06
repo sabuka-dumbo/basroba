@@ -1,4 +1,9 @@
-        .product-card {
+.container-main-main {
+    width: 90%;
+    left: 5%;
+}
+
+.product-card {
             background-color: #1a1a1a;
             border-radius: 8px;
             padding: 20px;
