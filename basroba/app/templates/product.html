@@ -120,6 +120,7 @@
 <div id="message-bar"></div>
 
 <script>
+// Show message helper
 function showMessage(text, type="success") {
     const bar = document.getElementById("message-bar");
     bar.innerText = text;
@@ -127,6 +128,7 @@ function showMessage(text, type="success") {
     setTimeout(() => bar.classList.remove("show"), 3000);
 }
 
+// Get selected variant (for cart, size/color)
 function getSelectedVariant() {
     const colorInput = document.querySelector('input[name="color"]:checked');
     const sizeButton = document.querySelector('.size-button.selected');
@@ -136,36 +138,20 @@ function getSelectedVariant() {
     };
 }
 
-// Update cart and favorites buttons dynamically
-function updateButtons() {
-    const { color, size } = getSelectedVariant();
-    if (!color || !size) return;
-
-    fetch("/api/check_variant_status/", {
+// Update favorites button dynamically
+function updateFavoriteButton() {
+    fetch("/api/check_favorite_status/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "X-CSRFToken": "{{ csrf_token }}"
         },
         body: JSON.stringify({
-            product_id: "{{ product.id }}",
-            color: color,
-            size: size
+            product_id: "{{ product.id }}"
         })
     })
     .then(res => res.json())
     .then(data => {
-        // Update cart button
-        const cartBtn = document.getElementById("cart-button");
-        if (data.in_cart) {
-            cartBtn.innerText = "კალათიდან ამოშლა";
-            cartBtn.onclick = () => toggleCart(true);
-        } else {
-            cartBtn.innerText = "კალათაში დამატება";
-            cartBtn.onclick = () => toggleCart(false);
-        }
-
-        // Update favorite button
         const favBtn = document.getElementById("favorite-button");
         if (data.in_favorites) {
             favBtn.innerText = "ფავორიტიდან ამოშლა";
@@ -178,35 +164,10 @@ function updateButtons() {
     .catch(err => console.error(err));
 }
 
-// Add/remove cart
-function toggleCart(inCart) {
-    const { color, size } = getSelectedVariant();
-    if (!color || !size) { showMessage("გთხოვთ აირჩიოთ ზომა და ფერი!", "error"); return; }
-
-    const url = inCart ? "/api/remove_from_cart/" : "/api/add_to_cart/";
-    fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": "{{ csrf_token }}"
-        },
-        body: JSON.stringify({
-            product_id: "{{ product.id }}",
-            color: color,
-            size: size
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.error) { showMessage(data.error, "error"); }
-        else { showMessage(data.message); updateButtons(); }
-    });
-}
-
-// Add/remove favorites
+// Toggle favorite
 function toggleFavorite(inFav) {
-    const { color, size } = getSelectedVariant(); // size optional for favorites
     const url = inFav ? "/api/remove_from_favorites/" : "/api/add_to_favorites/";
+
     fetch(url, {
         method: "POST",
         headers: {
@@ -217,30 +178,33 @@ function toggleFavorite(inFav) {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.error) { showMessage(data.error, "error"); }
-        else { showMessage(data.message); updateButtons(); }
-    });
+        if (data.error) showMessage(data.error, "error");
+        else {
+            showMessage(data.message);
+            updateFavoriteButton(); // refresh button state
+        }
+    })
+    .catch(err => showMessage("დაფიქსირდა შეცდომა", "error"));
 }
 
-// Event listeners for variant selection
+// Event listeners for size/color selection
 document.querySelectorAll('.size-button').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        updateButtons();
+        updateFavoriteButton(); // optional, if you want to refresh favorites dynamically
     });
 });
-
 document.querySelectorAll('.color-picker input').forEach(input => {
     input.addEventListener('change', () => {
         document.querySelectorAll('.color-picker label').forEach(l => l.classList.remove('selected'));
         input.nextElementSibling.classList.add('selected');
-        updateButtons();
+        updateFavoriteButton();
     });
 });
 
-// Initial check
-updateButtons();
+// Initial load
+updateFavoriteButton();
 </script>
 
 {% endblock %}

@@ -206,3 +206,19 @@ def check_variant_status(request):
 
         return JsonResponse({"in_cart": in_cart, "in_favorites": in_fav})
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+@login_required
+def check_favorite_status(request):
+    """
+    Returns whether the current product is in the user's favorites
+    """
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+        product = get_object_or_404(Product, id=product_id)
+
+        in_favorites = FavoriteItem.objects.filter(user=request.user, Item=product).exists()
+        return JsonResponse({"in_favorites": in_favorites})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
