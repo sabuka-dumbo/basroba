@@ -3,6 +3,29 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <style>
+        /* Message bar */
+        #message-bar {
+            display: none;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            z-index: 9999;
+            transition: top 0.5s ease-in-out;
+        }
+        #message-bar.show {
+            display: block;
+            top: 20px;
+        }
+        #message-bar.success { background: green; }
+        #message-bar.error { background: crimson; }
+    </style>
 {% endblock %}
 
 {% block title %}
@@ -10,7 +33,8 @@
 {% endblock %}
 
 {% block body %}
-<form class="section1">
+<form class="section1" onsubmit="return false;"> <!-- prevent reload -->
+
     <!-- Product Images -->
     <div class="pictures-div">
         <div class="other-pics">
@@ -78,49 +102,54 @@
         <!-- Buttons -->
         <div class="buttons-div" id="cart-button-div">
             {% if does_user_have_in_favorites %}
-            <button class="first-button favorite-button2" type="button" onclick="remove_from_favorites()">ფავორიტად ამოშლა</button>
+                <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(true)">ფავორიტიდან ამოშლა</button>
             {% else %}
-                <button class="first-button favorite-button2" type="button" onclick="add_to_favorites()">ფავორიტად არჩევა</button>
+                <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(false)">ფავორიტად არჩევა</button>
             {% endif %}
 
-
             {% if does_user_own_product %}
-                <button class="second-button add-to-cart-button2" onclick="remove_from_cart()" type="button">კალათიდან ამოშლა</button>
+                <button id="cart-button" class="second-button add-to-cart-button2" onclick="toggle_cart(true)" type="button">კალათიდან ამოშლა</button>
             {% else %}
-                <button class="second-button add-to-cart-button2" id="cart-add" type="button" onclick="add_to_cart()">კალათაში დამატება</button>
+                <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggle_cart(false)">კალათაში დამატება</button>
             {% endif %}
         </div>
     </div>
 </form>
 
+<!-- Message bar -->
+<div id="message-bar"></div>
+
 <script>
-    document.querySelectorAll('.size-button').forEach(button => {
-        button.addEventListener('click', function() {
-            document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
-            this.classList.add('selected');
-            document.querySelector('.size-title').innerText = `ზომა: ${this.dataset.size}`;
-        });
-    });
+    // ========== Helpers ==========
+    function showMessage(text, type="success") {
+        const bar = document.getElementById("message-bar");
+        bar.innerText = text;
+        bar.className = type === "error" ? "error show" : "success show";
+        setTimeout(() => {
+            bar.classList.remove("show");
+        }, 3000);
+    }
 
-        const mainPic = document.querySelector('.main-picture');
-    const thumbnails = document.querySelectorAll('.other-image');
-
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', () => {
-            const oldSrc = mainPic.src;
-            mainPic.src = thumbnail.src;
-            thumbnail.src = oldSrc;
-        });
-    });
-
-
-    function add_to_cart() {
+    function getSelectedOptions() {
         const selectedColorInput = document.querySelector('input[name="color"]:checked');
         const selectedSize = document.querySelector('.size-button.selected');
+        return {
+            color: selectedColorInput ? selectedColorInput.value : null,
+            size: selectedSize ? selectedSize.dataset.size : null
+        };
+    }
 
-        const colorValue = selectedColorInput ? selectedColorInput.value : null;
+    // ========== Cart ==========
+    function toggle_cart(in_cart) {
+        const { color, size } = getSelectedOptions();
 
-        fetch("/api/add_to_cart/", {
+        if (!size) {
+            showMessage("გთხოვთ აირჩიოთ ზომა!", "error");
+            return;
+        }
+
+        const url = in_cart ? "/api/remove_from_cart/" : "/api/add_to_cart/";
+        fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -128,58 +157,32 @@
             },
             body: JSON.stringify({
                 product_id: "{{ product.id }}",
-                size: selectedSize ? selectedSize.dataset.size : null,
-                color: colorValue
+                size: size,
+                color: color
             })
         })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('cart-button-div').innerHTML = `
-                <button class="first-button favorite-button2" type="button">ფავორიტად არჩევა</button>
-
-                <button class="second-button add-to-cart-button2" onclick="remove_from_cart()" type="button">კალათიდან ამოშლა</button>
-            `;
+            if (in_cart) {
+                document.getElementById("cart-button").outerHTML =
+                    `<button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggle_cart(false)">კალათაში დამატება</button>`;
+                showMessage("პროდუქტი ამოღებულია კალათიდან");
+            } else {
+                document.getElementById("cart-button").outerHTML =
+                    `<button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggle_cart(true)">კალათიდან ამოშლა</button>`;
+                showMessage("პროდუქტი დამატებულია კალათაში");
+            }
         })
         .catch(error => {
             console.error("Error:", error);
+            showMessage("დაფიქსირდა შეცდომა", "error");
         });
-    };
+    }
 
-
-    function remove_from_cart() {
-        const selectedColorInput = document.querySelector('input[name="color"]:checked');
-        const selectedSize = document.querySelector('.size-button.selected');
-
-        const colorValue = selectedColorInput ? selectedColorInput.value : null;
-
-        fetch("/api/remove_from_cart/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: JSON.stringify({
-                product_id: "{{ product.id }}",
-                size: selectedSize ? selectedSize.dataset.size : null,
-                color: colorValue
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('cart-button-div').innerHTML = `
-                <button class="first-button favorite-button2" type="button">ფავორიტად არჩევა</button>
-
-                <button class="second-button add-to-cart-button2" id="cart-add" type="button" onclick="add_to_cart()">კალათაში დამატება</button>
-            `;
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    };
-
-
-    function add_to_favorites() {
-        fetch("/api/add_to_favorites/", {
+    // ========== Favorites ==========
+    function toggle_favorite(in_fav) {
+        const url = in_fav ? "/api/remove_from_favorites/" : "/api/add_to_favorites/";
+        fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -191,30 +194,40 @@
         })
         .then(response => response.json())
         .then(data => {
+            if (in_fav) {
+                document.getElementById("favorite-button").outerHTML =
+                    `<button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(false)">ფავორიტად არჩევა</button>`;
+                showMessage("პროდუქტი ამოღებულია ფავორიტებიდან");
+            } else {
+                document.getElementById("favorite-button").outerHTML =
+                    `<button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(true)">ფავორიტიდან ამოშლა</button>`;
+                showMessage("პროდუქტი დამატებულია ფავორიტებში");
+            }
         })
         .catch(error => {
             console.error("Error:", error);
+            showMessage("დაფიქსირდა შეცდომა", "error");
         });
-    };
+    }
 
-    function remove_from_favorites() {
-        fetch("/api/remove_from_favorites/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: JSON.stringify({
-                product_id: "{{ product.id }}",
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-        })
-        .catch(error => {
-            console.error("Error:", error);
+    // ========== Size selection ==========
+    document.querySelectorAll('.size-button').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+            document.querySelector('.size-title').innerText = `ზომა: ${this.dataset.size}`;
         });
-    };
+    });
 
+    // ========== Image swap ==========
+    const mainPic = document.querySelector('.main-picture');
+    const thumbnails = document.querySelectorAll('.other-image');
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            const oldSrc = mainPic.src;
+            mainPic.src = thumbnail.src;
+            thumbnail.src = oldSrc;
+        });
+    });
 </script>
 {% endblock %}
