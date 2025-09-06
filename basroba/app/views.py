@@ -61,6 +61,7 @@ def product(request, ID):
         "product_images": product_images,
         "product_colors": product_colors,
         "available_sizes": available_sizes,
+        "does_user_own_product": request.user.is_authenticated and CartItem.objects.filter(user=request.user, Item=product).exists()
     })
 
 def cart(request):
@@ -93,5 +94,21 @@ def add_to_cart(request):
         print(f"new_cart_item: {new_cart_item}")
 
         return JsonResponse({"message": f"Added product {product_id} to cart with color {color} and size {size}."})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+def remove_from_cart(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+
+        find_product = get_object_or_404(Product, id=product_id)
+
+        cart_item = CartItem.objects.filter(user=request.user, Item=find_product).first()
+        if cart_item:
+            cart_item.delete()
+            return JsonResponse({"message": f"Removed product {product_id} from cart."})
+        else:
+            return JsonResponse({"error": "Item not found in cart."}, status=404)
 
     return JsonResponse({"error": "Invalid request"}, status=400)

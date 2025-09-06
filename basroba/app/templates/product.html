@@ -78,7 +78,12 @@
         <!-- Buttons -->
         <div class="buttons-div">
             <button class="first-button favorite-button2">ფავორიტად არჩევა</button>
-            <button class="second-button add-to-cart-button2" id="cart-add" type="button" onclick="add_to_cart()">კალათაში დამატება</button>
+
+            {% if does_user_own_product %}
+                <button class="second-button add-to-cart-button2" onclick="remove_from_cart()">კალათიდან ამოშლა</button>
+            {% else %}
+                <button class="second-button add-to-cart-button2" id="cart-add" type="button" onclick="add_to_cart()">კალათაში დამატება</button>
+            {% endif %}
         </div>
     </div>
 </form>
@@ -111,6 +116,33 @@
         const colorValue = selectedColorInput ? selectedColorInput.value : null;
 
         fetch("/api/add_to_cart/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({
+                product_id: "{{ product.id }}",
+                size: selectedSize ? selectedSize.dataset.size : null,
+                color: colorValue
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    };
+
+
+    function remove_from_cart() {
+        const selectedColorInput = document.querySelector('input[name="color"]:checked');
+        const selectedSize = document.querySelector('.size-button.selected');
+
+        const colorValue = selectedColorInput ? selectedColorInput.value : null;
+
+        fetch("/api/remove_from_cart/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

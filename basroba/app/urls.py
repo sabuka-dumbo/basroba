@@ -11,4 +11,5 @@ urlpatterns = [
 
     # API endpoints
     path("api/add_to_cart/", views.add_to_cart, name="add_to_cart"),
+    path("api/remove_from_cart/", views.remove_from_cart, name="remove_from_cart"),
 ]
