@@ -18,13 +18,9 @@ def products(request):
     return render(request, "products.html", {
         "all_products": all_products
     })
-
 def product(request, ID):
-    # Get the product
     product = get_object_or_404(Product, id=ID)
-
-    # Collect all product images
-    product_images = [
+    product_images = [img for img in [
         product.Product_image1,
         product.Product_image2,
         product.Product_image3,
@@ -35,16 +31,11 @@ def product(request, ID):
         product.Product_image8,
         product.Product_image9,
         product.Product_image10,
-    ]
-    # Remove None values
-    product_images = [img for img in product_images if img]
+    ] if img]
 
-    # Get colors from ManyToManyField
     product_colors = product.Product_color.all()
 
-    # Available sizes
-    available_sizes = []
-    size_map = {
+    available_sizes = [size for size, stock in {
         "XS": product.Product_XS,
         "S": product.Product_S,
         "M": product.Product_M,
@@ -54,19 +45,14 @@ def product(request, ID):
         "3XL": product.Product_3Xl,
         "4XL": product.Product_4Xl,
         "5XL": product.Product_5Xl,
-    }
-    for size, stock in size_map.items():
-        if stock > 0:
-            available_sizes.append(size)
+    }.items() if stock > 0]
 
-    # Render template
+    # We'll not mark cart ownership here because we need size/color from JS
     return render(request, "product.html", {
         "product": product,
         "product_images": product_images,
         "product_colors": product_colors,
         "available_sizes": available_sizes,
-        "does_user_own_product": request.user.is_authenticated and CartItem.objects.filter(user=request.user, Item=product).exists(),
-        "does_user_have_in_favorites": request.user.is_authenticated and FavoriteItem.objects.filter(user=request.user, Item=product).exists(),
     })
 
 def cart(request):
@@ -98,34 +84,54 @@ def add_to_cart(request):
         color = data.get("color")
         size = data.get("size")
 
-        find_product = get_object_or_404(Product, id=product_id)
+        if not request.user.is_authenticated:
+            return JsonResponse({"error": "You must be logged in"}, status=403)
 
-        new_cart_item = CartItem.objects.create(
+        product = get_object_or_404(Product, id=product_id)
+
+        # Check if the same product with same size and color already exists
+        cart_item, created = CartItem.objects.get_or_create(
             user=request.user,
-            Item=find_product,
+            Item=product,
             Size=size,
-            Color=color
+            Color=color,
+            defaults={"count": 1}
         )
-        new_cart_item.save()
 
-        print(f"new_cart_item: {new_cart_item}")
+        if not created:
+            # If it already exists, increase count by 1
+            cart_item.count += 1
+            cart_item.save()
+            return JsonResponse({"message": f"Updated quantity for {product.Product_name} ({size}, {color}) in cart."})
 
-        return JsonResponse({"message": f"Added product {product_id} to cart with color {color} and size {size}."})
+        return JsonResponse({"message": f"Added {product.Product_name} ({size}, {color}) to cart."})
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
 
 @csrf_exempt
 def remove_from_cart(request):
     if request.method == "POST":
         data = json.loads(request.body)
         product_id = data.get("product_id")
+        size = data.get("size")
+        color = data.get("color")
 
-        find_product = get_object_or_404(Product, id=product_id)
+        if not request.user.is_authenticated:
+            return JsonResponse({"error": "You must be logged in"}, status=403)
 
-        cart_item = CartItem.objects.filter(user=request.user, Item=find_product).first()
+        product = get_object_or_404(Product, id=product_id)
+
+        cart_item = CartItem.objects.filter(
+            user=request.user,
+            Item=product,
+            Size=size,
+            Color=color
+        ).first()
+
         if cart_item:
             cart_item.delete()
-            return JsonResponse({"message": f"Removed product {product_id} from cart."})
+            return JsonResponse({"message": f"Removed {product.Product_name} ({size}, {color}) from cart."})
         else:
             return JsonResponse({"error": "Item not found in cart."}, status=404)
 
