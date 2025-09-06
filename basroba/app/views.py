@@ -71,3 +71,16 @@ def favorites(request):
 
 def profile(request):
     return render(request, "profile.html")
+
+@csrf_exempt
+def add_to_cart(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+        color = data.get("color")
+        size = data.get("size")
+        print(f"Received data: {data}")
+
+        return JsonResponse({"message": f"Added product {product_id} to cart with color {color} and size {size}."})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
