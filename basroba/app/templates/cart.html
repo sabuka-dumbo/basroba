@@ -14,21 +14,23 @@
 
     <div class="container">
         <div class="cart-items">
-            <h1>თევზი კალათა (4 ნაჭერი)</h1>
-            <div class="cart-item">
-                <div class="item-image">
-                    <img src="item-image.jpg" alt="Item">
+            <h1>კალათა ()</h1>
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <div class="item-image">
+                        <img src="{{ item.Item.Product_image1.url }}" alt="Item">
+                    </div>
+                    <div class="item-details">
+                        <span class="item-name">{{ item.Item.Product_name }}</span>
+                        <span class="item-price">₾{{ item.Item.Product_price }}</span>
+                    </div>
+                    <div class="quantity">
+                        <button class="btn-decrease">-</button>
+                        <input type="number" value="2" class="quantity-input">
+                        <button class="btn-increase">+</button>
+                    </div>
                 </div>
-                <div class="item-details">
-                    <span class="item-name">ბამბის ხალათი</span>
-                    <span class="item-price">₾60.95</span>
-                </div>
-                <div class="quantity">
-                    <button class="btn-decrease">-</button>
-                    <input type="number" value="2" class="quantity-input">
-                    <button class="btn-increase">+</button>
-                </div>
-            </div>
+            {% endfor %}
             <!-- Repeat .cart-item for more items -->
         </div>
 

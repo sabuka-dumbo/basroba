@@ -70,7 +70,13 @@ def product(request, ID):
     })
 
 def cart(request):
-    return render(request, "cart.html")
+    cart_items = []
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.all().filter(user=request.user)
+
+    return render(request, "cart.html", {
+        "cart_items": cart_items
+    })
 
 def favorites(request):
     user_favorites = []
