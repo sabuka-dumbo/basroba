@@ -13,7 +13,11 @@ def index(request):
     })
 
 def products(request):
-    return render(request, "products.html")
+    all_products = Product.objects.all()
+
+    return render(request, "products.html", {
+        "all_products": all_products
+    })
 
 def product(request, ID):
     # Get the product
