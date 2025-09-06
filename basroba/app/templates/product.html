@@ -102,22 +102,5 @@
             thumbnail.src = oldSrc;
         });
     });
-
-    document.getElementById("cart-add").addEventListener("click", function() {
-        alert("დავიწყეთ პროდუქტის კალათში დამატება!");
-
-        fetch("/api/add_to_cart/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": getCookie("csrftoken")
-                },
-                body: JSON.stringify({  })
-            })
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("response").textContent = data.message;
-        });
-    })
 </script>
 {% endblock %}

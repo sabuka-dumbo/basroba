@@ -68,25 +68,3 @@ def favorites(request):
 
 def profile(request):
     return render(request, "profile.html")
-
-
-
-
-
-
-
-
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-
-@csrf_exempt
-def add_to_cart(request):
-    if request.method == "POST":
-        data = json.loads(request.body)  # get JSON data from fetch
-        product_id = data.get("product_id")
-        quantity = data.get("quantity", 1)
-        print(f"Product ID: {product_id}, Quantity: {quantity}")
-
-        return JsonResponse({"message": f"Added product {product_id} to cart with quantity {quantity}."})
-    return JsonResponse({"error": "Only POST allowed"}, status=400)
