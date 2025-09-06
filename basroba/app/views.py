@@ -167,3 +167,18 @@ def remove_from_favorites(request):
             return JsonResponse({"error": "Item not found in favorites."}, status=404)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+def update_cart_count(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        cart_item_id = data.get("cart_item_id")
+        new_count = data.get("count")
+
+        cart_item = get_object_or_404(CartItem, id=cart_item_id, user=request.user)
+        cart_item.count = new_count
+        cart_item.save()
+
+        return JsonResponse({"message": f"Cart item {cart_item_id} count updated to {new_count}."})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)

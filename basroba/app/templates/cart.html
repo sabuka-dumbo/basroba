@@ -16,6 +16,8 @@
         <div class="cart-items">
             <h1>კალათა ({{ cart_items.count }})</h1>
             {% for item in cart_items %}
+            <div class="cart-item" data-cart-item-id="{{ item.id }}">
+                </div>
                 <div class="cart-item">
                     <div class="item-image">
                         <img src="{{ item.Item.Product_image1.url }}" alt="Item">
@@ -54,28 +56,55 @@
 
     <br>
 
-    <script>
-        const decreaseButtons = document.querySelectorAll('.btn-decrease');
-        const increaseButtons = document.querySelectorAll('.btn-increase');
+<script>
+const decreaseButtons = document.querySelectorAll('.btn-decrease');
+const increaseButtons = document.querySelectorAll('.btn-increase');
 
-        decreaseButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const quantityInput = button.nextElementSibling;
-                let currentValue = parseInt(quantityInput.value);
-                if (currentValue > 1) {
-                    quantityInput.value = currentValue - 1;
-                }
-            });
-        });
+function updateCartCount(cartItemId, newCount) {
+    fetch("{% url 'update_cart_count' %}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+        },
+        body: JSON.stringify({
+            cart_item_id: cartItemId,
+            count: newCount
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error(error));
+}
 
-        increaseButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const quantityInput = button.previousElementSibling;
-                let currentValue = parseInt(quantityInput.value);
-                if (currentValue < 9) {
-                    quantityInput.value = currentValue + 1;
-                }
-            });
-        });
-    </script>
+decreaseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const quantityInput = button.nextElementSibling;
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+
+            // Get cart item ID from data attribute
+            const cartItemId = button.closest('.cart-item').dataset.cartItemId;
+            updateCartCount(cartItemId, currentValue - 1);
+        }
+    });
+});
+
+increaseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const quantityInput = button.previousElementSibling;
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue < 9) {
+            quantityInput.value = currentValue + 1;
+
+            const cartItemId = button.closest('.cart-item').dataset.cartItemId;
+            updateCartCount(cartItemId, currentValue + 1);
+        }
+    });
+});
+</script>
+
 {% endblock %}

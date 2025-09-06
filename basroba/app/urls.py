@@ -15,4 +15,6 @@ urlpatterns = [
 
     path("api/add_to_favorites/", views.add_to_favorites, name="add_to_favorites"),
     path("api/remove_from_favorites/", views.remove_from_favorites, name="remove_from_favorites"),
+
+    path('update_cart_count/', views.update_cart_count, name='update_cart_count'),
 ]
