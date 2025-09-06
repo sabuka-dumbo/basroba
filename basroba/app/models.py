@@ -69,13 +69,6 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.Product_name}"
     
-class Favorites(models.Model):
-    user = models.ForeignKey(User, related_name="userfavorites", on_delete=models.CASCADE)
-    favorited = models.ManyToManyField(Product, related_name="userfavorited")
-
-    def __str__(self):
-        return f"{self.user} favorites:"
-    
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name="usercart", on_delete=models.CASCADE)
     Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item", default=None)
@@ -84,3 +77,10 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.user} saved to cart:"
+    
+class FavoriteItem(models.Model):
+    user = models.ForeignKey(User, related_name="userfavorite", on_delete=models.CASCADE)
+    Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item2", default=None)
+
+    def __str__(self):
+        return f"{self.user} favorited:"

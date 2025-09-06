@@ -12,4 +12,7 @@ urlpatterns = [
     # API endpoints
     path("api/add_to_cart/", views.add_to_cart, name="add_to_cart"),
     path("api/remove_from_cart/", views.remove_from_cart, name="remove_from_cart"),
+
+    path("api/add_to_favorites/", views.add_to_favorites, name="add_to_favorites"),
+    path("api/remove_from_favorites/", views.remove_from_favorites, name="remove_from_favorites"),
 ]

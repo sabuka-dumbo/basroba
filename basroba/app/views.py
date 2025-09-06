@@ -61,7 +61,8 @@ def product(request, ID):
         "product_images": product_images,
         "product_colors": product_colors,
         "available_sizes": available_sizes,
-        "does_user_own_product": request.user.is_authenticated and CartItem.objects.filter(user=request.user, Item=product).exists()
+        "does_user_own_product": request.user.is_authenticated and CartItem.objects.filter(user=request.user, Item=product).exists(),
+        "does_user_have_in_favorites": request.user.is_authenticated and FavoriteItem.objects.filter(user=request.user, Item=product).exists(),
     })
 
 def cart(request):
@@ -111,5 +112,42 @@ def remove_from_cart(request):
             return JsonResponse({"message": f"Removed product {product_id} from cart."})
         else:
             return JsonResponse({"error": "Item not found in cart."}, status=404)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+def add_to_favorites(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+
+        find_product = get_object_or_404(Product, id=product_id)
+
+        new_favorite_item = FavoriteItem.objects.create(
+            user=request.user,
+            Item=find_product
+        )
+        new_favorite_item.save()
+
+        print(f"new_favorite_item: {new_favorite_item}")
+
+        return JsonResponse({"message": f"Added product {product_id} to favorites."})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+def remove_from_favorites(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+
+        find_product = get_object_or_404(Product, id=product_id)
+
+        favorite_item = FavoriteItem.objects.filter(user=request.user, Item=find_product).first()
+        if favorite_item:
+            favorite_item.delete()
+            return JsonResponse({"message": f"Removed product {product_id} from favorites."})
+        else:
+            return JsonResponse({"error": "Item not found in favorites."}, status=404)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
