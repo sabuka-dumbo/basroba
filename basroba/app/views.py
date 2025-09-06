@@ -3,6 +3,8 @@ from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.utils.translation import gettext as _
+
 
 # Create your views here.
 def index(request):
