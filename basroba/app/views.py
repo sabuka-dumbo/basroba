@@ -186,3 +186,23 @@ def update_cart_count(request):
         return JsonResponse({"message": f"Cart item {cart_item_id} count updated to {new_count}."})
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+from django.contrib.auth.decorators import login_required
+
+@csrf_exempt
+@login_required
+def check_variant_status(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+        color = data.get("color")
+        size = data.get("size")
+
+        product = get_object_or_404(Product, id=product_id)
+
+        in_cart = CartItem.objects.filter(user=request.user, Item=product, Size=size, Color=color).exists()
+        in_fav = FavoriteItem.objects.filter(user=request.user, Item=product).exists()
+
+        return JsonResponse({"in_cart": in_cart, "in_favorites": in_fav})
+    return JsonResponse({"error": "Invalid request"}, status=400)

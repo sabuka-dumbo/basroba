@@ -120,114 +120,127 @@
 <div id="message-bar"></div>
 
 <script>
-    // ========== Helpers ==========
-    function showMessage(text, type="success") {
-        const bar = document.getElementById("message-bar");
-        bar.innerText = text;
-        bar.className = type === "error" ? "error show" : "success show";
-        setTimeout(() => {
-            bar.classList.remove("show");
-        }, 3000);
-    }
+function showMessage(text, type="success") {
+    const bar = document.getElementById("message-bar");
+    bar.innerText = text;
+    bar.className = type === "error" ? "error show" : "success show";
+    setTimeout(() => bar.classList.remove("show"), 3000);
+}
 
-    function getSelectedOptions() {
-        const selectedColorInput = document.querySelector('input[name="color"]:checked');
-        const selectedSize = document.querySelector('.size-button.selected');
-        return {
-            color: selectedColorInput ? selectedColorInput.value : null,
-            size: selectedSize ? selectedSize.dataset.size : null
-        };
-    }
+function getSelectedVariant() {
+    const colorInput = document.querySelector('input[name="color"]:checked');
+    const sizeButton = document.querySelector('.size-button.selected');
+    return {
+        color: colorInput ? colorInput.value : null,
+        size: sizeButton ? sizeButton.dataset.size : null
+    };
+}
 
-    // ========== Cart ==========
-    function toggle_cart(in_cart) {
-        const { color, size } = getSelectedOptions();
+// Update cart and favorites buttons dynamically
+function updateButtons() {
+    const { color, size } = getSelectedVariant();
+    if (!color || !size) return;
 
-        if (!size) {
-            showMessage("გთხოვთ აირჩიოთ ზომა!", "error");
-            return;
+    fetch("/api/check_variant_status/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({
+            product_id: "{{ product.id }}",
+            color: color,
+            size: size
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Update cart button
+        const cartBtn = document.getElementById("cart-button");
+        if (data.in_cart) {
+            cartBtn.innerText = "კალათიდან ამოშლა";
+            cartBtn.onclick = () => toggleCart(true);
+        } else {
+            cartBtn.innerText = "კალათაში დამატება";
+            cartBtn.onclick = () => toggleCart(false);
         }
 
-        const url = in_cart ? "/api/remove_from_cart/" : "/api/add_to_cart/";
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: JSON.stringify({
-                product_id: "{{ product.id }}",
-                size: size,
-                color: color
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (in_cart) {
-                document.getElementById("cart-button").outerHTML =
-                    `<button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggle_cart(false)">კალათაში დამატება</button>`;
-                showMessage("პროდუქტი ამოღებულია კალათიდან");
-            } else {
-                document.getElementById("cart-button").outerHTML =
-                    `<button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggle_cart(true)">კალათიდან ამოშლა</button>`;
-                showMessage("პროდუქტი დამატებულია კალათაში");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            showMessage("დაფიქსირდა შეცდომა", "error");
-        });
-    }
+        // Update favorite button
+        const favBtn = document.getElementById("favorite-button");
+        if (data.in_favorites) {
+            favBtn.innerText = "ფავორიტიდან ამოშლა";
+            favBtn.onclick = () => toggleFavorite(true);
+        } else {
+            favBtn.innerText = "ფავორიტად არჩევა";
+            favBtn.onclick = () => toggleFavorite(false);
+        }
+    })
+    .catch(err => console.error(err));
+}
 
-    // ========== Favorites ==========
-    function toggle_favorite(in_fav) {
-        const url = in_fav ? "/api/remove_from_favorites/" : "/api/add_to_favorites/";
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: JSON.stringify({
-                product_id: "{{ product.id }}"
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (in_fav) {
-                document.getElementById("favorite-button").outerHTML =
-                    `<button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(false)">ფავორიტად არჩევა</button>`;
-                showMessage("პროდუქტი ამოღებულია ფავორიტებიდან");
-            } else {
-                document.getElementById("favorite-button").outerHTML =
-                    `<button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(true)">ფავორიტიდან ამოშლა</button>`;
-                showMessage("პროდუქტი დამატებულია ფავორიტებში");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            showMessage("დაფიქსირდა შეცდომა", "error");
-        });
-    }
+// Add/remove cart
+function toggleCart(inCart) {
+    const { color, size } = getSelectedVariant();
+    if (!color || !size) { showMessage("გთხოვთ აირჩიოთ ზომა და ფერი!", "error"); return; }
 
-    // ========== Size selection ==========
-    document.querySelectorAll('.size-button').forEach(button => {
-        button.addEventListener('click', function() {
-            document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
-            this.classList.add('selected');
-            document.querySelector('.size-title').innerText = `ზომა: ${this.dataset.size}`;
-        });
+    const url = inCart ? "/api/remove_from_cart/" : "/api/add_to_cart/";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({
+            product_id: "{{ product.id }}",
+            color: color,
+            size: size
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) { showMessage(data.error, "error"); }
+        else { showMessage(data.message); updateButtons(); }
     });
+}
 
-    // ========== Image swap ==========
-    const mainPic = document.querySelector('.main-picture');
-    const thumbnails = document.querySelectorAll('.other-image');
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', () => {
-            const oldSrc = mainPic.src;
-            mainPic.src = thumbnail.src;
-            thumbnail.src = oldSrc;
-        });
+// Add/remove favorites
+function toggleFavorite(inFav) {
+    const { color, size } = getSelectedVariant(); // size optional for favorites
+    const url = inFav ? "/api/remove_from_favorites/" : "/api/add_to_favorites/";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({ product_id: "{{ product.id }}" })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) { showMessage(data.error, "error"); }
+        else { showMessage(data.message); updateButtons(); }
     });
+}
+
+// Event listeners for variant selection
+document.querySelectorAll('.size-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        updateButtons();
+    });
+});
+
+document.querySelectorAll('.color-picker input').forEach(input => {
+    input.addEventListener('change', () => {
+        document.querySelectorAll('.color-picker label').forEach(l => l.classList.remove('selected'));
+        input.nextElementSibling.classList.add('selected');
+        updateButtons();
+    });
+});
+
+// Initial check
+updateButtons();
 </script>
+
 {% endblock %}
