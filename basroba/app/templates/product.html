@@ -79,11 +79,13 @@
         <div class="buttons-div">
             <button class="first-button favorite-button2">ფავორიტად არჩევა</button>
 
-            {% if does_user_own_product %}
-                <button class="second-button add-to-cart-button2" onclick="remove_from_cart()">კალათიდან ამოშლა</button>
-            {% else %}
-                <button class="second-button add-to-cart-button2" id="cart-add" type="button" onclick="add_to_cart()">კალათაში დამატება</button>
-            {% endif %}
+            <div id="cart-button-div">
+                {% if does_user_own_product %}
+                    <button class="second-button add-to-cart-button2" onclick="remove_from_cart()">კალათიდან ამოშლა</button>
+                {% else %}
+                    <button class="second-button add-to-cart-button2" id="cart-add" type="button" onclick="add_to_cart()">კალათაში დამატება</button>
+                {% endif %}
+            </div>  
         </div>
     </div>
 </form>
@@ -129,6 +131,9 @@
         })
         .then(response => response.json())
         .then(data => {
+            document.getElementById(cart-button-div).innerHTML = `
+                <button class="second-button add-to-cart-button2" onclick="remove_from_cart()">კალათიდან ამოშლა</button>
+            `;
         })
         .catch(error => {
             console.error("Error:", error);
