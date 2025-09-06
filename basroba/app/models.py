@@ -74,6 +74,7 @@ class CartItem(models.Model):
     Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item", default=None)
     Size = models.CharField(max_length=250, default='No')
     Color = models.CharField(max_length=250, default="No")
+    count = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.user} saved to cart:"
