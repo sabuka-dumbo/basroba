@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -134,10 +135,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('ka', 'Georgian'),
+    ("en", "English"),
+    ("ka", "Georgian"),
 ]
-
+LANGUAGE_CODE = "en"
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
