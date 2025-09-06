@@ -18,6 +18,7 @@ def products(request):
     return render(request, "products.html", {
         "all_products": all_products
     })
+
 def product(request, ID):
     product = get_object_or_404(Product, id=ID)
     product_images = [img for img in [
@@ -47,7 +48,6 @@ def product(request, ID):
         "5XL": product.Product_5Xl,
     }.items() if stock > 0]
 
-    # We'll not mark cart ownership here because we need size/color from JS
     return render(request, "product.html", {
         "product": product,
         "product_images": product_images,
@@ -79,17 +79,17 @@ def profile(request):
 @csrf_exempt
 def add_to_cart(request):
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return JsonResponse({"error": "You must be logged in"}, status=403)
+
         data = json.loads(request.body)
         product_id = data.get("product_id")
         color = data.get("color")
         size = data.get("size")
 
-        if not request.user.is_authenticated:
-            return JsonResponse({"error": "You must be logged in"}, status=403)
-
         product = get_object_or_404(Product, id=product_id)
 
-        # Check if the same product with same size and color already exists
+        # Check if variant exists
         cart_item, created = CartItem.objects.get_or_create(
             user=request.user,
             Item=product,
@@ -99,12 +99,10 @@ def add_to_cart(request):
         )
 
         if not created:
-            # If it already exists, increase count by 1
             cart_item.count += 1
             cart_item.save()
-            return JsonResponse({"message": f"Updated quantity for {product.Product_name} ({size}, {color}) in cart."})
-
-        return JsonResponse({"message": f"Added {product.Product_name} ({size}, {color}) to cart."})
+            return JsonResponse({"message": f"Quantity updated for {size} {color}.", "in_cart": True})
+        return JsonResponse({"message": f"{size} {color} added to cart.", "in_cart": True})
 
     return JsonResponse({"error": "Invalid request"}, status=400)
 
@@ -112,13 +110,13 @@ def add_to_cart(request):
 @csrf_exempt
 def remove_from_cart(request):
     if request.method == "POST":
-        data = json.loads(request.body)
-        product_id = data.get("product_id")
-        size = data.get("size")
-        color = data.get("color")
-
         if not request.user.is_authenticated:
             return JsonResponse({"error": "You must be logged in"}, status=403)
+
+        data = json.loads(request.body)
+        product_id = data.get("product_id")
+        color = data.get("color")
+        size = data.get("size")
 
         product = get_object_or_404(Product, id=product_id)
 
@@ -131,9 +129,9 @@ def remove_from_cart(request):
 
         if cart_item:
             cart_item.delete()
-            return JsonResponse({"message": f"Removed {product.Product_name} ({size}, {color}) from cart."})
+            return JsonResponse({"message": f"{size} {color} removed from cart.", "in_cart": False})
         else:
-            return JsonResponse({"error": "Item not found in cart."}, status=404)
+            return JsonResponse({"error": "Item not in cart."}, status=404)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
 
