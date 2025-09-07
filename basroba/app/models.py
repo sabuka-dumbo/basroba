@@ -24,6 +24,7 @@ class User_Info(models.Model):
         return f"{self.user}'s info"
     
 class Address_Info(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_address", default=None)
     full_name = models.CharField(max_length=250, default='No')
     street_address1 = models.CharField(max_length=250, default='No')
     street_address2 = models.CharField(max_length=250, default='No')
