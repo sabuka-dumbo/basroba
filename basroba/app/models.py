@@ -10,6 +10,12 @@ class Color(models.Model):
 
     def __str__(self):
         return self.colorname
+    
+class Category(models.Model):
+    categoryname = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.categoryname
 
 class User_Info(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_info")
@@ -47,6 +53,7 @@ class Product(models.Model):
     Product_price_new = models.CharField(max_length=250, default='No')
     Product_rating = models.IntegerField(default=0)
     Product_color = models.ManyToManyField(Color, related_name="color10", default="")
+    Product_Category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", default=None, blank=True, null=True)
     Product_XS = models.IntegerField(default=0)
     Product_S = models.IntegerField(default=0)
     Product_M = models.IntegerField(default=0)
