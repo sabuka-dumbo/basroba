@@ -241,6 +241,19 @@ document.querySelectorAll('.color-picker input').forEach(input => {
 
 // Initial check
 updateButtons();
+
+// Swap main picture with clicked other picture
+document.querySelectorAll('.other-image').forEach(img => {
+    img.addEventListener('click', () => {
+        const mainImg = document.querySelector('.main-picture');
+
+        // Swap src values
+        const tempSrc = mainImg.src;
+        mainImg.src = img.src;
+        img.src = tempSrc;
+    });
+});
+
 </script>
 
 {% endblock %}
