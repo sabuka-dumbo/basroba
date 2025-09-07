@@ -40,9 +40,9 @@
             {% for product in all_products %}
                 <a href="{% url 'product' product.pk %}" style="text-decoration: none; color: white;">
                     <div class="product-card">
-                        <img src="{% static 'pics/Dress.png' %}" class="product-image" alt="">
-                        <h3 class="product-text">ქალთა კაბა</h3>
-                        <p class="product-price">199 ₾</p>
+                        <img src="{{ product.Product_image1.url }}" class="product-image" alt="">
+                        <h3 class="product-text">{{ product.Product_name }}</h3>
+                        <p class="product-price">{{ product.Product_price_new }} ₾</p>
                     </div>
                 </a>
             {% endfor %}
