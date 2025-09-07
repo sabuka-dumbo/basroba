@@ -16,6 +16,7 @@
     <div class="cart-items">
         <h1>კალათა ({{ cart_items.count }})</h1>
         {% for item in cart_items %}
+        <a href="{% url 'product' item.Item.id %}" style="text-decoration: none; color: white">
             <div class="cart-item" data-cart-item-id="{{ item.id }}">
                 <div class="item-image">
                     <img src="{{ item.Item.Product_image1.url }}" alt="{{ item.Item.Product_name }}">
@@ -23,7 +24,7 @@
                 <div class="item-details">
                     <span class="item-name">{{ item.Item.Product_name }}</span>
                     <span class="item-price">₾{{ item.Item.Product_price_new }}</span>
-                    <span class="item-price">Color: {{ item.Item.Product_color }} Size: {{ item.Item.Product_size }}</span>
+                    <span class="item-price">Color: {{ item.Color }} ||  Size: {{ item.Size }}</span>
                 </div>
                 <div class="quantity">
                     <button class="btn-decrease" type="button">-</button>
@@ -31,6 +32,7 @@
                     <button class="btn-increase" type="button">+</button>
                 </div>
             </div>
+        </a>
         {% empty %}
             <p>თქვენი კალათა ცარიელია.</p>
         {% endfor %}
