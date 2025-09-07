@@ -57,14 +57,13 @@ ROOT_URLCONF = 'basroba.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                # default items...
+                'django.template.context_processors.i18n',
+                # ...
             ],
         },
     },
@@ -134,12 +133,21 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LANGUAGES = [
-    ("en", "English"),
-    ("ka", "Georgian"),
-]
-LANGUAGE_CODE = "en"
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Internationalization
+USE_I18N = True
+USE_L10N = True           # optional, but common
+USE_TZ = True
+
+LANGUAGE_CODE = 'en'      # default language
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ka', 'ქართული'),   # Georgian (ISO code "ka")
+]
+
+# Where translation files will live
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',
+    os.path.join(BASE_DIR, 'locale'),
 ]
