@@ -85,3 +85,13 @@ class FavoriteItem(models.Model):
 
     def __str__(self):
         return f"{self.user} favorited:"
+    
+class Order(models.Model):
+    user = models.ForeignKey(User, related_name="userorder", on_delete=models.CASCADE)
+    items = models.ManyToManyField(CartItem, related_name="orderitems")
+    address = models.ForeignKey(Address_Info, on_delete=models.CASCADE, related_name="orderaddress", default=None)
+    total_price = models.CharField(max_length=250, default='0')
+    ordered_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order #{self.pk} by {self.user}"

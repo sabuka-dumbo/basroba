@@ -75,11 +75,13 @@ def favorites(request):
 
 def profile(request):
     user_info = User_Info.objects.filter(user=request.user).first()
+    order_info = Order.objects.filter(user=request.user).all()
     if not user_info and request.user.is_authenticated:
         return redirect("index")
     else:
         return render(request, "profile.html", {
-            "user_info": user_info
+            "user_info": user_info,
+            "order_info": order_info
         })
 
 @csrf_exempt
