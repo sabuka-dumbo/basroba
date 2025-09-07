@@ -76,12 +76,14 @@ def favorites(request):
 def profile(request):
     user_info = User_Info.objects.filter(user=request.user).first()
     order_info = Order.objects.filter(user=request.user).all()
+    address_info = Address_Info.objects.filter(user=request.user).all()
     if not user_info and request.user.is_authenticated:
         return redirect("index")
     else:
         return render(request, "profile.html", {
             "user_info": user_info,
-            "order_info": order_info
+            "order_info": order_info,
+            "address_info": address_info
         })
 
 @csrf_exempt
@@ -232,21 +234,24 @@ def check_favorite_status(request):
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 
-@csrf_exempt
+@csrf_exempt  # only if you are sending JSON via JS; remove if using Django forms
 @login_required
 def save_user(request):
     if request.method == "POST":
-        data = json.loads(request.body)
-        first_name = data.get("first_name")
-        last_name = data.get("last_name")
-        email = data.get("email")
-        middle_name = data.get("middle_name", "No")
-        id_number = data.get("id_number", 0)
-        phone_number = data.get("phone_number", 0)
+        try:
+            data = json.loads(request.body)
 
-        user_info = User_Info.objects.filter(user=request.user).first()
+            first_name = data.get("first_name", "").strip()
+            last_name = data.get("last_name", "").strip()
+            email = data.get("email_address", "").strip()
+            middle_name = data.get("middle_name", "No").strip()
+            id_number = data.get("id_number", 0)
+            phone_number = data.get("phone_number", 0)
 
-        if user_info:
+            # Get or create the user info
+            user_info, created = User_Info.objects.get_or_create(user=request.user)
+
+            # Update fields
             user_info.first_name = first_name
             user_info.last_name = last_name
             user_info.email_address = email
@@ -254,18 +259,12 @@ def save_user(request):
             user_info.id_number = id_number
             user_info.phone_number = phone_number
             user_info.save()
-        else:
-            user_info = User_Info.objects.create(
-                user=request.user,
-                first_name=first_name,
-                last_name=last_name,
-                email_address=email,
-                middle_name=middle_name,
-                id_number=id_number,
-                phone_number=phone_number
-            )
-            User_Info.save()
 
-        return JsonResponse({"message": "User information saved successfully."})
+            return JsonResponse({"message": "User information saved successfully."})
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)

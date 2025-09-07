@@ -25,12 +25,12 @@ addEventListener("DOMContentLoaded", function() {
 })
 
 function save_user_info() {
-    const first_name = document.getElementById("first_name").value;
-    const middle_name = document.getElementById("middle_name").value;
-    const last_name = document.getElementById("last_name").value;
-    const id_number = document.getElementById("id_number").value;
-    const email_address = document.getElementById("email_address").value;
-    const phone_number = document.getElementById("phone_number").value;
+    const first_name = document.getElementById("first_name1").value;
+    const middle_name = document.getElementById("middle_name1").value;
+    const last_name = document.getElementById("last_name1").value;
+    const id_number = document.getElementById("id_number1").value;
+    const email_address = document.getElementById("email_address1").value;
+    const phone_number = document.getElementById("phone_number1").value;
 
     fetch("/api/save_user/", {
         method: "POST",

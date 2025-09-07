@@ -22,12 +22,12 @@
         <div class="main-part1 card" id="main-part1" style="display: none;">
             <h1>Profile Information</h1>
             <div>
-                <input type="text" placeholder="First Name" value="{{ user_info.first_name }}" id="first_name">
-                <input type="text" placeholder="Middle Name" value="{{ user_info.middle_name }}" id="middle_name">
-                <input type="text" placeholder="Last Name" value="{{ user_info.last_name }}" id="last_name">
-                <input type="number" placeholder="Id Number" value="{{ user_info.id_number }}" id="id_number">
-                <input type="email" placeholder="Email Address" value="{{ user_info.email_address }}" id="email_address">
-                <input type="number" placeholder="Phone Number" value="{{ user_info.phone_number }}" id="phone_number">
+                <input type="text" placeholder="First Name" value="{{ user_info.first_name }}" id="first_name1">
+                <input type="text" placeholder="Middle Name" value="{{ user_info.middle_name }}" id="middle_name1">
+                <input type="text" placeholder="Last Name" value="{{ user_info.last_name }}" id="last_name1">
+                <input type="number" placeholder="Id Number" value="{{ user_info.id_number }}" id="id_number1">
+                <input type="email" placeholder="Email Address" value="{{ user_info.email_address }}" id="email_address1">
+                <input type="number" placeholder="Phone Number" value="{{ user_info.phone_number }}" id="phone_number1">
                 <button type="submit" onclick="save_user_info()" type="button">💾 Save</button>
             </div>
         </div>
@@ -36,14 +36,16 @@
         <div class="main-part2 card" id="main-part2" style="display: none;">
             <h1>Address Information</h1>
             <button type="button" class="add-address">➕ Add Address</button>
-            
-            <div class="address-div">
-                <h2 class="address">123 Main St, City, Country</h2>
-                <div class="address-actions">
-                    <button type="button" class="change-address">✏️ Change</button>
-                    <button type="button" class="delete-address">🗑 Delete</button>
+
+            {% for address in address_info %}
+                <div class="address-div">
+                    <h2 class="address">{{ address.street_address1 }}, {{ address.city }}, {{ address.country }}</h2>
+                    <div class="address-actions">
+                        <button type="button" class="change-address">✏️ Change</button>
+                        <button type="button" class="delete-address">🗑 Delete</button>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
 
         <!-- Orders -->
