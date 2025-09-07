@@ -1,155 +1,216 @@
-/* General Layout */
+/* === GLOBAL RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+    background: #0f0f0f;
+    color: #eaeaea;
+    line-height: 1.6;
+}
+
+/* === PROFILE CONTAINER === */
 .profile {
     display: grid;
     grid-template-columns: 260px 1fr;
-    gap: 20px;
+    gap: 24px;
     width: 90%;
     margin: 50px auto;
 }
 
-/* Sidebar */
+/* === SIDEBAR === */
 .sidebar {
-    background: rgba(30, 30, 30, 0.9);
-    padding: 25px;
+    background: #1a1a1a;
     border-radius: 16px;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
+
 .sidebar h1 {
-    color: #fff;
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 30px;
+    color: #fff;
 }
+
 .sidebar a {
     display: block;
     padding: 12px 15px;
     margin-bottom: 10px;
     border-radius: 10px;
-    color: #ddd;
+    color: #aaa;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
+
 .sidebar a:hover,
 .sidebar a.active {
-    background: linear-gradient(90deg, #ff512f, #dd2476);
+    background: #2b2b2b;
     color: #fff;
-    box-shadow: 0 2px 10px rgba(255, 81, 47, 0.4);
 }
 
-/* Main Content */
+/* === MAIN PART === */
 .main-part {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
-.card {
-    background: rgba(40, 40, 40, 0.95);
-    border-radius: 16px;
+
+/* === CARDS (shared style) === */
+.main-part1,
+.main-part2,
+.main-part3 {
+    background: #1a1a1a;
     padding: 30px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    margin-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Headings */
-.card h1 {
-    color: #fff;
+.main-part1 h1,
+.main-part2 h1,
+.main-part3 h1 {
     font-size: 22px;
+    font-weight: 600;
     margin-bottom: 20px;
-}
-.card h2 {
     color: #fff;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-.card h3 {
-    color: #ccc;
-    font-size: 16px;
 }
 
-/* Inputs */
+/* === INPUTS === */
 input {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: 1px solid #444;
-    background: #222;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background: #121212;
     color: #eee;
     font-size: 15px;
     transition: border 0.3s, box-shadow 0.3s;
 }
+
 input:focus {
-    border-color: #ff512f;
-    box-shadow: 0 0 8px rgba(255, 81, 47, 0.5);
+    border-color: #5555ff;
+    box-shadow: 0 0 8px rgba(85, 85, 255, 0.5);
     outline: none;
 }
 
-/* Buttons */
+/* === BUTTONS === */
 button {
     padding: 10px 20px;
-    border-radius: 25px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    background: linear-gradient(90deg, #ff512f, #dd2476);
+    background: #333;
     color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-    transition: transform 0.2s, box-shadow 0.3s;
-}
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 81, 47, 0.6);
-}
-.add-address {
-    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
 }
 
-/* Address Section */
+button:hover {
+    background: #5555ff;
+    box-shadow: 0 4px 12px rgba(85, 85, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.add-address {
+    background: #444;
+}
+.add-address:hover {
+    background: #5555ff;
+}
+
+/* === ADDRESS DIV === */
 .address-div {
-    background: #2a2a2a;
+    background: #121212;
     padding: 20px;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
+
 .address {
-    color: #fff;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #ddd;
 }
+
 .address-actions {
     display: flex;
     gap: 10px;
 }
 
-/* Orders */
+/* === ORDERS === */
 .order {
-    background: #2a2a2a;
+    background: #121212;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
 }
+
 .order h2 {
+    font-size: 18px;
+    font-weight: 600;
     color: #fff;
     margin-bottom: 15px;
 }
+
 .order-item {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 12px;
 }
+
 .order-item img {
     width: 70px;
     height: 70px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
+    background: #222;
 }
+
 .order-item h3 {
+    font-size: 15px;
     color: #ddd;
 }
 
-/* Responsive */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
     .profile {
         grid-template-columns: 1fr;
+    }
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .sidebar h1 {
+        display: none;
+    }
+    .sidebar a {
+        margin-bottom: 0;
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-part1,
+    .main-part2,
+    .main-part3 {
+        padding: 20px;
+    }
+    input {
+        font-size: 14px;
+    }
+    button {
+        font-size: 13px;
     }
 }
