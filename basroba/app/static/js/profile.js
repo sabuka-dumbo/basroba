@@ -84,40 +84,24 @@ function delete_address(address_id) {
 }
 
 function add_address() {
-    const street_address1 = prompt("Enter Street Address 1:");
-    const street_address2 = prompt("Enter Street Address 2 (optional):");
-    const city = prompt("Enter City:");
-    const state_region = prompt("Enter State/Region:");
-    const zip_code = prompt("Enter ZIP Code:");
-    const country = prompt("Enter Country:");
-    const phone_code = prompt("Enter Phone Code:");
-    const phone_number = prompt("Enter Phone Number:");
-    if (!street_address1 || !city || !state_region || !zip_code || !country || !phone_code || !phone_number) {
-        alert("All fields except Street Address 2 are required.");
-    }
     fetch("/api/add_address/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            street_address1: street_address1,
-            street_address2: street_address2,
-            city: city,
-            state_region: state_region,
-            zip_code: zip_code,
-            country: country,
-            phone_code: phone_code,
-            phone_number: phone_number
+            street_address1: document.getElementById("street_address1").value,
+            street_address2: document.getElementById("street_address2").value,
+            city: document.getElementById("city").value,
+            state_region: document.getElementById("state_region").value,
+            zip_code: document.getElementById("zip_code").value,
+            country: document.getElementById("country").value,
+            phone_code: document.getElementById("phone_code").value,
+            phone_number: document.getElementById("phone_number").value
         })
     })
     .then(response => response.json())
     .then(data => {
-        if (data.message) {
-            alert(data.message);
-        } else if (data.error) {
-            alert(data.error);
-        }
     })
     .catch(error => {
         console.error("Error:", error);
