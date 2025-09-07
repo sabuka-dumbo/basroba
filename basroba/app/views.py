@@ -268,3 +268,17 @@ def save_user(request):
             return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+@login_required
+def delete_address(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        address_id = data.get("address_id", 0)
+
+        address = get_object_or_404(Address_Info, id=address_id, user=request.user)
+        address.delete()
+
+        return JsonResponse({"message": "Address deleted successfully."})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)

@@ -8,6 +8,7 @@
 {% block title %}My Profile{% endblock %}
 
 {% block body %}
+
 <div class="profile">
     <!-- Sidebar -->
     <div class="sidebar">
@@ -38,11 +39,11 @@
             <button type="button" class="add-address">➕ Add Address</button>
 
             {% for address in address_info %}
-                <div class="address-div">
+                <div class="address-div" id="address-{{ address.id }}">
                     <h2 class="address">{{ address.street_address1 }}, {{ address.city }}, {{ address.country }}</h2>
                     <div class="address-actions">
                         <button type="button" class="change-address">✏️ Change</button>
-                        <button type="button" class="delete-address">🗑 Delete</button>
+                        <button type="button" class="delete-address" onclick='delete_address(`{{ address.id }}`)'>🗑 Delete</button>
                     </div>
                 </div>
             {% endfor %}

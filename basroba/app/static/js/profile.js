@@ -58,3 +58,27 @@ function save_user_info() {
         console.error("Error:", error);
     });
 }
+
+function delete_address(address_id) {
+    fetch("/api/delete_address/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            address_id: address_id
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+            document.getElementById(`address-${address_id}`).remove();
+        } else if (data.error) {
+            alert(data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}

@@ -21,4 +21,5 @@ urlpatterns = [
     path("api/check_favorite_status/", views.check_favorite_status, name="check_favorite_status"),
 
     path("api/save_user/", views.save_user, name="save_user"),
+    path("api/delete_address/", views.delete_address, name="delete_address"),
 ]
