@@ -230,3 +230,43 @@ def check_favorite_status(request):
         return JsonResponse({"in_favorites": in_favorites})
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+@csrf_exempt
+@login_required
+def save_user(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        email = data.get("email")
+        address_line1 = data.get("address_line1")
+        address_line2 = data.get("address_line2")
+        city = data.get("city")
+        state_region = data.get("state_region")
+        zip_code = data.get("zip_code")
+        country = data.get("country")
+        phone_number = data.get("phone_number")
+        phone_code = data.get("phone_code")
+        additional_comment = data.get("additional_comment")
+
+        user_info, created = User_Info.objects.get_or_create(user=request.user)
+
+        user_info.first_name = first_name
+        user_info.last_name = last_name
+        user_info.email = email
+        user_info.address_line1 = address_line1
+        user_info.address_line2 = address_line2
+        user_info.city = city
+        user_info.State_Region = state_region
+        user_info.ZIP_code = zip_code
+        user_info.country = country
+        user_info.phone_number = phone_number
+        user_info.phone_code = phone_code
+        user_info.additional_comment = additional_comment
+
+        user_info.save()
+
+        return JsonResponse({"message": "User information saved successfully."})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)

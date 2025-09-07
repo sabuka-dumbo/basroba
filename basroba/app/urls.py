@@ -19,4 +19,6 @@ urlpatterns = [
     path('update_cart_count/', views.update_cart_count, name='update_cart_count'),
     path("api/check_variant_status/", views.check_variant_status, name="check_variant_status"),
     path("api/check_favorite_status/", views.check_favorite_status, name="check_favorite_status"),
+
+    path("api/save_user/", views.save_user, name="save_user"),
 ]
