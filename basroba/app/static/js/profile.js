@@ -25,26 +25,25 @@ addEventListener("DOMContentLoaded", function() {
 })
 
 function save_user_info() {
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    const zip_code = document.getElementById("zip_code").value;
+    const first_name = document.getElementById("first_name").value;
+    const middle_name = document.getElementById("middle_name").value;
+    const last_name = document.getElementById("last_name").value;
+    const id_number = document.getElementById("id_number").value;
+    const email_address = document.getElementById("email_address").value;
+    const phone_number = document.getElementById("phone_number").value;
 
     fetch("/api/save_user/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
         },
         body: JSON.stringify({
-            name: name,
-            phone: phone,
-            address: address,
-            city: city,
-            state: state,
-            zip_code: zip_code
+            first_name: first_name,
+            middle_name: middle_name,
+            last_name: last_name,
+            id_number: id_number,
+            email_address: email_address,
+            phone_number: phone_number
         })
     })
     .then(response => response.json())
@@ -58,19 +57,4 @@ function save_user_info() {
     .catch(error => {
         console.error("Error:", error);
     });
-}
-
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-        const cookies = document.cookie.split(";");
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + "=")) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }   
-        }
-    }
-    return cookieValue;
 }

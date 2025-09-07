@@ -240,32 +240,31 @@ def save_user(request):
         first_name = data.get("first_name")
         last_name = data.get("last_name")
         email = data.get("email")
-        address_line1 = data.get("address_line1")
-        address_line2 = data.get("address_line2")
-        city = data.get("city")
-        state_region = data.get("state_region")
-        zip_code = data.get("zip_code")
-        country = data.get("country")
-        phone_number = data.get("phone_number")
-        phone_code = data.get("phone_code")
-        additional_comment = data.get("additional_comment")
+        middle_name = data.get("middle_name", "No")
+        id_number = data.get("id_number", 0)
+        phone_number = data.get("phone_number", 0)
 
-        user_info, created = User_Info.objects.get_or_create(user=request.user)
+        user_info = User_Info.objects.filter(user=request.user).first()
 
-        user_info.first_name = first_name
-        user_info.last_name = last_name
-        user_info.email = email
-        user_info.address_line1 = address_line1
-        user_info.address_line2 = address_line2
-        user_info.city = city
-        user_info.State_Region = state_region
-        user_info.ZIP_code = zip_code
-        user_info.country = country
-        user_info.phone_number = phone_number
-        user_info.phone_code = phone_code
-        user_info.additional_comment = additional_comment
-
-        user_info.save()
+        if user_info:
+            user_info.first_name = first_name
+            user_info.last_name = last_name
+            user_info.email_address = email
+            user_info.middle_name = middle_name
+            user_info.id_number = id_number
+            user_info.phone_number = phone_number
+            user_info.save()
+        else:
+            user_info = User_Info.objects.create(
+                user=request.user,
+                first_name=first_name,
+                last_name=last_name,
+                email_address=email,
+                middle_name=middle_name,
+                id_number=id_number,
+                phone_number=phone_number
+            )
+            User_Info.save()
 
         return JsonResponse({"message": "User information saved successfully."})
 
