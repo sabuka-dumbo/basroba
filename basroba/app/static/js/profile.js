@@ -112,7 +112,7 @@ function add_address() {
 
 document.getElementById("address-form-back").addEventListener("click", function() {
     document.getElementById("address-form").style.display = "none"; 
-    document.getElementById("main-part2").style.display = "flex";
+    document.getElementById("main-part2").style.display = "block";
     document.getElementById("address-form").reset();
 });
 
