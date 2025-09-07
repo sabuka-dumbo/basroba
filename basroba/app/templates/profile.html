@@ -8,6 +8,23 @@
 {% block title %}My Profile{% endblock %}
 
 {% block body %}
+<div class="container">
+    <div class="container-back"></div>
+    <div class="container-front">
+        <h1>Add Address</h1>
+        <input type="text" placeholder="First Name" id="first_name2" value="{{ user_info.first_name }}">
+        <input type="text" placeholder="Last Name" id="last_name2" value="{{ user_info.last_name }}">
+        <input type="number" placeholder="Phone Number" id="phone_number2" value="{{ user_info.phone_number }}">
+        <input type="text" placeholder="Street Address 1" id="street_address1" value="{{ user_info.street_address1 }}">
+        <input type="text" placeholder="Street Address 2" id="street_address2" value="{{ user_info.street_address2 }}">
+        <input type="text" placeholder="City" id="city" value="{{ user_info.city }}">
+        <input type="text" placeholder="State/Region" id="state_region" value="{{ user_info.State_Region }}">
+        <input type="number" placeholder="ZIP Code" id="zip_code" value="{{ user_info.ZIP_code }}">
+        <input type="text" placeholder="Country" id="country" value="{{ user_info.country }}">
+        <input type="number" placeholder="Phone Code" id="phone_code" value="{{ user_info.phone_code }}">
+        <button type="submit" onclick="add_address()" type="button">💾 Save</button>
+    </div>
+</div>
 
 <div class="profile">
     <!-- Sidebar -->
