@@ -290,31 +290,32 @@ def add_address(request):
         try:
             data = json.loads(request.body)
 
-            first_name = data.get("first_name22", "").strip()
-            last_name = data.get("last_name22", "").strip()
-            street_address1 = data.get("street_address122", "").strip()
-            street_address2 = data.get("street_address222", "").strip()
-            city = data.get("city22", "").strip()
-            state_region = data.get("state_region22", "").strip()
-            zip_code = data.get("zip_code22", 0)
-            country = data.get("country22", "").strip()
-            phone_code = data.get("phone_code22", 0)
-            phone_number = data.get("phone_number22", 0)
+            # Use the exact keys sent from JS
+            full_name = data.get("full_name", "").strip()
+            street_address1 = data.get("street_address1", "").strip()
+            street_address2 = data.get("street_address2", "").strip()
+            city = data.get("city", "").strip()
+            state_region = data.get("state_region", "").strip()
+            zip_code = data.get("zip_code", 0)
+            country = data.get("country", "").strip()
+            phone_code = data.get("phone_code", 0)
+            phone_number = data.get("phone_number", 0)
+            additional_comment = data.get("additional_comment", "").strip()
 
-            new_address = Address_Info.objects.create(
+            # Create address
+            Address_Info.objects.create(
                 user=request.user,
-                first_name=first_name,
-                last_name=last_name,
+                full_name=full_name,
                 street_address1=street_address1,
                 street_address2=street_address2,
                 city=city,
-                state_region=state_region,
-                zip_code=zip_code,
+                State_Region=state_region,
+                ZIP_code=zip_code,
                 country=country,
                 phone_code=phone_code,
-                phone_number=phone_number
+                phone_number=phone_number,
+                additional_comment=additional_comment
             )
-            new_address.save()
 
             return JsonResponse({"message": "Address added successfully."})
 
