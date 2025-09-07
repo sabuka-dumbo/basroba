@@ -203,8 +203,7 @@ button:hover {
         font-size: 13px;
     }
 }
-
-
+/* Fullscreen container */
 .container {
     position: fixed;
     top: 0;
@@ -212,8 +211,12 @@ button:hover {
     width: 100vw;
     height: 100vh;
     z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Dark blurred background */
 .container-back {
     position: absolute;
     top: 0;
@@ -224,16 +227,46 @@ button:hover {
     backdrop-filter: blur(4px);
 }
 
+/* Modal card */
 .container-front {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     background: #1a1a1a;
-    padding: 30px;
+    padding: 20px;
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     width: 80%;
+    max-width: 400px;     
     height: 70%;
+    max-height: 600px;  
     overflow-y: auto;
+}
+
+/* Scrollbar inside modal */
+.container-front::-webkit-scrollbar {
+    width: 8px;
+}
+.container-front::-webkit-scrollbar-thumb {
+    background-color: #5555ff;
+    border-radius: 8px;
+}
+.container-front::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 400px) {
+    .container-front {
+        width: 90%;
+        height: 75%;
+        padding: 15px;
+        border-radius: 12px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .container-front {
+        width: 95%;
+        height: 80%;
+        padding: 12px;
+    }
 }

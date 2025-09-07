@@ -109,3 +109,16 @@ function add_address() {
         console.error("Error:", error);
     });
 }
+
+document.getElementById("address-form-back").addEventListener("click", function() {
+    document.getElementById("address-form").style.display = "none"; 
+    document.getElementById("main-part2").style.display = "inline";
+    document.getElementById("add-address-button").style.display = "inline";
+    document.getElementById("address-form").reset();
+});
+
+function open_address_form() {
+    document.getElementById("address-form").style.display = "inline-block"; 
+    document.getElementById("main-part2").style.display = "none";
+    document.getElementById("add-address-button").style.display = "none";
+}
