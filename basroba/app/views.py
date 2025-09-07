@@ -12,8 +12,15 @@ def index(request):
         "all_products": all_products
     })
 
-def products(request):
-    all_products = Product.objects.all()
+def products(request, category_name):
+    if category_name == "Male":
+        all_products = Product.objects.filter(Product_is_male=True)
+    elif category_name == "Female":
+        all_products = Product.objects.filter(Product_is_male=False)
+    elif category_name == "Accessories":
+        all_products = Product.objects.filter(Product_Category__categoryname="აქსესუარები")
+    else:
+        all_products = Product.objects.all()
 
     return render(request, "products.html", {
         "all_products": all_products
