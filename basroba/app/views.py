@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -74,7 +74,13 @@ def favorites(request):
     })
 
 def profile(request):
-    return render(request, "profile.html")
+    user_info = User_Info.objects.filter(user=request.user).first()
+    if not user_info and request.user.is_authenticated:
+        return redirect("index")
+    else:
+        return render(request, "profile.html", {
+            "user_info": user_info
+        })
 
 @csrf_exempt
 def add_to_cart(request):
