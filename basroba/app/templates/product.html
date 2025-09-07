@@ -99,10 +99,11 @@
             {% endif %}
 
             {% if does_user_own_product %}
-                <button id="cart-button" class="second-button add-to-cart-button2" onclick="toggle_cart(true)" type="button">კალათიდან ამოშლა</button>
+                <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(true)">კალათიდან ამოშლა</button>
             {% else %}
-                <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggle_cart(false)">კალათაში დამატება</button>
+                <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(false)">კალათაში დამატება</button>
             {% endif %}
+
         </div>
     </div>
 </form>
