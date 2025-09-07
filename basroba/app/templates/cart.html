@@ -16,23 +16,26 @@
     <div class="cart-items">
         <h1>კალათა ({{ cart_items.count }})</h1>
         {% for item in cart_items %}
-        <a href="{% url 'product' item.Item.id %}" style="text-decoration: none; color: white">
-            <div class="cart-item" data-cart-item-id="{{ item.id }}">
-                <div class="item-image">
-                    <img src="{{ item.Item.Product_image1.url }}" alt="{{ item.Item.Product_name }}">
-                </div>
-                <div class="item-details">
-                    <span class="item-name">{{ item.Item.Product_name }}</span>
-                    <span class="item-price">₾{{ item.Item.Product_price_new }}</span>
-                    <span class="item-price">Color: {{ item.Color }} ||  Size: {{ item.Size }}</span>
-                </div>
-                <div class="quantity">
-                    <button class="btn-decrease" type="button">-</button>
-                    <input type="number" value="{{ item.count }}" class="quantity-input" max="9" min="1" readonly>
-                    <button class="btn-increase" type="button">+</button>
-                </div>
-            </div>
+<div class="cart-item" data-cart-item-id="{{ item.id }}">
+    <div class="item-image">
+        <a href="{% url 'product' item.Item.id %}">
+            <img src="{{ item.Item.Product_image1.url }}" alt="{{ item.Item.Product_name }}">
         </a>
+    </div>
+    <div class="item-details">
+        <a href="{% url 'product' item.Item.id %}" style="text-decoration: none; color: white">
+            <span class="item-name">{{ item.Item.Product_name }}</span>
+        </a>
+        <span class="item-price">₾{{ item.Item.Product_price_new }}</span>
+        <span class="item-price">Color: {{ item.Color }} || Size: {{ item.Size }}</span>
+    </div>
+    <div class="quantity">
+        <button class="btn-decrease" type="button">-</button>
+        <input type="number" value="{{ item.count }}" class="quantity-input" max="9" min="1" readonly>
+        <button class="btn-increase" type="button">+</button>
+    </div>
+</div>
+
         {% empty %}
             <p style="color: white; text-align: center;">თქვენი კალათა ცარიელია.</p>
         {% endfor %}
