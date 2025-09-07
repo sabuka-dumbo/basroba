@@ -511,3 +511,30 @@ h1::selection {
     background-color: white;
     color: white;
 }
+
+/* === Dark Scrollbar for WebKit browsers === */
+::-webkit-scrollbar {
+    width: 12px; /* width of the vertical scrollbar */
+    height: 12px; /* height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #121212; /* track color */
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5555ff; /* thumb color */
+    border-radius: 8px;
+    border: 3px solid #121212; /* padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #7777ff;
+}
+
+/* === Dark Scrollbar for Firefox === */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #5555ff #121212; /* thumb track */
+}
