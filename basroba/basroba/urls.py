@@ -16,12 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from app import views
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('adminadminadmin/', admin.site.urls),
+
+    # include Django's i18n helpers (gives name='set_language' at /i18n/setlang/)
+    path('i18n/', include('django.conf.urls.i18n')),
+
+    # language selection page (we'll create template select_language.html)
+    path('choose-language/', TemplateView.as_view(template_name='select_language.html'), name='choose-language'),
+
     path('', include("app.urls"))
 ]
 
