@@ -53,6 +53,7 @@ class Product(models.Model):
     Product_price_new = models.CharField(max_length=250, default='No')
     Product_rating = models.IntegerField(default=0)
     Product_color = models.ManyToManyField(Color, related_name="color10", default="")
+    Product_is_male = models.BooleanField(default=False)
     Product_Category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", default=None, blank=True, null=True)
     Product_XS = models.IntegerField(default=0)
     Product_S = models.IntegerField(default=0)
