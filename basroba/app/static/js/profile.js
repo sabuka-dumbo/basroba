@@ -94,7 +94,6 @@ function add_address() {
     const phone_number = prompt("Enter Phone Number:");
     if (!street_address1 || !city || !state_region || !zip_code || !country || !phone_code || !phone_number) {
         alert("All fields except Street Address 2 are required.");
-        return;
     }
     fetch("/api/add_address/", {
         method: "POST",
