@@ -90,14 +90,16 @@ function add_address() {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            street_address1: document.getElementById("street_address1").value,
-            street_address2: document.getElementById("street_address2").value,
-            city: document.getElementById("city").value,
-            state_region: document.getElementById("state_region").value,
-            zip_code: document.getElementById("zip_code").value,
-            country: document.getElementById("country").value,
-            phone_code: document.getElementById("phone_code").value,
-            phone_number: document.getElementById("phone_number").value
+            first_name: document.getElementById("first_name22").value,
+            last_name: document.getElementById("last_name22").value,
+            phone_number: document.getElementById("phone_number22").value,
+            street_address1: document.getElementById("street_address122").value,
+            street_address2: document.getElementById("street_address222").value,
+            city: document.getElementById("city22").value,
+            state_region: document.getElementById("state_region22").value,
+            zip_code: document.getElementById("zip_code22").value,
+            country: document.getElementById("country22").value,
+            phone_code: document.getElementById("phone_code22").value
         })
     })
     .then(response => response.json())

@@ -290,29 +290,29 @@ def add_address(request):
         try:
             data = json.loads(request.body)
 
-            full_name = data.get("full_name", "No").strip()
-            street_address1 = data.get("street_address1", "No").strip()
-            street_address2 = data.get("street_address2", "No").strip()
-            city = data.get("city", "No").strip()
-            state_region = data.get("state_region", "No").strip()
-            zip_code = data.get("zip_code", 0)
-            country = data.get("country", "No").strip()
-            phone_number = data.get("phone_number", 0)
-            phone_code = data.get("phone_code", 0)
-            additional_comment = data.get("additional_comment", "No").strip()
+            first_name = data.get("first_name22", "").strip()
+            last_name = data.get("last_name22", "").strip()
+            street_address1 = data.get("street_address122", "").strip()
+            street_address2 = data.get("street_address222", "").strip()
+            city = data.get("city22", "").strip()
+            state_region = data.get("state_region22", "").strip()
+            zip_code = data.get("zip_code22", 0)
+            country = data.get("country22", "").strip()
+            phone_code = data.get("phone_code22", 0)
+            phone_number = data.get("phone_number22", 0)
 
             new_address = Address_Info.objects.create(
                 user=request.user,
-                full_name=full_name,
+                first_name=first_name,
+                last_name=last_name,
                 street_address1=street_address1,
                 street_address2=street_address2,
                 city=city,
-                State_Region=state_region,
-                ZIP_code=zip_code,
+                state_region=state_region,
+                zip_code=zip_code,
                 country=country,
-                phone_number=phone_number,
                 phone_code=phone_code,
-                additional_comment=additional_comment
+                phone_number=phone_number
             )
             new_address.save()
 
