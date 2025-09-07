@@ -22,4 +22,5 @@ urlpatterns = [
 
     path("api/save_user/", views.save_user, name="save_user"),
     path("api/delete_address/", views.delete_address, name="delete_address"),
+    path("api/add_address/", views.add_address, name="add_address"),
 ]

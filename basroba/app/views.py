@@ -282,3 +282,45 @@ def delete_address(request):
         return JsonResponse({"message": "Address deleted successfully."})
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+@login_required
+def add_address(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            full_name = data.get("full_name", "No").strip()
+            street_address1 = data.get("street_address1", "No").strip()
+            street_address2 = data.get("street_address2", "No").strip()
+            city = data.get("city", "No").strip()
+            state_region = data.get("state_region", "No").strip()
+            zip_code = data.get("zip_code", 0)
+            country = data.get("country", "No").strip()
+            phone_number = data.get("phone_number", 0)
+            phone_code = data.get("phone_code", 0)
+            additional_comment = data.get("additional_comment", "No").strip()
+
+            new_address = Address_Info.objects.create(
+                user=request.user,
+                full_name=full_name,
+                street_address1=street_address1,
+                street_address2=street_address2,
+                city=city,
+                State_Region=state_region,
+                ZIP_code=zip_code,
+                country=country,
+                phone_number=phone_number,
+                phone_code=phone_code,
+                additional_comment=additional_comment
+            )
+            new_address.save()
+
+            return JsonResponse({"message": "Address added successfully."})
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
