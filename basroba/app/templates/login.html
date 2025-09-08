@@ -2,65 +2,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zara Style Login</title>
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zara Style Login/Register</title>
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="auth-container">
-        <!-- LOGIN FORM -->
-        <div class="auth-box {% if form_type != 'login' %}hidden{% endif %}">
-            <h1 class="auth-title">Welcome Back</h1>
-            <p class="auth-subtitle">Sign in to continue</p>
+<div class="auth-container">
+    <div class="auth-box" id="login-box">
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to continue</p>
 
-            <form method="POST" class="auth-form">
-                {% csrf_token %}
-                {% for field in login_form %}
-                    <div class="form-group">
-                        {{ field }}
-                        {% if field.errors %}
-                            <p class="field-error">{{ field.errors|striptags }}</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-                <button type="submit" class="auth-btn">Login</button>
-            </form>
+        <form action="/login/" method="POST" class="auth-form">
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
 
-            <p class="auth-toggle">Don't have an account? 
-                <span class="auth-link" onclick="toggleForms()">Register</span>
-            </p>
-        </div>
-
-        <!-- REGISTER FORM -->
-        <div class="auth-box register-box {% if form_type != 'register' %}hidden{% endif %}">
-            <h1 class="auth-title">Create Account</h1>
-            <p class="auth-subtitle">Sign up to get started</p>
-
-            <form method="POST" class="auth-form">
-                {% csrf_token %}
-                {% for field in register_form %}
-                    <div class="form-group">
-                        {{ field }}
-                        {% if field.errors %}
-                            <p class="field-error">{{ field.errors|striptags }}</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-                <button type="submit" class="auth-btn">Register</button>
-            </form>
-
-            <p class="auth-toggle">Already have an account? 
-                <span class="auth-link" onclick="toggleForms()">Login</span>
-            </p>
-        </div>
+        <p class="auth-toggle">Don't have an account? 
+            <span class="auth-link" onclick="toggleForms()">Register</span>
+        </p>
     </div>
+
+    <div class="auth-box hidden" id="register-box">
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Sign up to get started</p>
+
+        <form action="/register/" method="POST" class="auth-form">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="auth-btn">Register</button>
+        </form>
+
+        <p class="auth-toggle">Already have an account? 
+            <span class="auth-link" onclick="toggleForms()">Login</span>
+        </p>
+    </div>
+</div>
 
 <script>
 function toggleForms() {
-    const loginBox = document.querySelector('.auth-box:not(.register-box)');
-    const registerBox = document.querySelector('.register-box');
+    const loginBox = document.getElementById('login-box');
+    const registerBox = document.getElementById('register-box');
     loginBox.classList.toggle('hidden');
     registerBox.classList.toggle('hidden');
 }
