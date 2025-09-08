@@ -1,22 +1,144 @@
-body {
+/* Reset some default styles */
+* {
     margin: 0;
     padding: 0;
-    grid-template-columns: 50% 50%;
+    box-sizing: border-box;
 }
 
-.side-img {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 50%;
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    object-fit: cover;
-    grid-column: 1;
+    background-color: #1e1e1e;
 }
 
-.login-container {
-    position: relative;
-    top: 0;
-    left: 0;
-    grid-column: 2;
+.auth-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Left side - Image */
+.image-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('your-dark-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.image-side img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+/* Right side - Form */
+.form-side {
+    flex: 1;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    outline: none;
+    background-color: #333;
+    color: #fff;
+}
+
+.input-group input:focus {
+    border-color: #3498db;
+    background-color: #444;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.switch-form {
+    margin-top: 15px;
+}
+
+.switch-form p {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.switch-form a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.switch-form a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design - On smaller screens, hide the image and only show the form */
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+    }
+
+    .image-side {
+        display: none;
+    }
+
+    .form-side {
+        width: 100%;
+        padding: 20px;
+    }
 }

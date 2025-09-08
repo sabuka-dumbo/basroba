@@ -1,18 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-    </head>
-    <body>
-        <img src="{% static 'pics/Picture1.png' %}" alt="" class="side-img">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Left side image -->
+        <div class="image-side">
+            <img src="your-dark-image.jpg" alt="Authentication Image">
+        </div>
 
-        <div class="login-container">
+        <!-- Right side form -->
+        <div class="form-side">
+            <div class="form-container">
                 <h2>Login</h2>
-                <form method="post" action="{% url 'login' %}">
+                <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
                     <div class="input-group">
                         <label for="username">Username</label>
@@ -22,10 +28,13 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" required>
                     </div>
-                    <button type="submit" class="login-button">Login</button>
+                    <button type="submit" class="submit-btn">Login</button>
+                    <div class="switch-form">
+                        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+                    </div>
                 </form>
-                <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
-
+            </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
