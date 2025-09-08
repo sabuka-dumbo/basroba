@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    grid-template-columns: 50% 50%;
+}
+
+.side-img {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100vh;
+    object-fit: cover;
+    grid-column: 1;
+}
+
+.login-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    grid-column: 2;
+}

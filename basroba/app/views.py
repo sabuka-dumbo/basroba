@@ -11,6 +11,13 @@ def index(request):
     return render(request, "index.html", {
         "all_products": all_products
     })
+
+def login(request):
+    return render(request, "login.html")
+
+def register(request):
+    return render(request, "register.html")
+
 def products(request, category_name):
     if category_name == "Male":
         all_products = Product.objects.filter(Product_is_male=True)
