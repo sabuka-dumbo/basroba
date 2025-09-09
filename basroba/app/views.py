@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.utils.translation import gettext as _
 
 # Create your views here.
 def index(request):
@@ -26,12 +25,13 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect("index")
+            return redirect("home")
         else:
             messages.error(request, "Invalid username or password")
             return redirect("login")
 
     return render(request, "auth.html")
+
 
 def register_view(request):
     if request.method == "POST":
@@ -50,7 +50,7 @@ def register_view(request):
             first_name=name
         )
         login(request, user)
-        return redirect("index")
+        return redirect("home")
 
     return render(request, "auth.html")
 
