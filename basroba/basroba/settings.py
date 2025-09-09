@@ -46,8 +46,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',  # ✅ needed for {% trans %}
-                "myapp.context_processors.lang_processor",
-
             ],
         },
     },
@@ -83,13 +81,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Available languages
 LANGUAGES = [
-    ("en", "English"),
-    ("ka", "Georgian"),
+    ('en', 'English'),
+    ('ka', 'Georgian'),
 ]
 
+# Where translations will be stored
 LOCALE_PATHS = [
-    BASE_DIR / "locale",
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 # Static & Media files
