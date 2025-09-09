@@ -132,20 +132,14 @@ def favorites(request):
         return redirect("index")
 
 def profile(request):
-    if request.user.is_authenticated:
-        user_info = User_Info.objects.filter(user=request.user).first()
-        order_info = Order.objects.filter(user=request.user).all()
-        address_info = Address_Info.objects.filter(user=request.user).all()
-        if not user_info and request.user.is_authenticated:
-            return redirect("index")
-        else:
-            return render(request, "profile.html", {
-                "user_info": user_info,
-                "order_info": order_info,
-                "address_info": address_info
-            })
-    else:
-        return redirect("index")
+    user_info = User_Info.objects.filter(user=request.user).first()
+    order_info = Order.objects.filter(user=request.user).all()
+    address_info = Address_Info.objects.filter(user=request.user).all()
+    return render(request, "profile.html", {
+        "user_info": user_info,
+        "order_info": order_info,
+        "address_info": address_info
+        })
 
 @csrf_exempt
 def add_to_cart(request):
