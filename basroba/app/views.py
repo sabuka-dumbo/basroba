@@ -25,12 +25,12 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect("home")  # change to your homepage url name
+            return redirect("home")
         else:
             messages.error(request, "Invalid username or password")
             return redirect("login")
 
-    return render(request, "auth.html")  # your login/register template
+    return render(request, "auth.html")
 
 
 def register_view(request):
@@ -49,10 +49,10 @@ def register_view(request):
             password=password,
             first_name=name
         )
-        login(request, user)  # auto login after registration
+        login(request, user)
         return redirect("home")
 
-    return render(request, "auth.html")  # same template
+    return render(request, "auth.html")
 
 def products(request, category_name):
     if category_name == "Male":
