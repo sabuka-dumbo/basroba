@@ -6,6 +6,7 @@ import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -17,31 +18,41 @@ def index(request):
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("index")
-        return render(request, "login.html", {"form": form, "error": "Invalid username or password."})
-    return render(request, "login.html")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")  # change to your homepage url name
+        else:
+            messages.error(request, "Invalid username or password")
+            return redirect("login")
+
+    return render(request, "auth.html")  # your login/register template
+
 
 def register_view(request):
     if request.method == "POST":
-        if form.is_valid():
-            form.save()
-            full_name = form.cleaned_data.get('name')
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("index")
-    else:
-        form = UserCreationForm()
-    return render(request, "register.html", {"form": form})
+        name = request.POST.get("name")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Email is already registered")
+            return redirect("register")
+
+        user = User.objects.create_user(
+            username=username,
+            email=username,
+            password=password,
+            first_name=name
+        )
+        login(request, user)  # auto login after registration
+        return redirect("home")
+
+    return render(request, "auth.html")  # same template
 
 def products(request, category_name):
     if category_name == "Male":
