@@ -108,35 +108,44 @@ def product(request, ID):
     })
 
 def cart(request):
-    cart_items = []
     if request.user.is_authenticated:
-        cart_items = CartItem.objects.all().filter(user=request.user)
+        cart_items = []
+        if request.user.is_authenticated:
+            cart_items = CartItem.objects.all().filter(user=request.user)
 
-    return render(request, "cart.html", {
-        "cart_items": cart_items
-    })
+        return render(request, "cart.html", {
+            "cart_items": cart_items
+        })
+    else:
+        return redirect("index")
 
 def favorites(request):
-    user_favorites = []
     if request.user.is_authenticated:
-        user_favorites = FavoriteItem.objects.filter(user=request.user)
+        user_favorites = []
+        if request.user.is_authenticated:
+            user_favorites = FavoriteItem.objects.filter(user=request.user)
 
-    return render(request, "favorites.html", {
-        "user_favorites": user_favorites
-    })
+        return render(request, "favorites.html", {
+            "user_favorites": user_favorites
+        })
+    else:
+        return redirect("index")
 
 def profile(request):
-    user_info = User_Info.objects.filter(user=request.user).first()
-    order_info = Order.objects.filter(user=request.user).all()
-    address_info = Address_Info.objects.filter(user=request.user).all()
-    if not user_info and request.user.is_authenticated:
-        return redirect("index")
+    if request.user.is_authenticated:
+        user_info = User_Info.objects.filter(user=request.user).first()
+        order_info = Order.objects.filter(user=request.user).all()
+        address_info = Address_Info.objects.filter(user=request.user).all()
+        if not user_info and request.user.is_authenticated:
+            return redirect("index")
+        else:
+            return render(request, "profile.html", {
+                "user_info": user_info,
+                "order_info": order_info,
+                "address_info": address_info
+            })
     else:
-        return render(request, "profile.html", {
-            "user_info": user_info,
-            "order_info": order_info,
-            "address_info": address_info
-        })
+        return redirect("index")
 
 @csrf_exempt
 def add_to_cart(request):
