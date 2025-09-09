@@ -23,9 +23,13 @@
                         <a href="{% url 'products' category_name='Male' %}" class="nav nav1">კაცები</a>
                         <a href="{% url 'products' category_name='Female' %}" class="nav nav2">ქალები</a>
                         <a href="{% url 'products' category_name='Accessories' %}" class="nav nav3">აქსესუარები</a>
-                        <a href="{% url 'profile' %}" class="nav nav4">პროფილი</a>
-                        <a href="{% url 'cart' %}" class="nav nav5">კალათა</a>
-                        <a href="{% url 'favorites' %}" class="nav nav6">ფავორიტები</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'profile' %}" class="nav nav4">პროფილი</a>
+                            <a href="{% url 'cart' %}" class="nav nav5">კალათა</a>
+                            <a href="{% url 'favorites' %}" class="nav nav6">ფავორიტები</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="nav nav4">რეგისტრაცია</a>
+                        {% endif %}
                     </div>
 
 
@@ -97,7 +101,6 @@
                 <nav class="footer-nav">
                     <a href="#">მთავარი</a>
                     <a href="#">პროდუქტები</a>
-                    {%%}
                     <a href="#">კალათა</a>
                     <a href="#">ფავორიტები</a>
                     <a href="#">პროფილი</a>
