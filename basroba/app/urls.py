@@ -8,8 +8,8 @@ urlpatterns = [
     path("cart/", views.cart, name="cart"),
     path("profile/", views.profile, name="profile"),
     path("favorites/", views.favorites, name="favorites"),
-    path("login/", views.login, name="login"),
-    path("register/", views.register, name="register"),
+    path("login/", views.login_view, name="login"),
+    path("register/", views.register_view, name="register"),
 
     # API endpoints
     path("api/add_to_cart/", views.add_to_cart, name="add_to_cart"),
