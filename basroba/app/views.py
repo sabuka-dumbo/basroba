@@ -32,7 +32,6 @@ def login_view(request):
 
     return render(request, "auth.html")
 
-
 def register_view(request):
     if request.method == "POST":
         name = request.POST.get("name")
