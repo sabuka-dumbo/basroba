@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+
 # Create your views here.
 def index(request):
     all_products = Product.objects.all()
@@ -12,10 +13,10 @@ def index(request):
         "all_products": all_products
     })
 
-def login(request):
+def login_view(request):
     return render(request, "login.html")
 
-def register(request):
+def register_view(request):
     return render(request, "register.html")
 
 def products(request, category_name):
