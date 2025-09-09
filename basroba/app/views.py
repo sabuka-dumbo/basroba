@@ -25,7 +25,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect("home")
+            return redirect("index")
         else:
             messages.error(request, "Invalid username or password")
             return redirect("login")
@@ -50,7 +50,7 @@ def register_view(request):
             first_name=name
         )
         login(request, user)
-        return redirect("home")
+        return redirect("index")
 
     return render(request, "auth.html")
 

@@ -15,6 +15,7 @@
         <p class="auth-subtitle">Sign in to continue</p>
 
         <form action="{% url 'login' %}" method="POST" class="auth-form">
+            {% csrf_token %}
             <div class="form-group">
                 <input type="email" name="username" placeholder="Email" required>
             </div>
@@ -34,6 +35,7 @@
         <p class="auth-subtitle">Sign up to get started</p>
 
         <form action="{% url 'register' %}" method="POST" class="auth-form">
+            {% csrf_token %}
             <div class="form-group">
                 <input type="text" name="name" placeholder="Full Name" required>
             </div>
