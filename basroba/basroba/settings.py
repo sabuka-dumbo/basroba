@@ -81,15 +81,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Available languages
 LANGUAGES = [
-    ('en', 'English'),
-    ('ka', 'Georgian'),
+    ("en", "English"),
+    ("ka", "Georgian"),
 ]
 
-# Where translations will be stored
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
+    BASE_DIR / "locale",
 ]
 
 # Static & Media files
