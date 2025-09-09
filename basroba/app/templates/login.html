@@ -14,7 +14,7 @@
         <h1 class="auth-title">Welcome Back</h1>
         <p class="auth-subtitle">Sign in to continue</p>
 
-        <form action="/login/" method="POST" class="auth-form">
+        <form action="{% url 'login' %}" method="POST" class="auth-form">
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" required>
             </div>
