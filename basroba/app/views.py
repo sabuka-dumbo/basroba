@@ -61,6 +61,8 @@ def products(request, category_name):
         all_products = Product.objects.filter(Product_is_male=False)
     elif category_name == "Accessories":
         all_products = Product.objects.filter(Product_Category__categoryname="აქსესუარები")
+    elif category_name == "all":
+        all_products = Product.objects.all()
     elif Category.objects.filter(categoryname=category_name).exists():
         category = Category.objects.get(categoryname=category_name)
         all_products = Product.objects.filter(Product_Category=category)
