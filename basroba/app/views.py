@@ -55,12 +55,12 @@ def register_view(request):
     return render(request, "auth.html")
 
 def products(request, category_name):
-    if category_name == "Male":
-        all_products = Product.objects.filter(Product_is_male=True)
-    elif category_name == "Female":
-        all_products = Product.objects.filter(Product_is_male=False)
+    if category_name == "Bags":
+        all_products = Product.objects.filter(Product_Category__categoryname="Bags")
+    elif category_name == "Jacket":
+        all_products = Product.objects.filter(Product_Category__categoryname="Jackets")
     elif category_name == "Accessories":
-        all_products = Product.objects.filter(Product_Category__categoryname="აქსესუარები")
+        all_products = Product.objects.filter(Product_Category__categoryname="Accessories")
     elif category_name == "all":
         all_products = Product.objects.all()
     elif Category.objects.filter(categoryname=category_name).exists():
