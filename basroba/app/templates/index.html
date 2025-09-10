@@ -10,7 +10,17 @@
 {% endblock %}
 
 {% block body %}
-    <img src="{% static 'pics/Picture1.png' %}" class="section1" alt="">
+    <div class="video-slider">
+        <video class="video-slide active" src="{% static 'videos/video1.mp4' %}" autoplay muted></video>
+        <video class="video-slide" src="{% static 'videos/video2.mp4' %}" muted></video>
+        <video class="video-slide" src="{% static 'videos/video3.mp4' %}" muted></video>
+
+        <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
 
     <section class="section2">
         <h1 class="section2-title">CATEGORIES</h1>
