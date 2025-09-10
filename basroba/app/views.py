@@ -119,7 +119,7 @@ def cart(request):
             "cart_items": cart_items
         })
     else:
-        return redirect("index")
+        return redirect("login")
 
 def favorites(request):
     if request.user.is_authenticated:
@@ -131,17 +131,20 @@ def favorites(request):
             "user_favorites": user_favorites
         })
     else:
-        return redirect("index")
+        return redirect("login")
 
 def profile(request):
-    user_info = User_Info.objects.filter(user=request.user).first()
-    order_info = Order.objects.filter(user=request.user).all()
-    address_info = Address_Info.objects.filter(user=request.user).all()
-    return render(request, "profile.html", {
-        "user_info": user_info,
-        "order_info": order_info,
-        "address_info": address_info
-        })
+    if request.user.is_authenticated:
+        user_info = User_Info.objects.filter(user=request.user).first()
+        order_info = Order.objects.filter(user=request.user).all()
+        address_info = Address_Info.objects.filter(user=request.user).all()
+        return render(request, "profile.html", {
+            "user_info": user_info,
+            "order_info": order_info,
+            "address_info": address_info
+            })
+    else:
+        return redirect("login")
 
 @csrf_exempt
 def add_to_cart(request):

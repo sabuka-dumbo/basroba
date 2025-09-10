@@ -13,13 +13,13 @@
     <img src="{% static 'pics/Picture1.png' %}" class="section1" alt="">
 
     <section class="section2">
-        <h1 class="section2-title">კატეგორიები</h1>
+        <h1 class="section2-title">CATEGORIES</h1>
 
         <div class="categories-div">
             <a href="{% url 'products' category_name='Jacket' %}" class="category-1" style="text-decoration: none; color: white;">
                 <div class="category-1">
                     <img src="{% static 'pics/Picure2.png' %}" class="category-image" alt="">
-                    <h1 class="category-text">Jacket</h1>
+                    <h1 class="category-text">Jackets</h1>
                 </div>
             </a>
 
@@ -40,7 +40,7 @@
     </section>
 
     <section class="section2">
-        <h2 class="section2-title">პროდუქცები</h2>
+        <h2 class="section2-title">PRODUCTS</h2>
         
         <div class="products-div">
             {% for product in all_products %}
