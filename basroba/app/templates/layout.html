@@ -20,9 +20,8 @@
 
                 <div id="menu-together">
                     <div class="navs-navs">
-                        <a href="{% url 'products' category_name='Male' %}" class="nav nav1">კაცები</a>
-                        <a href="{% url 'products' category_name='Female' %}" class="nav nav2">ქალები</a>
-                        <a href="{% url 'products' category_name='Accessories' %}" class="nav nav3">აქსესუარები</a>
+                        <a href="{% url 'products' category_name='Male' %}" class="nav nav1">პროდუქტები</a>
+                        <a href="{% url 'products' category_name='Male' %}" class="nav nav1"></a>
                         {% if user.is_authenticated %}
                             <a href="{% url 'profile' %}" class="nav nav4">პროფილი</a>
                             <a href="{% url 'cart' %}" class="nav nav5">კალათა</a>
