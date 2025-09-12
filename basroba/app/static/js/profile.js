@@ -104,7 +104,6 @@ function add_address() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         document.getElementById("address-form").style.display = "none"; 
 
         document.getElementById("first_name22").value = "";
@@ -123,7 +122,7 @@ function add_address() {
                 <h2 class="address">${data.street_address1}, ${data.city}, ${data.country}</h2>
                 <div class="address-actions">
                     <button type="button" class="change-address">✏️ Change</button>
-                    <button type="button" class="delete-address" onclick='delete_address(${data.address.id})'>🗑 Delete</button>
+                    <button type="button" class="delete-address" onclick='delete_address(${data.id})'>🗑 Delete</button>
                 </div>
             </div>
         `;
