@@ -162,8 +162,8 @@ function open_change_address(address_id) {
     .then(data => {
         document.getElementById("full_name222").value = data.full_name;
         document.getElementById("phone_number222").value = data.phone_number;
-        document.getElementById("street_address122").value = data.street_address1;
-        document.getElementById("street_address222").value = data.street_address2;
+        document.getElementById("street_address1222").value = data.street_address1;
+        document.getElementById("street_address2222").value = data.street_address2;
         document.getElementById("city222").value = data.city;
         document.getElementById("state_region222").value = data.state_region;
         document.getElementById("zip_code222").value = data.zip_code;
@@ -176,4 +176,41 @@ function open_change_address(address_id) {
 }
 
 function change_address(address_id) {
+    document.getElementById("address-form2").style.display = "none";
+
+    fetch("/api/change_address2/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            address_id: address_id,
+            full_name: document.getElementById("full_name222").value,
+            phone_number: document.getElementById("phone_number222").value,
+            street_address1: document.getElementById("street_address1222").value,
+            street_address2: document.getElementById("street_address2222").value,
+            city: document.getElementById("city222").value,
+            state_region: document.getElementById("state_region222").value,
+            zip_code: document.getElementById("zip_code222").value,
+            country: document.getElementById("country222").value,
+            phone_code: document.getElementById("phone_code222").value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("full_name222").value = '';
+        document.getElementById("phone_number222").value = '';
+        document.getElementById("street_address1222").value = '';
+        document.getElementById("street_address2222").value = '';
+        document.getElementById("city222").value = '';
+        document.getElementById("state_region222").value = '';
+        document.getElementById("zip_code222").value = '';
+        document.getElementById("country222").value = '';
+        document.getElementById("phone_code222").value = '';
+
+        document.querySelector(`#address-${address_id} .address`).innerText = `${data.street_address1}, ${data.city}, ${data.country}`;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 }

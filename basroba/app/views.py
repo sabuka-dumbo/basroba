@@ -405,8 +405,6 @@ def change_address1(request):
 
         address = get_object_or_404(Address_Info, id=address_id, user=request.user)
 
-        print(address.street_address1, address.street_address2)
-
         return JsonResponse({
             "address_id": address.pk,
             "message": "Address fetched successfully.",
@@ -419,6 +417,42 @@ def change_address1(request):
             "zip_code": address.ZIP_code,
             "country": address.country,
             "phone_code": address.phone_code
+        })
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+@login_required
+def change_address2(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        address_id = data.get("address_id")
+        full_name = data.get("full_name", "").strip()
+        street_address1 = data.get("street_address1", "").strip()
+        street_address2 = data.get("street_address2", "").strip()
+        city = data.get("city", "").strip()
+        state_region = data.get("state_region", "").strip()
+        zip_code = data.get("zip_code", "").strip()
+        country = data.get("country", "").strip()
+        phone_code = data.get("phone_code", "").strip()
+
+        address = get_object_or_404(Address_Info, id=address_id, user=request.user)
+
+        address.full_name = full_name
+        address.street_address1 = street_address1
+        address.street_address2 = street_address2
+        address.phone_number = data.get("phone_number", 0)
+        address.city = city
+        address.State_Region = state_region
+        address.ZIP_code = zip_code
+        address.country = country
+        address.phone_code = phone_code
+        address.save()
+
+        return JsonResponse({
+            "street_address1": address.street_address1,
+            "city": address.city,
+            "country": address.country,
         })
 
     return JsonResponse({"error": "Invalid request"}, status=400)

@@ -26,4 +26,5 @@ urlpatterns = [
     path("api/delete_address/", views.delete_address, name="delete_address"),
     path("api/add_address/", views.add_address, name="add_address"),
     path("api/change_address1/", views.change_address1, name="change_address1"),
+    path("api/change_address2/", views.change_address2, name="change_address2"),
 ]
