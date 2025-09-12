@@ -373,7 +373,7 @@ def add_address(request):
                 additional_comment=additional_comment
             )
 
-            return JsonResponse({'id': new_address.id, "message": "Address added successfully.", 'street_address1': street_address1, 'city': city, 'country': country})
+            return JsonResponse({'id': new_address.pk, "message": "Address added successfully.", 'street_address1': street_address1, 'city': city, 'country': country})
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)

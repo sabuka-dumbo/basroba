@@ -104,6 +104,7 @@ function add_address() {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         document.getElementById("address-form").style.display = "none"; 
 
         document.getElementById("first_name22").value = "";
