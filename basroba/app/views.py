@@ -359,7 +359,7 @@ def add_address(request):
             phone_number = data.get("phone_number", 0)
             additional_comment = data.get("additional_comment", "").strip()
 
-            Address_Info.objects.create(
+            new_address = Address_Info.objects.create(
                 user=request.user,
                 full_name=full_name,
                 street_address1=street_address1,
@@ -373,7 +373,7 @@ def add_address(request):
                 additional_comment=additional_comment
             )
 
-            return JsonResponse({'id': Address_Info.objects.latest('id').id, "message": "Address added successfully.", 'street_address1': street_address1, 'city': city, 'country': country})
+            return JsonResponse({'id': new_address.id, "message": "Address added successfully.", 'street_address1': street_address1, 'city': city, 'country': country})
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
