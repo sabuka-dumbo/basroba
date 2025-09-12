@@ -150,7 +150,7 @@
     width: 100%;
     height: max-content;
     text-align: left;
-    color: white;
+    color: black;
     font-size: 20px;
     font-weight: bold;
     padding: 0;
@@ -164,7 +164,7 @@
     width: 100%;
     height: max-content;
     text-align: left;
-    color: white;
+    color: black;
     font-size: 18px;
     font-weight: bold;
     padding: 0;
@@ -235,7 +235,7 @@
 .video-slider {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 500px;
     overflow: hidden;
 }
 .video-slide {
@@ -267,4 +267,11 @@
 }
 .dot.active {
     background: white;
+}
+
+@media screen and (max-width: 720px) {
+    .video-slider {
+        height: 350px;
+    }
+    
 }

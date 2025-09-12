@@ -193,7 +193,7 @@ nav {
 
 .burger-menu {
     position: absolute;
-    top: 70px;
+    top: 40px;
     right: 40px;
     z-index: 1001;
     width: 60px;

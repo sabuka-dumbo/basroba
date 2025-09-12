@@ -104,6 +104,10 @@ function add_address() {
     })
     .then(response => response.json())
     .then(data => {
+        document.getElementById("address-form").style.display = "none"; 
+        document.getElementById("main-part2").style.display = "block";
+        document.getElementById("address-form").reset();
+        document.getElementById("add-address-button").style.display = "block";
     })
     .catch(error => {
         console.error("Error:", error);

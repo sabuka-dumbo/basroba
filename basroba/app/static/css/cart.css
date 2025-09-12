@@ -7,7 +7,7 @@
 }
 
 .cart-items {
-    background-color: #1a1a1a;
+    background-color: blacke;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,7 +15,7 @@
 
 h1 {
     font-size: 1.8rem;
-    color: #fff;
+    color: black;
     margin-bottom: 20px;
 }
 
@@ -44,12 +44,12 @@ h1 {
 
 .item-name {
     font-weight: bold;
-    color: #fff;
+    color: black;
 }
 
 .item-price {
     display: block;
-    color: #ccc;
+    color: gray;
     font-size: 1rem;
     margin-top: 5px;
 }
@@ -60,11 +60,11 @@ h1 {
 }
 
 .quantity button {
-    background-color: #333;
-    border: 1px solid #444;
+    background-color: white;
+    border: none;
     padding: 10px;
     font-size: 1.2rem;
-    color: #fff;
+    color: black;
     cursor: pointer;
 }
 
@@ -75,12 +75,12 @@ h1 {
     margin: 0 10px;
     border: 1px solid #444;
     padding: 5px;
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: black;
 }
 
 .order-summary {
-    background-color: #1a1a1a;
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -94,16 +94,16 @@ h1 {
 }
 
 .summary-label {
-    color: #ccc;
+    color: black;
 }
 
 .summary-value {
     font-weight: bold;
-    color: #fff;
+    color: black;
 }
 
 .total .summary-value {
-    color: #e74c3c;
+    color: blackc3c;
 }
 
 .checkout-btn {
@@ -112,8 +112,8 @@ h1 {
 }
 
 .checkout-btn button {
-    background-color: #3498db;
-    color: #fff;
+    background-color: black;
+    color: white;
     padding: 12px 30px;
     border: none;
     font-size: 1rem;
@@ -122,7 +122,7 @@ h1 {
 }
 
 .checkout-btn button:hover {
-    background-color: #2980b9;
+    background-color: black0b9;
 }
 
 @media (max-width: 768px) {

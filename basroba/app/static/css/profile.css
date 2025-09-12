@@ -1,8 +1,3 @@
-body {
-    background: #0f0f0f;
-    color: #eaeaea;
-}
-
 .profile {
     display: grid;
     grid-template-columns: 260px 1fr;
@@ -12,7 +7,7 @@ body {
 }
 
 .sidebar {
-    background: #1a1a1a;
+    background: white;
     border-radius: 16px;
     padding: 24px;
     display: flex;
@@ -24,7 +19,7 @@ body {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 30px;
-    color: #fff;
+    color: black;
 }
 
 .sidebar a {
@@ -32,7 +27,7 @@ body {
     padding: 12px 15px;
     margin-bottom: 10px;
     border-radius: 10px;
-    color: #aaa;
+    color: black;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
@@ -56,7 +51,7 @@ body {
 .main-part1,
 .main-part2,
 .main-part3 {
-    background: #1a1a1a;
+    background: white;
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
@@ -68,7 +63,7 @@ body {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #fff;
+    color: black;
 }
 
 /* === INPUTS === */
@@ -78,8 +73,8 @@ input {
     margin-bottom: 16px;
     border-radius: 12px;
     border: 1px solid #333;
-    background: #121212;
-    color: #eee;
+    background: white;
+    color: black;
     font-size: 15px;
     transition: border 0.3s, box-shadow 0.3s;
 }
@@ -110,7 +105,7 @@ button:hover {
 }
 
 .add-address {
-    background: #444;
+    background: black;
 }
 .add-address:hover {
     background: #5555ff;
@@ -118,7 +113,7 @@ button:hover {
 
 /* === ADDRESS DIV === */
 .address-div {
-    background: #121212;
+    background: white;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 16px;
@@ -127,7 +122,7 @@ button:hover {
 .address {
     font-size: 15px;
     margin-bottom: 12px;
-    color: #ddd;
+    color: black;
 }
 
 .address-actions {
@@ -137,16 +132,17 @@ button:hover {
 
 /* === ORDERS === */
 .order {
-    background: #121212;
+    background: white;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
+    border: 1px solid #333;
 }
 
 .order h2 {
     font-size: 18px;
     font-weight: 600;
-    color: #fff;
+    color: black;
     margin-bottom: 15px;
 }
 
@@ -162,12 +158,12 @@ button:hover {
     height: 70px;
     object-fit: cover;
     border-radius: 8px;
-    background: #222;
+    background: white;
 }
 
 .order-item h3 {
     font-size: 15px;
-    color: #ddd;
+    color: black;
 }
 
 /* === RESPONSIVE === */
@@ -230,7 +226,7 @@ button:hover {
 /* Modal card */
 .container-front {
     position: relative;
-    background: #1a1a1a;
+    background: white;
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);

@@ -5,29 +5,30 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}
+    My Profile
+{% endblock %}
 
 {% block body %}
 <div class="container" id="address-form" style="display: none;">
     <div class="container-back" id="address-form-back"></div>
-    <div class="container-front">
+    <form class="container-front">
         <h1>Add Address</h1>
-        <input type="text" placeholder="First Name" id="first_name22" value="{{ user_info.first_name }}">
-        <input type="text" placeholder="Last Name" id="last_name22" value="{{ user_info.last_name }}">
-        <input type="number" placeholder="Phone Number" id="phone_number22" value="{{ user_info.phone_number }}">
-        <input type="text" placeholder="Street Address 1" id="street_address122" value="{{ user_info.street_address1 }}">
+        <input type="text" placeholder="First Name" id="first_name22" value="{{ user_info.first_name }}" required>
+        <input type="text" placeholder="Last Name" id="last_name22" value="{{ user_info.last_name }}" required>
+        <input type="number" placeholder="Phone Number" id="phone_number22" value="{{ user_info.phone_number }}" required>
+        <input type="text" placeholder="Street Address 1" id="street_address122" value="{{ user_info.street_address1 }}" required>
         <input type="text" placeholder="Street Address 2" id="street_address222" value="{{ user_info.street_address2 }}">
-        <input type="text" placeholder="City" id="city22" value="{{ user_info.city }}">
-        <input type="text" placeholder="State/Region" id="state_region22" value="{{ user_info.State_Region }}">
-        <input type="number" placeholder="ZIP Code" id="zip_code22" value="{{ user_info.ZIP_code }}">
-        <input type="text" placeholder="Country" id="country22" value="{{ user_info.country }}">
-        <input type="number" placeholder="Phone Code" id="phone_code22" value="{{ user_info.phone_code }}">
-        <button type="submit" onclick="add_address()" type="button">💾 Save</button>
-    </div>
+        <input type="text" placeholder="City" id="city22" value="{{ user_info.city }}" required>
+        <input type="text" placeholder="State/Region" id="state_region22" value="{{ user_info.State_Region }}" required>
+        <input type="number" placeholder="ZIP Code" id="zip_code22" value="{{ user_info.ZIP_code }}" required>
+        <input type="text" placeholder="Country" id="country22" value="{{ user_info.country }}" required>
+        <input type="number" placeholder="Phone Code" id="phone_code22" value="{{ user_info.phone_code }}" required>
+        <button onclick="add_address()" type="button">💾 Save</button>
+    </form>
 </div>
 
 <div class="profile">
-    <!-- Sidebar -->
     <div class="sidebar">
         <h1>{{ user_info.first_name }} {{ user_info.last_name }}</h1>
         <a onclick="open_part1()" id="link-profile">👤 Profile Information</a>
@@ -35,7 +36,6 @@
         <a onclick="open_part2()" id="link-address">🏠 Address Information</a>
     </div>
 
-    <!-- Main Content -->
     <div class="main-part">
         <div class="main-part1 card" id="main-part1" style="display: none;">
             <h1>Profile Information</h1>
@@ -50,7 +50,6 @@
             </div>
         </div>
 
-        <!-- Address Information -->
         <div class="main-part2 card" id="main-part2" style="display: none;">
             <h1>Address Information</h1>
             <button type="button" class="add-address" onclick="open_address_form()">➕ Add Address</button>
@@ -66,7 +65,6 @@
             {% endfor %}
         </div>
 
-        <!-- Orders -->
         <div class="main-part3 card" id="main-part3" style="display: none;">
             <h1>My Orders</h1>
             {% for order in order_info %}

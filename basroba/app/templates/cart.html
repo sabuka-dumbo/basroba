@@ -6,130 +6,130 @@
 {% endblock %}
 
 {% block title %}
-კალათა
+    Cart
 {% endblock %}
 
 {% block body %}
-<br>
+    <br>
 
-<div class="container">
-    <div class="cart-items">
-        <h1>კალათა ({{ cart_items.count }})</h1>
-        {% for item in cart_items %}
-<div class="cart-item" data-cart-item-id="{{ item.id }}">
-    <div class="item-image">
-        <a href="{% url 'product' item.Item.id %}">
-            <img src="{{ item.Item.Product_image1.url }}" alt="{{ item.Item.Product_name }}">
-        </a>
-    </div>
-    <div class="item-details">
-        <a href="{% url 'product' item.Item.id %}" style="text-decoration: none; color: white">
-            <span class="item-name">{{ item.Item.Product_name }}</span>
-        </a>
-        <span class="item-price">₾{{ item.Item.Product_price_new }}</span>
-        <span class="item-price">Color: {{ item.Color }} || Size: {{ item.Size }}</span>
-    </div>
-    <div class="quantity">
-        <button class="btn-decrease" type="button">-</button>
-        <input type="number" value="{{ item.count }}" class="quantity-input" max="9" min="1" readonly>
-        <button class="btn-increase" type="button">+</button>
-    </div>
-</div>
-
-        {% empty %}
-            <p style="color: white; text-align: center;">თქვენი კალათა ცარიელია.</p>
-        {% endfor %}
-    </div>
-
-    <div class="order-summary">
-        <div class="summary-item">
-            <span class="summary-label">პროდუქტების ჯამური თანხა</span>
-            <span class="summary-value" id="subtotal">₾0.00</span>
+    <div class="container">
+        <div class="cart-items">
+            <h1>კალათა ({{ cart_items.count }})</h1>
+            {% for item in cart_items %}
+    <div class="cart-item" data-cart-item-id="{{ item.id }}">
+        <div class="item-image">
+            <a href="{% url 'product' item.Item.id %}">
+                <img src="{{ item.Item.Product_image1.url }}" alt="{{ item.Item.Product_name }}">
+            </a>
         </div>
-        <div class="summary-item">
-            <span class="summary-label">გადასახადი % (Tax)</span>
-            <span class="summary-value" id="tax">₾0.00</span>
+        <div class="item-details">
+            <a href="{% url 'product' item.Item.id %}" style="text-decoration: none; color: white">
+                <span class="item-name">{{ item.Item.Product_name }}</span>
+            </a>
+            <span class="item-price">₾{{ item.Item.Product_price_new }}</span>
+            <span class="item-price">Color: {{ item.Color }} || Size: {{ item.Size }}</span>
         </div>
-        <div class="summary-item total">
-            <span class="summary-label">ჯამური თანხა</span>
-            <span class="summary-value" id="total">₾0.00</span>
-        </div>
-        <div class="checkout-btn">
-            <button>შეკვეთის გაფორმება</button>
+        <div class="quantity">
+            <button class="btn-decrease" type="button">-</button>
+            <input type="number" value="{{ item.count }}" class="quantity-input" max="9" min="1" readonly>
+            <button class="btn-increase" type="button">+</button>
         </div>
     </div>
-</div>
-<br>
 
-<script>
-function updateCartCount(cartItemId, newCount) {
-    fetch("{% url 'update_cart_count' %}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": "{{ csrf_token }}",
-        },
-        body: JSON.stringify({
-            cart_item_id: cartItemId,
-            count: newCount
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
+            {% empty %}
+                <p style="color: white; text-align: center;">თქვენი კალათა ცარიელია.</p>
+            {% endfor %}
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-item">
+                <span class="summary-label">პროდუქტების ჯამური თანხა</span>
+                <span class="summary-value" id="subtotal">₾0.00</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">გადასახადი % (Tax)</span>
+                <span class="summary-value" id="tax">₾0.00</span>
+            </div>
+            <div class="summary-item total">
+                <span class="summary-label">ჯამური თანხა</span>
+                <span class="summary-value" id="total">₾0.00</span>
+            </div>
+            <div class="checkout-btn">
+                <button>შეკვეთის გაფორმება</button>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <script>
+        function updateCartCount(cartItemId, newCount) {
+            fetch("{% url 'update_cart_count' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({
+                    cart_item_id: cartItemId,
+                    count: newCount
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                updateTotals();
+            })
+            .catch(error => console.error(error));
+        }
+
+        const decreaseButtons = document.querySelectorAll('.btn-decrease');
+        const increaseButtons = document.querySelectorAll('.btn-increase');
+
+        decreaseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const quantityInput = button.nextElementSibling;
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+
+                    const cartItemId = button.closest('.cart-item').dataset.cartItemId;
+                    updateCartCount(cartItemId, currentValue - 1);
+                }
+            });
+        });
+
+        increaseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const quantityInput = button.previousElementSibling;
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue < 9) {
+                    quantityInput.value = currentValue + 1;
+
+                    const cartItemId = button.closest('.cart-item').dataset.cartItemId;
+                    updateCartCount(cartItemId, currentValue + 1);
+                }
+            });
+        });
+
+        // Optional: Update subtotal/total dynamically
+        function updateTotals() {
+            let subtotal = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.querySelector('.item-price').innerText.replace('₾',''));
+                const count = parseInt(item.querySelector('.quantity-input').value);
+                subtotal += price * count;
+            });
+
+            const tax = subtotal * 0.03; // example 3% tax
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').innerText = '₾' + subtotal.toFixed(2);
+            document.getElementById('tax').innerText = '₾' + tax.toFixed(2);
+            document.getElementById('total').innerText = '₾' + total.toFixed(2);
+        }
+
+        // Initial totals calculation
         updateTotals();
-    })
-    .catch(error => console.error(error));
-}
-
-const decreaseButtons = document.querySelectorAll('.btn-decrease');
-const increaseButtons = document.querySelectorAll('.btn-increase');
-
-decreaseButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const quantityInput = button.nextElementSibling;
-        let currentValue = parseInt(quantityInput.value);
-        if (currentValue > 1) {
-            quantityInput.value = currentValue - 1;
-
-            const cartItemId = button.closest('.cart-item').dataset.cartItemId;
-            updateCartCount(cartItemId, currentValue - 1);
-        }
-    });
-});
-
-increaseButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const quantityInput = button.previousElementSibling;
-        let currentValue = parseInt(quantityInput.value);
-        if (currentValue < 9) {
-            quantityInput.value = currentValue + 1;
-
-            const cartItemId = button.closest('.cart-item').dataset.cartItemId;
-            updateCartCount(cartItemId, currentValue + 1);
-        }
-    });
-});
-
-// Optional: Update subtotal/total dynamically
-function updateTotals() {
-    let subtotal = 0;
-    document.querySelectorAll('.cart-item').forEach(item => {
-        const price = parseFloat(item.querySelector('.item-price').innerText.replace('₾',''));
-        const count = parseInt(item.querySelector('.quantity-input').value);
-        subtotal += price * count;
-    });
-
-    const tax = subtotal * 0.05; // example 5% tax
-    const total = subtotal + tax;
-
-    document.getElementById('subtotal').innerText = '₾' + subtotal.toFixed(2);
-    document.getElementById('tax').innerText = '₾' + tax.toFixed(2);
-    document.getElementById('total').innerText = '₾' + total.toFixed(2);
-}
-
-// Initial totals calculation
-updateTotals();
-</script>
+    </script>
 
 {% endblock %}
