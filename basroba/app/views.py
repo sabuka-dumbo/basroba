@@ -49,6 +49,20 @@ def register_view(request):
             password=password,
             first_name=name
         )
+
+        user_info = User_Info.objects.create(
+            user=user,
+            first_name=name,
+            email_address=username,
+            middle_name="No",
+            last_name="No",
+            id_number=0,
+            phone_number=0
+        )
+
+        user_info.save()
+        user.save()
+
         login(request, user)
         return redirect("home")
 
