@@ -105,8 +105,6 @@ function add_address() {
     .then(response => response.json())
     .then(data => {
         document.getElementById("address-form").style.display = "none"; 
-        document.getElementById("main-part2").style.display = "block";
-        document.getElementById("add-address-button").style.display = "block";
 
         document.getElementById("first_name22").value = "";
         document.getElementById("last_name22").value = "";
@@ -132,6 +130,4 @@ document.getElementById("address-form-back").addEventListener("click", function(
 
 function open_address_form() {
     document.getElementById("address-form").style.display = "flex"; 
-    document.getElementById("main-part2").style.display = "none";
-    document.getElementById("add-address-button").style.display = "none";
 }
