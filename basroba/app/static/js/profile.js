@@ -137,10 +137,18 @@ document.getElementById("address-form-back").addEventListener("click", function(
     document.getElementById("main-part2").style.display = "block";
 });
 
+document.getElementById("address-form-back2").addEventListener("click", function() {
+    document.getElementById("address-form2").style.display = "none"; 
+    document.getElementById("main-part2").style.display = "block";
+});
+
 function open_address_form() {
     document.getElementById("address-form").style.display = "flex"; 
 }
 
-function change_address(address_id) {
+function open_change_address(address_id) {
+    document.getElementById("address-form2").style.display = "flex";
+}
 
+function change_address(address_id) {
 }

@@ -28,6 +28,24 @@
     </form>
 </div>
 
+<div class="container" id="address-form2" style="display: none;">
+    <div class="container-back" id="address-form-back2"></div>
+    <form class="container-front">
+        <h1>Add Address</h1>
+        <input type="text" placeholder="First Name" id="first_name222" value="{{ user_info.first_name }}" required>
+        <input type="text" placeholder="Last Name" id="last_name222" value="{{ user_info.last_name }}" required>
+        <input type="number" placeholder="Phone Number" id="phone_number222" value="{{ user_info.phone_number }}" required>
+        <input type="text" placeholder="Street Address 1" id="street_address122" value="" required>
+        <input type="text" placeholder="Street Address 2" id="street_address222" value="">
+        <input type="text" placeholder="City" id="city222" value="" required>
+        <input type="text" placeholder="State/Region" id="state_region222" value="" required>
+        <input type="number" placeholder="ZIP Code" id="zip_code222" value="" required>
+        <input type="text" placeholder="Country" id="country222" value="" required>
+        <input type="number" placeholder="Phone Code" id="phone_code222" value="" required>
+        <button onclick="change_address()" type="button">💾 Save</button>
+    </form>
+</div>
+
 <div class="profile">
     <div class="sidebar">
         <h1>{{ user_info.first_name }} {{ user_info.last_name }}</h1>
@@ -58,7 +76,7 @@
                 <div class="address-div" id="address-{{ address.id }}">
                     <h2 class="address">{{ address.street_address1 }}, {{ address.city }}, {{ address.country }}</h2>
                     <div class="address-actions">
-                        <button type="button" class="change-address" onclick='change_address(`{{ address.id }}`)'>✏️ Change</button>
+                        <button type="button" class="change-address" onclick='open_change_address(`{{ address.id }}`)'>✏️ Change</button>
                         <button type="button" class="delete-address" onclick='delete_address(`{{ address.id }}`)'>🗑 Delete</button>
                     </div>
                 </div>
