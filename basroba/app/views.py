@@ -294,7 +294,7 @@ def check_favorite_status(request):
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 
-@csrf_exempt  # only if you are sending JSON via JS; remove if using Django forms
+@csrf_exempt
 @login_required
 def save_user(request):
     if request.method == "POST":
@@ -308,10 +308,8 @@ def save_user(request):
             id_number = data.get("id_number", 0)
             phone_number = data.get("phone_number", 0)
 
-            # Get or create the user info
             user_info, created = User_Info.objects.get_or_create(user=request.user)
 
-            # Update fields
             user_info.first_name = first_name
             user_info.last_name = last_name
             user_info.email_address = email
@@ -350,7 +348,6 @@ def add_address(request):
         try:
             data = json.loads(request.body)
 
-            # Use the exact keys sent from JS
             full_name = data.get("full_name", "").strip()
             street_address1 = data.get("street_address1", "").strip()
             street_address2 = data.get("street_address2", "").strip()
@@ -362,7 +359,6 @@ def add_address(request):
             phone_number = data.get("phone_number", 0)
             additional_comment = data.get("additional_comment", "").strip()
 
-            # Create address
             Address_Info.objects.create(
                 user=request.user,
                 full_name=full_name,
@@ -377,7 +373,7 @@ def add_address(request):
                 additional_comment=additional_comment
             )
 
-            return JsonResponse({"message": "Address added successfully."})
+            return JsonResponse({'id': Address_Info.objects.latest('id').id, "message": "Address added successfully.", 'street_address1': street_address1, 'city': city, 'country': country})
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)

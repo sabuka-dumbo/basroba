@@ -118,8 +118,8 @@ function add_address() {
         document.getElementById("phone_code22").value = "";
 
         document.getElementById("main-part2").innerHTML += `
-            <div class="address-div" id="address-${data.address.id}">
-                <h2 class="address">${data.address.street_address1}, ${data.address.city}, ${data.address.country}</h2>
+            <div class="address-div" id="address-${data.id}">
+                <h2 class="address">${data.street_address1}, ${data.city}, ${data.country}</h2>
                 <div class="address-actions">
                     <button type="button" class="change-address">✏️ Change</button>
                     <button type="button" class="delete-address" onclick='delete_address(${data.address.id})'>🗑 Delete</button>
