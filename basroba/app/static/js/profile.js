@@ -106,8 +106,18 @@ function add_address() {
     .then(data => {
         document.getElementById("address-form").style.display = "none"; 
         document.getElementById("main-part2").style.display = "block";
-        document.getElementById("address-form").reset();
         document.getElementById("add-address-button").style.display = "block";
+
+        document.getElementById("first_name22").value = "";
+        document.getElementById("last_name22").value = "";
+        document.getElementById("phone_number22").value = "";
+        document.getElementById("street_address122").value = "";
+        document.getElementById("street_address222").value = "";
+        document.getElementById("city22").value = "";
+        document.getElementById("state_region22").value = "";
+        document.getElementById("zip_code22").value = "";
+        document.getElementById("country22").value = "";
+        document.getElementById("phone_code22").value = "";
     })
     .catch(error => {
         console.error("Error:", error);
