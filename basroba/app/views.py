@@ -397,6 +397,7 @@ def add_address(request):
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 @csrf_exempt
+@login_required
 def change_address1(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -404,4 +405,18 @@ def change_address1(request):
 
         address = get_object_or_404(Address_Info, id=address_id, user=request.user)
 
-    return JsonResponse({"address_id": address.pk, 'message': "Address fetched successfully.", 'first_name': address.user.first_name, 'last_name': address.user.last_name, 'phone_number': address.phone_number, 'street_address1': address.street_address1, 'street_address2': address.street_address2, 'city': address.city, 'State_Region': address.State_Region, 'ZIP_code': address.ZIP_code, 'country': address.country, 'phone_code': address.phone_code})
+        return JsonResponse({
+            "address_id": address.pk,
+            "message": "Address fetched successfully.",
+            "full_name": address.full_name,
+            "phone_number": address.phone_number,
+            "street_address1": address.street_address1,
+            "street_address2": address.street_address2,
+            "city": address.city,
+            "state_region": address.State_Region,
+            "zip_code": address.ZIP_code,
+            "country": address.country,
+            "phone_code": address.phone_code
+        })
+
+    return JsonResponse({"error": "Invalid request"}, status=400)

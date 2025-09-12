@@ -160,8 +160,7 @@ function open_change_address(address_id) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("first_name222").value = data.first_name;
-        document.getElementById("last_name222").value = data.last_name;
+        document.getElementById("full_name222").value = data.full_name;
         document.getElementById("phone_number222").value = data.phone_number;
         document.getElementById("street_address122").value = data.street_address1;
         document.getElementById("street_address222").value = data.street_address2;
