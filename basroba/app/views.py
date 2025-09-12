@@ -395,3 +395,13 @@ def add_address(request):
             return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+def change_address1(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        address_id = data.get("address_id")
+
+        address = get_object_or_404(Address_Info, id=address_id, user=request.user)
+
+    return JsonResponse({"address_id": address.pk, 'message': "Address fetched successfully.", 'first_name': address.user.first_name, 'last_name': address.user.last_name, 'phone_number': address.phone_number, 'street_address1': address.street_address1, 'street_address2': address.street_address2, 'city': address.city, 'State_Region': address.State_Region, 'ZIP_code': address.ZIP_code, 'country': address.country, 'phone_code': address.phone_code})

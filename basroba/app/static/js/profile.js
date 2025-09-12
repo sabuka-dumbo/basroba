@@ -148,6 +148,32 @@ function open_address_form() {
 
 function open_change_address(address_id) {
     document.getElementById("address-form2").style.display = "flex";
+
+    fetch("/api/change_address1/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            address_id: address_id,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("first_name222").value = data.first_name;
+        document.getElementById("last_name222").value = data.last_name;
+        document.getElementById("phone_number222").value = data.phone_number;
+        document.getElementById("street_address122").value = data.street_address1;
+        document.getElementById("street_address222").value = data.street_address2;
+        document.getElementById("city222").value = data.city;
+        document.getElementById("state_region222").value = data.state_region;
+        document.getElementById("zip_code222").value = data.zip_code;
+        document.getElementById("country222").value = data.country;
+        document.getElementById("phone_code222").value = data.phone_code;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 }
 
 function change_address(address_id) {
