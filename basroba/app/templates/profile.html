@@ -58,7 +58,7 @@
                 <div class="address-div" id="address-{{ address.id }}">
                     <h2 class="address">{{ address.street_address1 }}, {{ address.city }}, {{ address.country }}</h2>
                     <div class="address-actions">
-                        <button type="button" class="change-address">✏️ Change</button>
+                        <button type="button" class="change-address" onclick='change_address(`{{ address.id }}`)'>✏️ Change</button>
                         <button type="button" class="delete-address" onclick='delete_address(`{{ address.id }}`)'>🗑 Delete</button>
                     </div>
                 </div>

@@ -64,7 +64,7 @@ def register_view(request):
         user.save()
 
         login(request, user)
-        return redirect("home")
+        return redirect("index")
 
     return render(request, "auth.html")
 
