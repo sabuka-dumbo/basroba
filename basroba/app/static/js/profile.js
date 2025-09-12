@@ -116,6 +116,16 @@ function add_address() {
         document.getElementById("zip_code22").value = "";
         document.getElementById("country22").value = "";
         document.getElementById("phone_code22").value = "";
+
+        document.getElementById("main-part2").innerHTML += `
+            <div class="address-div" id="address-${data.address.id}">
+                <h2 class="address">${data.address.street_address1}, ${data.address.city}, ${data.address.country}</h2>
+                <div class="address-actions">
+                    <button type="button" class="change-address">✏️ Change</button>
+                    <button type="button" class="delete-address" onclick='delete_address(${data.address.id})'>🗑 Delete</button>
+                </div>
+            </div>
+        `;
     })
     .catch(error => {
         console.error("Error:", error);
