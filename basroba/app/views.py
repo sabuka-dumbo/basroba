@@ -405,6 +405,8 @@ def change_address1(request):
 
         address = get_object_or_404(Address_Info, id=address_id, user=request.user)
 
+        print(address.street_address1, address.street_address2)
+
         return JsonResponse({
             "address_id": address.pk,
             "message": "Address fetched successfully.",
