@@ -15,8 +15,8 @@ urlpatterns = [
     path("register/", views.register_view, name="register"),
     path("aboutus/", views.aboutus_view, name="aboutus"),
     path("contactus/", views.contactus_view, name="contactus"),
-    path('choose-language/', views.choose_language, name='choose_language'),
-    path('set-language/', set_language, name='set_language'),
+    path('choose_language/', views.choose_language, name='choose_language'),
+    path('set_language/', set_language, name='set_language'),
 
     # API endpoints
     path("api/add_to_cart/", views.add_to_cart, name="add_to_cart"),
