@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}About Us{% endblock %}
+
+{% block body %}
+<section class="about-section">
+    <div class="container">
+        <h1 class="main-title">{% trans "About Us" %}</h1>
+
+        <div class="info-section section1">
+            <h2>{% trans "Who We Are" %}</h2>
+            <p>{% trans "Basroba is a modern online shop dedicated to bringing you high-quality products with style and convenience. We value our customers and aim to create a seamless shopping experience." %}</p>
+        </div>
+
+        <div class="info-section section2">
+            <h2>{% trans "What We Offer" %}</h2>
+            <p>{% trans "We offer a wide range of products including clothing, accessories, and bags. Every item is carefully selected to meet our standards of quality, design, and affordability." %}</p>
+        </div>
+
+        <div class="info-section section3">
+            <h2>{% trans "Our Mission" %}</h2>
+            <p>{% trans "Our mission is to make shopping enjoyable and effortless. We strive to provide the best customer service, fast delivery, and products that you will love." %}</p>
+        </div>
+    </div>
+</section>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background: #fafafa;
+    margin: 0;
+}
+
+.about-section {
+    width: 100%;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 80px;
+    color: #111;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-text-fill-color: transparent;
+}
+
+.info-section {
+    padding: 60px 20px;
+    margin-bottom: 50px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.info-section p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.section1 {
+    background: linear-gradient(135deg, #fff5f0, #ffe8d6);
+}
+
+.section2 {
+    background: linear-gradient(135deg, #f0fff5, #d6ffe8);
+}
+
+.section3 {
+    background: linear-gradient(135deg, #f0f5ff, #d6e8ff);
+}
+
+.info-section:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .info-section {
+        padding: 40px 15px;
+    }
+}
+</style>
+{% endblock %}
