@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 SECRET_KEY = 'django-insecure-1k*o!%*&ponqd^ig^l-dbqrm^r3knie_4gc^8jhf59#58k_a=0'
 DEBUG = True
-ALLOWED_HOSTS = ['*']  # Replace '*' with your domain on production
+ALLOWED_HOSTS = ['https://basroba-f163e9a59016.herokuapp.com/']  # Replace '*' with your domain on production
 
 # Applications
 INSTALLED_APPS = [
