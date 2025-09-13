@@ -1,5 +1,8 @@
 from . import views
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import set_language
 
 urlpatterns = [
     path("", views.index, name='index'),
@@ -12,6 +15,8 @@ urlpatterns = [
     path("register/", views.register_view, name="register"),
     path("aboutus/", views.aboutus_view, name="aboutus"),
     path("contactus/", views.contactus_view, name="contactus"),
+    path('choose-language/', views.choose_language, name='choose_language'),
+    path('set-language/', set_language, name='set_language'),
 
     # API endpoints
     path("api/add_to_cart/", views.add_to_cart, name="add_to_cart"),

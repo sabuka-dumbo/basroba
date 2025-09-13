@@ -1,76 +1,93 @@
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Language</title>
-
+    <title>{% trans "Choose Language" %}</title>
     <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* Reset default margins */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body, html {
-    height: 100%;
-    font-family: 'Arial', sans-serif;
-}
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+        }
 
-.language-page {
-    height: 100vh;
-    width: 100%;
-    background-image: url('../images/bg.jpg'); /* Replace with your image path */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+        .language-page {
+            height: 100vh;
+            width: 100%;
+            background-image: url("{% static 'images/bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
-    /* Center content */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-    text-align: center;
-    color: white;
-}
+            text-align: center;
+            color: white;
+        }
 
-.language-page h1 {
-    font-size: 3rem;
-    margin-bottom: 50px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-}
+        .language-page h1 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
 
-.buttons {
-    display: flex;
-    gap: 30px;
-}
+        .buttons {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-.lang-btn {
-    padding: 15px 40px;
-    font-size: 1.5rem;
-    color: white;
-    text-decoration: none;
-    background-color: rgba(0,0,0,0.5);
-    border: 2px solid white;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
+        .lang-btn {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            background-color: rgba(0,0,0,0.5);
+            border: 2px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.lang-btn:hover {
-    background-color: white;
-    color: black;
-    border-color: black;
-}
+        .lang-btn:hover {
+            background-color: white;
+            color: black;
+            border-color: black;
+        }
 
+        form {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
     <div class="language-page">
-        <h1>Choose Language</h1>
+        <h1>{% trans "Choose Language" %}</h1>
         <div class="buttons">
-            <a href="{% url 'set_language' %}?language=en" class="lang-btn">English</a>
-            <a href="{% url 'set_language' %}?language=ka" class="lang-btn">ქართული</a>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="/">
+                <input type="hidden" name="language" value="en">
+                <button type="submit" class="lang-btn">English</button>
+            </form>
+
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="/">
+                <input type="hidden" name="language" value="ka">
+                <button type="submit" class="lang-btn">ქართული</button>
+            </form>
         </div>
     </div>
 </body>

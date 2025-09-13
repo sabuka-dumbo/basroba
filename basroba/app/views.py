@@ -465,3 +465,6 @@ def change_address2(request):
         })
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+def choose_language(request):
+    return render(request, 'language.html')
