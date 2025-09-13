@@ -7,30 +7,48 @@
 {% block body %}
 <section class="about-section">
     <div class="container">
-        <h1 class="main-title">{% trans "About Us" %}</h1>
 
-        <div class="info-section section1">
-            <h2>{% trans "Who We Are" %}</h2>
-            <p>{% trans "Basroba is a modern online shop dedicated to bringing you high-quality products with style and convenience. We value our customers and aim to create a seamless shopping experience." %}</p>
+        <!-- Section 1 -->
+        <div class="info-section">
+            <div class="text">
+                <h2>{% trans "Who We Are" %}</h2>
+                <p>{% trans "Basroba is a modern online shop dedicated to high-quality products with style and convenience. We value our customers and aim to create a seamless shopping experience." %}</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/about1.jpg' %}" alt="Who We Are">
+            </div>
         </div>
 
-        <div class="info-section section2">
-            <h2>{% trans "What We Offer" %}</h2>
-            <p>{% trans "We offer a wide range of products including clothing, accessories, and bags. Every item is carefully selected to meet our standards of quality, design, and affordability." %}</p>
+        <!-- Section 2 (reverse) -->
+        <div class="info-section reverse">
+            <div class="text">
+                <h2>{% trans "What We Offer" %}</h2>
+                <p>{% trans "We offer a wide range of products including clothing, accessories, and bags. Every item is carefully selected to meet our standards of quality, design, and affordability." %}</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/about2.jpg' %}" alt="What We Offer">
+            </div>
         </div>
 
-        <div class="info-section section3">
-            <h2>{% trans "Our Mission" %}</h2>
-            <p>{% trans "Our mission is to make shopping enjoyable and effortless. We strive to provide the best customer service, fast delivery, and products that you will love." %}</p>
+        <!-- Section 3 -->
+        <div class="info-section">
+            <div class="text">
+                <h2>{% trans "Our Mission" %}</h2>
+                <p>{% trans "Our mission is to make shopping enjoyable and effortless. We strive to provide the best customer service, fast delivery, and products that you will love." %}</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/about3.jpg' %}" alt="Our Mission">
+            </div>
         </div>
+
     </div>
 </section>
 
 <style>
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    background: #fafafa;
+    color: #111;
+    background: #fff;
     margin: 0;
 }
 
@@ -39,66 +57,100 @@ body {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 80px 20px;
 }
 
-.main-title {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 80px;
-    color: #111;
-    background: linear-gradient(90deg, #ff7e5f, #feb47b);
-    -webkit-text-fill-color: transparent;
-}
-
 .info-section {
-    padding: 60px 20px;
-    margin-bottom: 50px;
-    border-radius: 15px;
-    text-align: center;
-    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    gap: 40px;
 }
 
-.info-section h2 {
-    font-size: 2.2rem;
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.text {
+    flex: 1;
+}
+
+.text h2 {
+    font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #222;
 }
 
-.info-section p {
+.text p {
     font-size: 1.15rem;
-    line-height: 1.8;
+    line-height: 1.7;
     color: #555;
-    max-width: 750px;
-    margin: 0 auto;
 }
 
-.section1 {
-    background: linear-gradient(135deg, #fff5f0, #ffe8d6);
+.image {
+    flex: 1;
 }
 
-.section2 {
-    background: linear-gradient(135deg, #f0fff5, #d6ffe8);
+.image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    max-height: 400px;
 }
 
-.section3 {
-    background: linear-gradient(135deg, #f0f5ff, #d6e8ff);
-}
-
-.info-section:hover {
-    transform: translateY(-5px);
-}
-
-@media (max-width: 768px) {
-    .main-title {
-        font-size: 2.5rem;
-    }
-
+@media (max-width: 992px) {
     .info-section {
-        padding: 40px 15px;
+        flex-direction: column;
+    }
+    .info-section.reverse {
+        flex-direction: column;
+    }
+    .image img {
+        max-height: 300px;
+    }
+    .text h2 {
+        font-size: 2rem;
+    }
+    .text p {
+        font-size: 1rem;
     }
 }
+
+@media (max-width: 576px) {
+    .container {
+        padding: 60px 15px;
+    }
+    .image img {
+        max-height: 250px;
+    }
+    .text h2 {
+        font-size: 1.75rem;
+    }
+    .text p {
+        font-size: 0.95rem;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 60px; /* added horizontal padding for side margins */
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 60px 40px; /* smaller padding on tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 60px 20px; /* small padding on mobile */
+    }
+}
+
 </style>
 {% endblock %}
