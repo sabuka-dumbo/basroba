@@ -20,7 +20,7 @@
                     <div class="product-card">
                         <img src="{{ product.Product_image1.url }}" class="product-image" alt="">
                         <h3 class="product-text">{{ product.Product_name }}</h3>
-                        {% if product.Product_XS|add:product.Product_S|add:product.Product_M|add:product.Product_L|add:product.Product_XL|add:product.Product_2XL|add:product.Product_3XL|add:product.Product_4XL|add:product.Product_5XL == 0 %}
+                        {% if product.is_sold_out %}
                             <p class="product-price" style="color: red;">Sold Out</p>
                         {% else %}
                             <p class="product-price">{{ product.Product_price_new }} ₾</p>

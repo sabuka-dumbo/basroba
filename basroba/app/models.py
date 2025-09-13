@@ -78,7 +78,7 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.Product_name}"
     
-        def is_sold_out(self):
+    def is_sold_out(self):
         return all([
             self.Product_XS == 0,
             self.Product_S == 0,
