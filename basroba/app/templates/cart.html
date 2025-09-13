@@ -14,7 +14,7 @@
 
     <div class="container">
         <div class="cart-items">
-            <h1>კალათა ({{ cart_items.count }})</h1>
+            <h1>Cart ({% if cart_items %}{{ cart_items.count }}){% else %}0{% endif %})</h1>
             {% for item in cart_items %}
                 <div class="cart-item" data-cart-item-id="{{ item.id }}">
                     <div class="item-image">
@@ -36,25 +36,25 @@
                     </div>
                 </div>
             {% empty %}
-                <p style="color: white; text-align: center;">თქვენი კალათა ცარიელია.</p>
+                <p style="color: black; text-align: center;">Your cart is empty.</p>
             {% endfor %}
         </div>
 
         <div class="order-summary">
             <div class="summary-item">
-                <span class="summary-label">პროდუქტების ჯამური თანხა</span>
+                <span class="summary-label">Total Product Price</span>
                 <span class="summary-value" id="subtotal">₾0.00</span>
             </div>
             <div class="summary-item">
-                <span class="summary-label">გადასახადი % (Tax)</span>
+                <span class="summary-label">Tax % (Tax)</span>
                 <span class="summary-value" id="tax">₾0.00</span>
             </div>
             <div class="summary-item total">
-                <span class="summary-label">ჯამური თანხა</span>
+                <span class="summary-label">Total Amount</span>
                 <span class="summary-value" id="total">₾0.00</span>
             </div>
             <div class="checkout-btn">
-                <button>შეკვეთის გაფორმება</button>
+                <button>Checkout</button>
             </div>
         </div>
     </div>

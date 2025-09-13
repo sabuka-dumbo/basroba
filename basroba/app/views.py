@@ -124,16 +124,20 @@ def product(request, ID):
     })
 
 def cart(request):
-    if request.user.is_authenticated:
-        cart_items = []
-        if request.user.is_authenticated:
-            cart_items = CartItem.objects.all().filter(user=request.user, Item__is_sold_out=False)
-            
-        return render(request, "cart.html", {
-            "cart_items": cart_items
-        })
-    else:
+    if not request.user.is_authenticated:
         return redirect("login")
+
+    all_cart_items = CartItem.objects.filter(user=request.user)
+    cart_items = [item for item in all_cart_items if not item.Item.is_sold_out()]
+
+    for item in all_cart_items:
+        if item.Item.is_sold_out():
+            item.delete()
+
+    return render(request, "cart.html", {
+        "cart_items": cart_items
+    })
+
 
 def favorites(request):
     if request.user.is_authenticated:
