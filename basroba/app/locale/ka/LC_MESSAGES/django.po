@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 #: .\app\templates\layout.html:27
 msgid "Profile"
-msgstr ""
+msgstr "პროფილი"
 
 #: .\app\templates\layout.html:28
 msgid "Cart"
-msgstr ""
+msgstr "კალათა"
 
 #: .\app\templates\layout.html:29
 msgid "Favorites"
-msgstr ""
+msgstr "ფავორიტები"
