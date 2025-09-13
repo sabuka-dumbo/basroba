@@ -472,7 +472,6 @@ def choose_language(request):
         request.session['django_language'] = lang
         request.session['language_chosen'] = True
 
-        next_url = request.POST.get('next', '/')
-        return redirect(next_url)
+        return redirect('index')
 
     return render(request, 'choose_language.html')
