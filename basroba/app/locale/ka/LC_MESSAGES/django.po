@@ -77,7 +77,7 @@ msgstr "მთლიანი პროდუქტის ფასი"
 #: .\app\templates\cart.html:49
 #, python-format
 msgid "Tax %% (Tax)"
-msgstr "საგადასახადო % (Tax)"
+msgstr "საგადასახადო %% (Tax)"
 
 #: .\app\templates\cart.html:53
 msgid "Total Amount"
