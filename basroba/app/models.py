@@ -78,6 +78,19 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.Product_name}"
     
+        def is_sold_out(self):
+        return all([
+            self.Product_XS == 0,
+            self.Product_S == 0,
+            self.Product_M == 0,
+            self.Product_L == 0,
+            self.Product_XL == 0,
+            self.Product_2XL == 0,
+            self.Product_3XL == 0,
+            self.Product_4XL == 0,
+            self.Product_5XL == 0,
+        ])
+    
 class CartItem(models.Model):
     user = models.ForeignKey(User, related_name="usercart", on_delete=models.CASCADE)
     Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item", default=None)
