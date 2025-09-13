@@ -75,22 +75,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# 🌍 Internationalization
-LANGUAGE_CODE = 'en'   # default = English
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
+USE_I18N = True  # Enable Django’s translation system
+USE_L10N = True  # Enable localized formatting of data
+USE_TZ = True    # Keep timezone support (optional, but recommended)
 
-# Available languages
-LANGUAGES = [
-    ('en', 'English'),
-    ('ka', 'Georgian'),
-]
-
-# Where translations will be stored
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
+LANGUAGE_CODE = 'en-us'  # Default language of your site
+TIME_ZONE = 'UTC'        # Your timezone
 
 # Static & Media files
 STATIC_URL = 'static/'
