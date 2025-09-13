@@ -117,3 +117,12 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order #{self.pk} by {self.user}"
+    
+class EmailMessage(models.Model):
+    email = models.EmailField(max_length=250, unique=True)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=250, default='No')
+
+    def __str__(self):
+        return self.email

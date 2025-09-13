@@ -148,14 +148,14 @@ def contactus_view(request):
         email = request.POST.get('email')
         message = request.POST.get('message')
         
-        full_message = f"Message from {name} ({email}):\n\n{message}"
-        send_mail(
-            subject=f"Contact Form: {name}",
-            message=full_message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.DEFAULT_FROM_EMAIL],
+        new_email = EmailMessage.objects.create(
+            name=name,
+            email=email,
+            message=message
         )
         success = True
+
+        new_email.save()
 
     return render(request, 'contactus.html', {'success': success})
 
