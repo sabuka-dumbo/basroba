@@ -75,19 +75,21 @@
     <div class="language-page">
         <h1>{% trans "Choose Language" %}</h1>
         <div class="buttons">
-            <form action="{% url 'set_language' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="/">
-                <input type="hidden" name="language" value="en">
-                <button type="submit" class="lang-btn">English</button>
-            </form>
+        <form action="{% url 'choose_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="/">
+            <input type="hidden" name="language" value="en">
+            <button type="submit" class="lang-btn">English</button>
+        </form>
 
-            <form action="{% url 'set_language' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="/">
-                <input type="hidden" name="language" value="ka">
-                <button type="submit" class="lang-btn">ქართული</button>
-            </form>
+        <form action="{% url 'choose_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="/">
+            <input type="hidden" name="language" value="ka">
+            <button type="submit" class="lang-btn">ქართული</button>
+        </form>
+
+
         </div>
     </div>
 </body>
