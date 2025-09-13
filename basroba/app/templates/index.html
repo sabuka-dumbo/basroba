@@ -59,7 +59,11 @@
                     <div class="product-card">
                         <img src="{{ product.Product_image1.url }}" class="product-image" alt="">
                         <h3 class="product-text">{{ product.Product_name }}</h3>
-                        <p class="product-price">{{ product.Product_price_new }} ₾</p>
+                        {% if product.is_sold_out %}
+                            <p class="product-price" style="color: red;">Sold Out</p>
+                        {% else %}
+                            <p class="product-price">{{ product.Product_price_new }} ₾</p>
+                        {% endif %}
                     </div>
                 </a>
             {% endfor %}
