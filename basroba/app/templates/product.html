@@ -52,7 +52,7 @@
 
         <div class="old-price1">
             {% if product.is_sold_out %}
-                <p class="product-price" style="color: red;">Sold Out</p>
+                <p class="product-price" style="color: red;">{% trans "Sold Out" %}</p>
             {% else %}
                 {% if product.Product_price_old != "No" %}
                     <h1 class="old-price2">₾{{ product.Product_price_old }}</h1>
@@ -82,7 +82,7 @@
         <!-- Sizes -->
         <div class="size-selector">
             <div class="size-label">
-                <h1 class="size-title">ზომა:</h1>
+                <h1 class="size-title">{% trans "Size:" %}</h1>
             </div>
             <div class="sizes">
                 {% for size in available_sizes %}
@@ -95,25 +95,25 @@
         {% if user.is_authenticated %}
             <div class="buttons-div" id="cart-button-div">
                 {% if does_user_have_in_favorites %}
-                    <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(true)">ფავორიტიდან ამოშლა</button>
+                    <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(true)">{% trans "Remove from Favorites" %}</button>
                 {% else %}
-                    <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(false)">ფავორიტად არჩევა</button>
+                    <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(false)">{% trans "Add to Favorites" %}</button>
                 {% endif %}
 
                 {% if does_user_own_product %}
-                    <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(true)">კალათიდან ამოშლა</button>
+                    <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(true)">{% trans "Remove from Cart" %}</button>
                 {% else %}
-                    <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(false)">კალათაში დამატება</button>
+                    <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(false)">{% trans "Add to Cart" %}</button>
                 {% endif %}
             </div>
         {% else %}
             <div class="buttons-div" id="cart-button-div">
                 <a href="{% url 'login' %}?next={{ request.path }}">
-                    <button class="first-button favorite-button2" type="button">ფავორიტად არჩევა</button>
+                    <button class="first-button favorite-button2" type="button">{% trans "Add to Favorites" %}</button>
                 </a>
 
                 <a href="{% url 'login' %}?next={{ request.path }}" class="unnessesary-link-style">
-                    <button class="second-button add-to-cart-button2" type="button">კალათაში დამატება</button>
+                    <button class="second-button add-to-cart-button2" type="button">{% trans "Add to Cart" %}</button>
                 </a>
             </div>
         {% endif %}

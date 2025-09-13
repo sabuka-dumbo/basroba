@@ -14,7 +14,7 @@
 {% block body %}
     <div class="container-main-main">
             <div class="container">
-            <h1 class="text-center mb-5" style="width: 90%; left: 5%; position: relative;">Favorites</h1>
+            <h1 class="text-center mb-5" style="width: 90%; left: 5%; position: relative;">{% trans "Favorites" %}</h1>
 
 
             {% if user_favorites != '' %}
@@ -25,8 +25,8 @@
                                 <div class="product-info">
                                     <div class="product-title">{{ i.Item }}</div>
                                     <div class="product-details">
-                                        <span>Size: No size chosen</span><br>
-                                        <span>Color: No size chosen</span>
+                                        <span>{% trans "Size: No size chosen" %}</span><br>
+                                        <span>{% trans "Color: No color chosen" %}</span>
                                     </div>
                                 </div>
                                 <button class="btn-heart">
@@ -37,7 +37,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <p class="text-center" style="text-align: center;">You have no favorite items.</p>
+                <p class="text-center" style="text-align: center;">{% trans "You have no favorite items." %}</p>
                 <div style="height: 400px; position: relative;"></div>
             {% endif %}
     </div>

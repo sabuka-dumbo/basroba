@@ -14,7 +14,7 @@
 
     <div class="container">
         <div class="cart-items">
-            <h1>Cart ({% if cart_items %}{{ cart_items.count }}){% else %}0{% endif %})</h1>
+            <h1>{% trans "Cart" %} ({% if cart_items %}{{ cart_items.count }}){% else %}0{% endif %})</h1>
             {% for item in cart_items %}
                 <div class="cart-item" data-cart-item-id="{{ item.id }}">
                     <div class="item-image">
@@ -27,7 +27,7 @@
                             <span class="item-name">{{ item.Item.Product_name }}</span>
                         </a>
                         <span class="item-price">₾{{ item.Item.Product_price_new }}</span>
-                        <span class="item-price">Color: {{ item.Color }} || Size: {{ item.Size }}</span>
+                        <span class="item-price">{% trans "Color" %}: {{ item.Color }} || {% trans "Size" %}: {{ item.Size }}</span>
                     </div>
                     <div class="quantity">
                         <button class="btn-decrease" type="button">-</button>
@@ -36,25 +36,25 @@
                     </div>
                 </div>
             {% empty %}
-                <p style="color: black; text-align: center;">Your cart is empty.</p>
+                <p style="color: black; text-align: center;">{% trans "Your cart is empty." %}</p>
             {% endfor %}
         </div>
 
         <div class="order-summary">
             <div class="summary-item">
-                <span class="summary-label">Total Product Price</span>
+                <span class="summary-label">{% trans "Total Product Price" %}</span>
                 <span class="summary-value" id="subtotal">₾0.00</span>
             </div>
             <div class="summary-item">
-                <span class="summary-label">Tax % (Tax)</span>
+                <span class="summary-label">{% trans "Tax % (Tax)" %}</span>
                 <span class="summary-value" id="tax">₾0.00</span>
             </div>
             <div class="summary-item total">
-                <span class="summary-label">Total Amount</span>
+                <span class="summary-label">{% trans "Total Amount" %}</span>
                 <span class="summary-value" id="total">₾0.00</span>
             </div>
             <div class="checkout-btn">
-                <button>Checkout</button>
+                <button>{% trans "Checkout" %}</button>
             </div>
         </div>
     </div>

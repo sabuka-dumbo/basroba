@@ -21,7 +21,7 @@
                         <img src="{{ product.Product_image1.url }}" class="product-image" alt="">
                         <h3 class="product-text">{{ product.Product_name }}</h3>
                         {% if product.is_sold_out %}
-                            <p class="product-price" style="color: red;">Sold Out</p>
+                            <p class="product-price" style="color: red;">{% trans "Sold Out" %}</p>
                         {% else %}
                             <p class="product-price">{{ product.Product_price_new }} ₾</p>
                         {% endif %}

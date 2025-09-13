@@ -15,20 +15,20 @@
             <div class="navigation-div1">
                 <div class="website-titles">
                     <a href="{% url 'index' %}" style="text-decoration: none;"><h1 class="website-title1">BASROBA</h1>
-                    <h1 class="website-title2">BE WHO YOU ARE</h1></a>
+                    <h1 class="website-title2">{% trans "BE WHO YOU ARE" %}</h1></a>
                 </div>
 
                 <div id="menu-together">
                     <div class="navs-navs">
-                        <a href="{% url 'products' category_name='all' %}" class="nav nav1">Products</a>
-                        <a href="{% url 'products' category_name='all' %}" class="nav nav1">About Us</a>
-                        <a href="{% url 'products' category_name='all' %}" class="nav nav1">Contact</a>
+                        <a href="{% url 'products' category_name='all' %}" class="nav nav1">{% trans "Products" %}</a>
+                        <a href="{% url 'about' %}" class="nav nav1">{% trans "About Us" %}</a>
+                        <a href="{% url 'contact' %}" class="nav nav1">{% trans "Contact" %}</a>
                         {% if user.is_authenticated %}
                             <a href="{% url 'profile' %}" class="nav nav4">{% trans "Profile" %}</a>
                             <a href="{% url 'cart' %}" class="nav nav5">{% trans "Cart" %}</a>
                             <a href="{% url 'favorites' %}" class="nav nav6">{% trans "Favorites" %}</a>
                         {% else %}
-                            <a href="{% url 'login' %}" class="nav nav4">Register</a>
+                            <a href="{% url 'login' %}" class="nav nav4">{% trans 'Register' %}</a>
                         {% endif %}
                     </div>
 
@@ -111,8 +111,8 @@
                 <div class="footer-left">
                     <img src="{% static 'pics/Logo.jpg' %}" class="logo-placeholder" alt="">
 
-                    <p class="copyright-text">Copyright 2025 Basroba</p>
-                    <p class="copyright-text">All rights reserved.</p>
+                    <p class="copyright-text">{% trans "Copyright 2025 Basroba" %}</p>
+                    <p class="copyright-text">{% trans "All rights reserved." %}</p>
 
                     <div class="social-icons">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook social-icon-placeholder" viewBox="0 0 16 16">
@@ -128,16 +128,16 @@
                 </div>
 
                 <nav class="footer-nav">
-                    <a href="{% url 'index' %}">Main</a>
-                    <a href="{% url 'products' category_name='all' %}">Products</a>
-                    <a href="{% url 'cart' %}">Cart</a>
-                    <a href="{% url 'favorites' %}">Favorites</a>
-                    <a href="{% url 'profile' %}">Profile</a>
+                    <a href="{% url 'index' %}">{% trans "Main" %}</a>
+                    <a href="{% url 'products' category_name='all' %}">{% trans "Products" %}</a>
+                    <a href="{% url 'cart' %}">{% trans "Cart" %}</a>
+                    <a href="{% url 'favorites' %}">{% trans "Favorites" %}</a>
+                    <a href="{% url 'profile' %}">{% trans "Profile" %}</a>
                 </nav>
 
                 <div class="footer-made-by">
                     <div class="made-by-text">
-                        Made by Saba Dumbadze
+                        {% trans "Made by Saba Dumbadze" %}
                     </div>
                 </div>
             </div>

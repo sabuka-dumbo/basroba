@@ -24,34 +24,34 @@
     </div>
 
     <section class="section2">
-        <h1 class="section2-title">CATEGORIES</h1>
+        <h1 class="section2-title">{% trans "CATEGORIES" %}</h1>
 
         <div class="categories-div">
             <a href="{% url 'products' category_name='Jacket' %}" class="category-1" style="text-decoration: none; color: white;">
                 <div class="category-1">
                     <img src="{% static 'pics/Picure2.png' %}" class="category-image" alt="">
-                    <h1 class="category-text">Jackets</h1>
+                    <h1 class="category-text">{% trans "Jackets" %}</h1>
                 </div>
             </a>
 
             <a href="{% url 'products' category_name='Accessories' %}" class="category-2" style="text-decoration: none; color: white;">
                 <div class="category-2">
                     <img src="{% static 'pics/Picture3.png' %}" class="category-image" alt="">
-                    <h1 class="category-text">Accessories</h1>
+                    <h1 class="category-text">{% trans "Accessories" %}</h1>
                 </div>
             </a>
 
             <a href="{% url 'products' category_name='Bags' %}" class="category-3" style="text-decoration: none; color: white;">
                 <div class="category-3">
                     <img src="{% static 'pics/Picture4.png' %}" class="category-image" alt="">
-                    <h1 class="category-text">Bags</h1>
+                    <h1 class="category-text">{% trans "Bags" %}</h1>
                 </div>
             </a>
         </div>
     </section>
 
     <section class="section2">
-        <h2 class="section2-title">PRODUCTS</h2>
+        <h2 class="section2-title">{% trans "PRODUCTS" %}</h2>
         
         <div class="products-div">
             {% for product in all_products %}
@@ -60,7 +60,7 @@
                         <img src="{{ product.Product_image1.url }}" class="product-image" alt="">
                         <h3 class="product-text">{{ product.Product_name }}</h3>
                         {% if product.is_sold_out %}
-                            <p class="product-price" style="color: red;">Sold Out</p>
+                            <p class="product-price" style="color: red;">{% trans "Sold Out" %}</p>
                         {% else %}
                             <p class="product-price">{{ product.Product_price_new }} ₾</p>
                         {% endif %}

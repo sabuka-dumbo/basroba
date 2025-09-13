@@ -13,7 +13,7 @@
 <div class="container" id="address-form" style="display: none;">
     <div class="container-back" id="address-form-back"></div>
     <form class="container-front">
-        <h1>Add Address</h1>
+        <h1>{% trans "Add Address" %}</h1>
         <input type="text" placeholder="First Name" id="first_name22" value="{{ user_info.first_name }}" required>
         <input type="text" placeholder="Last Name" id="last_name22" value="{{ user_info.last_name }}" required>
         <input type="number" placeholder="Phone Number" id="phone_number22" value="{{ user_info.phone_number }}" required>
@@ -24,14 +24,14 @@
         <input type="number" placeholder="ZIP Code" id="zip_code22" value="" required>
         <input type="text" placeholder="Country" id="country22" value="" required>
         <input type="number" placeholder="Phone Code" id="phone_code22" value="" required>
-        <button onclick="add_address()" type="button">💾 Save</button>
+        <button onclick="add_address()" type="button">💾 {% trans "Save" %}</button>
     </form>
 </div>
 
 <div class="container" id="address-form2" style="display: none;">
     <div class="container-back" id="address-form-back2"></div>
     <form class="container-front">
-        <h1>Add Address</h1>
+        <h1>{% trans "Add Address" %}</h1>
         <input type="text" placeholder="Full Name" id="full_name222" value="" required>
         <input type="number" placeholder="Phone Number" id="phone_number222" value="" required>
         <input type="text" placeholder="Street Address 1" id="street_address1222" value="" required>
@@ -41,16 +41,16 @@
         <input type="number" placeholder="ZIP Code" id="zip_code222" value="" required>
         <input type="text" placeholder="Country" id="country222" value="" required>
         <input type="number" placeholder="Phone Code" id="phone_code222" value="" required>
-        <button onclick="change_address()" type="button">💾 Save</button>
+        <button onclick="change_address()" type="button">💾 {% trans "Save" %}</button>
     </form>
 </div>
 
 <div class="profile">
     <div class="sidebar">
         <h1>{{ user_info.first_name }} {{ user_info.last_name }}</h1>
-        <a onclick="open_part1()" id="link-profile">👤 Profile Information</a>
-        <a onclick="open_part3()" id="link-orders">📦 Orders</a>
-        <a onclick="open_part2()" id="link-address">🏠 Address Information</a>
+        <a onclick="open_part1()" id="link-profile">👤 {% trans "Profile Information" %}</a>
+        <a onclick="open_part3()" id="link-orders">📦 {% trans "Orders" %}</a>
+        <a onclick="open_part2()" id="link-address">🏠 {% trans "Address Information" %}</a>
     </div>
 
     <div class="main-part">
@@ -69,24 +69,24 @@
 
         <div class="main-part2 card" id="main-part2" style="display: none;">
             <h1>Address Information</h1>
-            <button type="button" class="add-address" onclick="open_address_form()">➕ Add Address</button>
+            <button type="button" class="add-address" onclick="open_address_form()">➕ {% trans "Add Address" %}</button>
 
             {% for address in address_info %}
                 <div class="address-div" id="address-{{ address.id }}">
                     <h2 class="address">{{ address.street_address1 }}, {{ address.city }}, {{ address.country }}</h2>
                     <div class="address-actions">
-                        <button type="button" class="change-address" onclick='open_change_address(`{{ address.id }}`)'>✏️ Change</button>
-                        <button type="button" class="delete-address" onclick='delete_address(`{{ address.id }}`)'>🗑 Delete</button>
+                        <button type="button" class="change-address" onclick='open_change_address(`{{ address.id }}`)'>✏️ {% trans "Change" %}</button>
+                        <button type="button" class="delete-address" onclick='delete_address(`{{ address.id }}`)'>🗑 {% trans "Delete" %}</button>
                     </div>
                 </div>
             {% endfor %}
         </div>
 
         <div class="main-part3 card" id="main-part3" style="display: none;">
-            <h1>My Orders</h1>
+            <h1>{% trans "My Orders" %}</h1>
             {% for order in order_info %}
             <div class="order">
-                <h2>🛒 Order #{{ order.id }}</h2>
+                <h2>🛒 {% trans "Order" %} #{{ order.id }}</h2>
                 {% for item in order.items.all %}
                 <div class="order-item">
                     <img src="{{ item.Item.Product_image1.url }}" alt="">
