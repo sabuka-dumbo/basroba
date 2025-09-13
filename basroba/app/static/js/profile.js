@@ -2,6 +2,8 @@ const main_part1 = document.getElementById("main-part1");
 const main_part2 = document.getElementById("main-part2");
 const main_part3 = document.getElementById("main-part3");
 
+let current_address_id = null;
+
 function open_part1() {
     main_part1.style.display = "block";
     main_part2.style.display = "none";
@@ -169,13 +171,15 @@ function open_change_address(address_id) {
         document.getElementById("zip_code222").value = data.zip_code;
         document.getElementById("country222").value = data.country;
         document.getElementById("phone_code222").value = data.phone_code;
+
+        current_address_id = address_id;
     })
     .catch(error => {
         console.error("Error:", error);
     });
 }
 
-function change_address(address_id) {
+function change_address() {
     document.getElementById("address-form2").style.display = "none";
 
     fetch("/api/change_address22/", {
@@ -184,7 +188,7 @@ function change_address(address_id) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            address_id: address_id,
+            address_id: current_address_id,
             full_name: document.getElementById("full_name222").value,
             phone_number: document.getElementById("phone_number222").value,
             street_address1: document.getElementById("street_address1222").value,
@@ -208,7 +212,7 @@ function change_address(address_id) {
         document.getElementById("country222").value = '';
         document.getElementById("phone_code222").value = '';
 
-        document.querySelector(`#address-${address_id} .address`).innerText = `${data.street_address1}, ${data.city}, ${data.country}`;
+        document.querySelector(`#address-${current_address_id} .address`).innerText = `${data.street_address1}, ${data.city}, ${data.country}`;
     })
     .catch(error => {
         console.error("Error:", error);
