@@ -1,0 +1,478 @@
+.section1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 90%;
+    left: 5%;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 48% 4% 48%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.pictures-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    grid-template-columns: 140px 10px calc(100% - 150px);
+}
+
+.main-picture {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    grid-column: 3;
+}
+
+.other-pics {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    padding: 0;
+    margin: 0;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 1;
+    overflow-y: auto;
+}
+
+.other-image {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.main-part {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    grid-column: 3;
+}
+
+.product-title {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+}
+
+.product-category {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.old-price1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.old-price2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    margin-left: 0px;
+    margin-right: 5px;
+    color: gray;
+    display: inline-block;
+}
+
+.old-price3 {
+    position: absolute;
+    top: 5px;
+    left: -3px;
+    height: max-content;
+    width: calc(50% + 5px);
+    border: 1px solid #797979;
+}
+
+.new-price {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    color: black;
+    display: inline-block;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.payment-method {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.rating-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    margin-top: 5px;
+}
+
+.rating-icon {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 17px;
+    color: yellow;
+    display: inline-block;
+}
+
+.rating-text {
+    position: relative;
+    top: -4px;
+    left: 5px;
+    width: max-content;
+    height: max-content;
+    text-align: end;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.main-part-line {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    border: 2px solid black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.color-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+}
+
+.color-title {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+
+.label {
+    font-size: 22px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.color-picker {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.color-picker input[type="radio"] {
+    display: none;
+}
+
+.color-picker label {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid gray;
+    transition: 0.2s;
+}
+
+.color-picker input[type="radio"]:checked + label {
+    border: 4px solid rgb(0, 0, 0);
+}
+
+.red       { background: #FF6F6F; }
+.green     { background: #2ECC40; }
+.blue      { background: #4169E1; }
+.yellow    { background: #FFD93D; }
+.orange    { background: #FF8C42; }
+.purple    { background: #9B59B6; }
+.pink      { background: #FF69B4; }
+.teal      { background: #1ABC9C; }
+.brown     { background: #8E6E53; }
+.gray      { background: #7F8C8D; }
+.black     { background: #000000; }
+.white     { background: #FFFFFF; border: 1px solid #ccc; }
+.cyan      { background: #00FFFF; }
+.magenta   { background: #FF00FF; }
+.lime      { background: #BFFF00; }
+.indigo    { background: #4B0082; }
+.violet    { background: #8A2BE2; }
+.gold      { background: #FFD700; }
+.silver    { background: #C0C0C0; }
+.beige     { background: #F5F5DC; }
+.maroon    { background: #800000; }
+.olive     { background: #808000; }
+.navy      { background: #000080; }
+.turquoise { background: #40E0D0; }
+.coral     { background: #FF7F50; }
+.chocolate { background: #D2691E; }
+.khaki     { background: #F0E68C; }
+.salmon    { background: #FA8072; }
+.plum      { background: #DDA0DD; }
+.crimson   { background: #DC143C; }
+.aqua      { background: #00CED1; }
+.skyblue   { background: #87CEEB; }
+.fuchsia   { background: #FF77FF; }
+.peach     { background: #FFDAB9; }
+.lavender  { background: #E6E6FA; }
+.mint      { background: #98FF98; }
+
+
+.size-selector {
+    text-align: center;
+    color: black;
+}
+
+.size-label h1 {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: start;
+    font-size: 24px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.sizes {
+    display: flex;
+    gap: 10px;
+}
+
+.size-button {
+    background-color: transparent;
+    border: 2px solid #000000;
+    color: black;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.size-button:hover {
+    background-color: #d1d1d1;
+    color: #222;
+}
+
+.selected {
+    color: #222;
+    pointer-events: none;
+    border: 2px solid #222;
+}
+
+.selected2 {
+    background-color: #d1d1d1;
+    color: #222;
+    pointer-events: none;
+}
+
+.buttons-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: 48% 4% 48%;
+    margin-top: 50px;
+}
+
+.first-button {
+    grid-column: 1;
+    background-color: #EAEAEA;
+    color: black;
+}
+
+.second-button {
+    grid-column: 3;
+    background-color: #434343;
+    color: #EAEAEA;
+}
+
+.favorite-button2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 20px);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.add-to-cart-button2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 20px);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.unnessesary-link-style {
+    grid-column: 3;
+}
+
+@media screen and (max-width: 900px) {
+    .section1 {
+        grid-template-columns: 100%;
+    }
+
+    .main-picture {
+        max-height: 400px;
+        object-fit: contain;
+    }
+
+    .main-part {
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .sizes {
+        flex-wrap: wrap;
+    }
+
+    .buttons-div {
+        grid-template-columns: 100%;
+    }
+
+    .first-button {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .second-button {
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: 20px;
+    }
+
+    .pictures-div {
+        grid-template-columns: 80px 5px calc(100% - 85px);
+    }
+
+    .unnessesary-link-style {
+        grid-column: 1;
+    }
+}
+
+.Red       { background-color: red; color: red; }
+.Blue      { background-color: blue; color: blue; }
+.Green     { background-color: green; color: green; }
+.Yellow    { background-color: yellow; color: yellow; }
+.Orange    { background-color: orange; color: orange; }
+.Purple    { background-color: purple; color: purple; }
+.Pink      { background-color: pink; color: pink; }
+.Brown     { background-color: brown; color: brown; }
+.Black     { background-color: black; color: black; }
+.White     { background-color: white; color: white; border: 1px solid #ccc; }
+.Gray      { background-color: gray; color: gray; }
+.Silver    { background-color: silver; color: silver; }
+.Gold      { background-color: gold; color: gold; }
+.Beige     { background-color: beige; color: beige; }
+/* EXTRA COLORS (PRODUCT-LIKE) */
+.Cyan      { background-color: cyan; color: cyan; }
+.Magenta   { background-color: magenta; color: magenta; }
+.Teal      { background-color: teal; color: teal; }
+.Navy      { background-color: navy; color: navy; }
+.Indigo    { background-color: indigo; color: indigo; }
+.Violet    { background-color: violet; color: violet; }
+.Coral     { background-color: coral; color: coral; }
+.Salmon    { background-color: salmon; color: salmon; }
+.Khaki     { background-color: khaki; color: khaki; }
+.Olive     { background-color: olive; color: olive; }
+.Maroon    { background-color: maroon; color: maroon; }
+.Chocolate { background-color: chocolate; color: chocolate; }
+.Plum      { background-color: plum; color: plum; }
+.Crimson   { background-color: crimson; color: crimson; }
+.Turquoise { background-color: turquoise; color: turquoise; }
+.Lavender  { background-color: lavender; color: lavender; }
+.Mint      { background-color: #98FF98; color: #98FF98; }
+.Peach     { background-color: peachpuff; color: peachpuff; }
+.Skyblue   { background-color: skyblue; color: skyblue; }
+.Fuchsia   { background-color: fuchsia; color: fuchsia; }

@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/favorites.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block title %}
+    Favorites
+{% endblock %}
+
+{% block body %}
+    <div class="container-main-main">
+            <div class="container">
+            <h1 class="text-center mb-5" style="width: 90%; left: 5%; position: relative;">{% trans "Favorites" %}</h1>
+
+
+            {% if user_favorites != '' %}
+                {% for i in user_favorites %}
+                        <a href="{% url 'product' i.Item.id %}" style="text-decoration: none; color: inherit;">
+                            <div class="product-card">
+                                <img src="{{ i.Item.Product_image1.url }}" alt="{{ i.Item.Product_title }}" class="product-image"   >
+                                <div class="product-info">
+                                    <div class="product-title">{{ i.Item }}</div>
+                                    <div class="product-details">
+                                        <span>{% trans "Size: No size chosen" %}</span><br>
+                                        <span>{% trans "Color: No color chosen" %}</span>
+                                    </div>
+                                </div>
+                                <button class="btn-heart">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center" style="text-align: center;">{% trans "You have no favorite items." %}</p>
+                <div style="height: 400px; position: relative;"></div>
+            {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block title %}
+    My Profile
+{% endblock %}
+
+{% block body %}
+<div class="container" id="address-form" style="display: none;">
+    <div class="container-back" id="address-form-back"></div>
+    <form class="container-front">
+        <h1>{% trans "Add Address" %}</h1>
+        <input type="text" placeholder="First Name" id="first_name22" value="{{ user_info.first_name }}" required>
+        <input type="text" placeholder="Last Name" id="last_name22" value="{{ user_info.last_name }}" required>
+        <input type="number" placeholder="Phone Number" id="phone_number22" value="{{ user_info.phone_number }}" required>
+        <input type="text" placeholder="Street Address 1" id="street_address122" value="" required>
+        <input type="text" placeholder="Street Address 2" id="street_address222" value="">
+        <input type="text" placeholder="City" id="city22" value="" required>
+        <input type="text" placeholder="State/Region" id="state_region22" value="" required>
+        <input type="number" placeholder="ZIP Code" id="zip_code22" value="" required>
+        <input type="text" placeholder="Country" id="country22" value="" required>
+        <input type="number" placeholder="Phone Code" id="phone_code22" value="" required>
+        <button onclick="add_address()" type="button">💾 {% trans "Save" %}</button>
+    </form>
+</div>
+
+<div class="container" id="address-form2" style="display: none;">
+    <div class="container-back" id="address-form-back2"></div>
+    <form class="container-front">
+        <h1>{% trans "Add Address" %}</h1>
+        <input type="text" placeholder="Full Name" id="full_name222" value="" required>
+        <input type="number" placeholder="Phone Number" id="phone_number222" value="" required>
+        <input type="text" placeholder="Street Address 1" id="street_address1222" value="" required>
+        <input type="text" placeholder="Street Address 2" id="street_address2222" value="">
+        <input type="text" placeholder="City" id="city222" value="" required>
+        <input type="text" placeholder="State/Region" id="state_region222" value="" required>
+        <input type="number" placeholder="ZIP Code" id="zip_code222" value="" required>
+        <input type="text" placeholder="Country" id="country222" value="" required>
+        <input type="number" placeholder="Phone Code" id="phone_code222" value="" required>
+        <button onclick="change_address()" type="button">💾 {% trans "Save" %}</button>
+    </form>
+</div>
+
+<div class="profile">
+    <div class="sidebar">
+        <h1>{{ user_info.first_name }} {{ user_info.last_name }}</h1>
+        <a onclick="open_part1()" id="link-profile">👤 {% trans "Profile Information" %}</a>
+        <a onclick="open_part3()" id="link-orders">📦 {% trans "Orders" %}</a>
+        <a onclick="open_part2()" id="link-address">🏠 {% trans "Address Information" %}</a>
+    </div>
+
+    <div class="main-part">
+        <div class="main-part1 card" id="main-part1" style="display: none;">
+            <h1>Profile Information</h1>
+            <div>
+                <input type="text" placeholder="First Name" value="{{ user_info.first_name }}" id="first_name1">
+                <input type="text" placeholder="Middle Name" value="{{ user_info.middle_name }}" id="middle_name1">
+                <input type="text" placeholder="Last Name" value="{{ user_info.last_name }}" id="last_name1">
+                <input type="number" placeholder="Id Number" value="{{ user_info.id_number }}" id="id_number1">
+                <input type="email" placeholder="Email Address" value="{{ user_info.email_address }}" id="email_address1">
+                <input type="number" placeholder="Phone Number" value="{{ user_info.phone_number }}" id="phone_number1">
+                <button type="submit" onclick="save_user_info()" type="button">💾 Save</button>
+            </div>
+        </div>
+
+        <div class="main-part2 card" id="main-part2" style="display: none;">
+            <h1>Address Information</h1>
+            <button type="button" class="add-address" onclick="open_address_form()">➕ {% trans "Add Address" %}</button>
+
+            {% for address in address_info %}
+                <div class="address-div" id="address-{{ address.id }}">
+                    <h2 class="address">{{ address.street_address1 }}, {{ address.city }}, {{ address.country }}</h2>
+                    <div class="address-actions">
+                        <button type="button" class="change-address" onclick='open_change_address(`{{ address.id }}`)'>✏️ {% trans "Change" %}</button>
+                        <button type="button" class="delete-address" onclick='delete_address(`{{ address.id }}`)'>🗑 {% trans "Delete" %}</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="main-part3 card" id="main-part3" style="display: none;">
+            <h1>{% trans "My Orders" %}</h1>
+            {% for order in order_info %}
+            <div class="order">
+                <h2>🛒 {% trans "Order" %} #{{ order.id }}</h2>
+                {% for item in order.items.all %}
+                <div class="order-item">
+                    <img src="{{ item.Item.Product_image1.url }}" alt="">
+                    <h3>{{ item.Item.Product_name }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}About Us{% endblock %}
+
+{% block body %}
+<section class="about-section">
+    <div class="container">
+
+        <div class="info-section">
+            <div class="text">
+                <h2>{% trans "Who We Are" %}</h2>
+                <p>{% trans "Basroba is a modern online shop dedicated to high-quality products with style and convenience. We value our customers and aim to create a seamless shopping experience." %}</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/about1.jpg' %}" alt="Who We Are">
+            </div>
+        </div>
+
+        <div class="info-section reverse">
+            <div class="text">
+                <h2>{% trans "What We Offer" %}</h2>
+                <p>{% trans "We offer a wide range of products including clothing, accessories, and bags. Every item is carefully selected to meet our standards of quality, design, and affordability." %}</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/about2.jpg' %}" alt="What We Offer">
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="text">
+                <h2>{% trans "Our Mission" %}</h2>
+                <p>{% trans "Our mission is to make shopping enjoyable and effortless. We strive to provide the best customer service, fast delivery, and products that you will love." %}</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/about3.jpg' %}" alt="Our Mission">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #111;
+    background: #fff;
+    margin: 0;
+}
+
+.about-section {
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    gap: 40px;
+}
+
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.text {
+    flex: 1;
+}
+
+.text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.text p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.image {
+    flex: 1;
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+@media (max-width: 992px) {
+    .info-section {
+        flex-direction: column;
+    }
+    .info-section.reverse {
+        flex-direction: column;
+    }
+    .image img {
+        max-height: 300px;
+    }
+    .text h2 {
+        font-size: 2rem;
+    }
+    .text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 60px 15px;
+    }
+    .image img {
+        max-height: 250px;
+    }
+    .text h2 {
+        font-size: 1.75rem;
+    }
+    .text p {
+        font-size: 0.95rem;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 60px;
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 60px 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+            padding: 60px 20px;
+        }
+}
+
+</style>
+{% endblock %}

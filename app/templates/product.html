@@ -1,0 +1,291 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <style>
+        /* Message bar */
+        #message-bar {
+            display: none;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            z-index: 9999;
+            transition: top 0.5s ease-in-out;
+        }
+        #message-bar.show {
+            display: block;
+            top: 20px;
+        }
+        #message-bar.success { background: green; }
+        #message-bar.error { background: crimson; }
+    </style>
+{% endblock %}
+
+{% block title %}
+    {{ product.Product_name }}
+{% endblock %}
+
+{% block body %}
+<form class="section1" onsubmit="return false;">
+
+    <div class="pictures-div">
+        <div class="other-pics">
+            {% for img in product_images %}
+                {% if img %}
+                    <img src="{{ img.url }}" class="other-image" alt="{{ product.Product_name }}">
+                {% endif %}
+            {% endfor %}
+        </div>
+        <img src="{{ product.Product_image1.url }}" class="main-picture" alt="{{ product.Product_name }}">
+    </div>
+
+    <div class="main-part">
+        <h1 class="product-title">{{ product.Product_name }}</h1>
+        <h1 class="product-category">{{ product.Product_Category }}</h1>
+
+        <div class="old-price1">
+            {% if product.is_sold_out %}
+                <p class="product-price" style="color: red;">{% trans "Sold Out" %}</p>
+            {% else %}
+                {% if product.Product_price_old != "No" %}
+                    <h1 class="old-price2">₾{{ product.Product_price_old }}</h1>
+                    <hr class="old-price3">
+                    <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% else %}
+                    <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <h1 class="payment-method">{{ product.product_description }}</h1>
+
+        <br>
+
+        <hr class="main-part-line">
+
+        <br>
+
+        <div class="color-picker">
+            {% for color in product_colors %}
+                <input type="radio" id="color{{ color.id }}" name="color" value="{{ color }}" {% if forloop.first %}checked{% endif %}>
+                <label for="color{{ color.id }}" class="{{ color }}">{{ color.name }}</label>   
+            {% endfor %}
+        </div>
+
+        <!-- Sizes -->
+        <div class="size-selector">
+            <div class="size-label">
+                <h1 class="size-title">{% trans "Size:" %}</h1>
+            </div>
+            <div class="sizes">
+                {% for size in available_sizes %}
+                    <button class="size-button" type="button" data-size="{{ size }}">{{ size }}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        {% if user.is_authenticated %}
+            <div class="buttons-div" id="cart-button-div">
+                {% if does_user_have_in_favorites %}
+                    <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(true)">{% trans "Remove from Favorites" %}</button>
+                {% else %}
+                    <button id="favorite-button" class="first-button favorite-button2" type="button" onclick="toggle_favorite(false)">{% trans "Add to Favorites" %}</button>
+                {% endif %}
+
+                {% if does_user_own_product %}
+                    <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(true)">{% trans "Remove from Cart" %}</button>
+                {% else %}
+                    <button id="cart-button" class="second-button add-to-cart-button2" type="button" onclick="toggleCart(false)">{% trans "Add to Cart" %}</button>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="buttons-div" id="cart-button-div">
+                <a href="{% url 'login' %}?next={{ request.path }}">
+                    <button class="first-button favorite-button2" type="button">{% trans "Add to Favorites" %}</button>
+                </a>
+
+                <a href="{% url 'login' %}?next={{ request.path }}" class="unnessesary-link-style">
+                    <button class="second-button add-to-cart-button2" type="button">{% trans "Add to Cart" %}</button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</form>
+
+<!-- Message bar -->
+<div id="message-bar"></div>
+
+<script>
+function showMessage(text, type="success") {
+    const bar = document.getElementById("message-bar");
+    bar.innerText = text;
+    bar.className = type === "error" ? "error show" : "success show";
+    setTimeout(() => bar.classList.remove("show"), 3000);
+}
+
+function getSelectedVariant() {
+    const colorInput = document.querySelector('input[name="color"]:checked');
+    const sizeButton = document.querySelector('.size-button.selected2');
+    return {
+        color: colorInput ? colorInput.value : null,
+        size: sizeButton ? sizeButton.dataset.size : null
+    };
+}
+
+// Update cart and favorite buttons dynamically
+function updateButtons() {
+    const { color, size } = getSelectedVariant();
+
+    // Check cart status only if color+size chosen
+    if (color && size) {
+        fetch("/api/check_variant_status/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({
+                product_id: "{{ product.id }}",
+                color: color,
+                size: size
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const cartBtn = document.getElementById("cart-button");
+            if (data.in_cart) {
+                cartBtn.innerText = "კალათიდან ამოშლა";
+                cartBtn.onclick = () => toggleCart(true);
+            } else {
+                cartBtn.innerText = "კალათაში დამატება";
+                cartBtn.onclick = () => toggleCart(false);
+            }
+        })
+        .catch(err => console.error(err));
+    }
+
+    // Check favorite status (independent of color/size)
+    fetch("/api/check_favorite_status/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({
+            product_id: "{{ product.id }}"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        const favBtn = document.getElementById("favorite-button");
+        if (data.in_favorites) {
+            favBtn.innerText = "ფავორიტიდან ამოშლა";
+            favBtn.onclick = () => toggleFavorite(true);
+        } else {
+            favBtn.innerText = "ფავორიტად არჩევა";
+            favBtn.onclick = () => toggleFavorite(false);
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+// Add/remove cart (needs variant)
+function toggleCart(inCart) {
+    const { color, size } = getSelectedVariant();
+    if (!color || !size) { 
+        showMessage("გთხოვთ აირჩიოთ ზომა და ფერი!", "error"); 
+        return; 
+    }
+
+    const url = inCart ? "/api/remove_from_cart/" : "/api/add_to_cart/";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({
+            product_id: "{{ product.id }}",
+            color: color,
+            size: size
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) { 
+            showMessage(data.error, "error"); 
+        } else { 
+            showMessage(data.message); 
+            updateButtons(); 
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+// Add/remove favorites (product-level only)
+function toggleFavorite(inFav) {
+    const url = inFav ? "/api/remove_from_favorites/" : "/api/add_to_favorites/";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({
+            product_id: "{{ product.id }}"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) { 
+            showMessage(data.error, "error"); 
+        } else { 
+            showMessage(data.message); 
+            updateButtons(); 
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+// Event listeners for variant selection
+document.querySelectorAll('.size-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-button').forEach(b => b.classList.remove('selected2'));
+        btn.classList.add('selected2');
+        updateButtons();
+    });
+});
+
+document.querySelectorAll('.color-picker input').forEach(input => {
+    input.addEventListener('change', () => {
+        document.querySelectorAll('.color-picker label').forEach(l => l.classList.remove('selected'));
+        input.nextElementSibling.classList.add('selected');
+        updateButtons();
+    });
+});
+
+// Initial check
+updateButtons();
+
+// Swap main picture with clicked other picture
+document.querySelectorAll('.other-image').forEach(img => {
+    img.addEventListener('click', () => {
+        const mainImg = document.querySelector('.main-picture');
+        const tempSrc = mainImg.src;
+        mainImg.src = img.src;
+        img.src = tempSrc;
+    });
+});
+</script>
+
+
+{% endblock %}
