@@ -51,12 +51,16 @@
         <h1 class="product-category">{{ product.Product_Category }}</h1>
 
         <div class="old-price1">
-            {% if product.Product_price_old != "No" %}
-                <h1 class="old-price2">₾{{ product.Product_price_old }}</h1>
-                <hr class="old-price3">
-                <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+            {% if product.is_sold_out %}
+                <p class="product-price" style="color: red;">Sold Out</p>
             {% else %}
-                <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% if product.Product_price_old != "No" %}
+                    <h1 class="old-price2">₾{{ product.Product_price_old }}</h1>
+                    <hr class="old-price3">
+                    <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% else %}
+                    <h1 class="new-price">₾{{ product.Product_price_new }}</h1>
+                {% endif %}
             {% endif %}
         </div>
 
