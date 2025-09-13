@@ -85,10 +85,10 @@ class Product(models.Model):
             self.Product_M == 0,
             self.Product_L == 0,
             self.Product_XL == 0,
-            self.Product_2XL == 0,
-            self.Product_3XL == 0,
-            self.Product_4XL == 0,
-            self.Product_5XL == 0,
+            self.Product_2Xl == 0,
+            self.Product_3Xl == 0,
+            self.Product_4Xl == 0,
+            self.Product_5Xl == 0,
         ])
     
 class CartItem(models.Model):
