@@ -138,6 +138,11 @@ def cart(request):
         "cart_items": cart_items
     })
 
+def aboutus_view(request):
+    return render(request, "aboutus.html")
+
+def contactus_view(request):
+    return render(request, "contactus.html")
 
 def favorites(request):
     if request.user.is_authenticated:

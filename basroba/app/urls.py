@@ -10,6 +10,8 @@ urlpatterns = [
     path("favorites/", views.favorites, name="favorites"),
     path("login/", views.login_view, name="login"),
     path("register/", views.register_view, name="register"),
+    path("aboutus/", views.aboutus_view, name="aboutus"),
+    path("contactus/", views.contactus_view, name="contactus"),
 
     # API endpoints
     path("api/add_to_cart/", views.add_to_cart, name="add_to_cart"),
