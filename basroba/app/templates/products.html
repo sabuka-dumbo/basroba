@@ -20,17 +20,11 @@
                     <div class="product-card">
                         <img src="{{ product.Product_image1.url }}" class="product-image" alt="">
                         <h3 class="product-text">{{ product.Product_name }}</h3>
-                        {% if not product.Product_XS or product.Product_XS == "0" and not product.Product_S or product.Product_S == "0"
-                        and not product.Product_M or product.Product_M == "0"
-                        and not product.Product_L or product.Product_L == "0"
-                        and not product.Product_XL or product.Product_XL == "0"
-                        and not product.Product_2XL or product.Product_2XL == "0"
-                        and not product.Product_3XL or product.Product_3XL == "0" and not product.Product_4XL or product.Product_4XL == "0" and not product.Product_5XL or product.Product_5XL == "0" %}
+                        {% if product.Product_XS == "0" and product.Product_S == "0" and product.Product_M == "0" and product.Product_L == "0" and product.Product_XL == "0" and product.Product_2XL == "0" and product.Product_3XL == "0" and product.Product_4XL == "0" and product.Product_5XL == "0" %}
                             <p class="product-price" style="color: red;">Sold Out</p>
                         {% else %}
                             <p class="product-price">{{ product.Product_price_new }} ₾</p>
-                        {% endif %} 
-
+                        {% endif %}
                     </div>
                 </a>
             {% endfor %}
