@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-13 14:25+0400\n"
+"POT-Creation-Date: 2025-09-13 14:54+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,6 +11,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: .\app\templates\aboutus.html:13
+msgid "Who We Are"
+msgstr "ვინ ვართ ჩვენ"
+
+#: .\app\templates\aboutus.html:14
+msgid ""
+"Basroba is a modern online shop dedicated to high-quality products with "
+"style and convenience. We value our customers and aim to create a seamless "
+"shopping experience."
+msgstr ""
+
+#: .\app\templates\aboutus.html:23
+msgid "What We Offer"
+msgstr ""
+
+#: .\app\templates\aboutus.html:24
+msgid ""
+"We offer a wide range of products including clothing, accessories, and bags. "
+"Every item is carefully selected to meet our standards of quality, design, "
+"and affordability."
+msgstr ""
+
+#: .\app\templates\aboutus.html:33
+msgid "Our Mission"
+msgstr ""
+
+#: .\app\templates\aboutus.html:34
+msgid ""
+"Our mission is to make shopping enjoyable and effortless. We strive to "
+"provide the best customer service, fast delivery, and products that you will "
+"love."
+msgstr ""
 
 #: .\app\templates\auth.html:15
 msgid "Welcome Back"
@@ -96,6 +129,52 @@ msgstr "გადახდა"
 msgid "Choose Language"
 msgstr "აირჩიეთ ენა"
 
+#: .\app\templates\contactus.html:11
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact Us"
+msgstr "კონტაქტი"
+
+#: .\app\templates\contactus.html:18
+#, fuzzy
+#| msgid "Email"
+msgid "Email:"
+msgstr "ემაილი"
+
+#: .\app\templates\contactus.html:19
+msgid "Phone:"
+msgstr ""
+
+#: .\app\templates\contactus.html:20
+#, fuzzy
+#| msgid "Add Address"
+msgid "Address:"
+msgstr "დაამატეთ მისამართ"
+
+#: .\app\templates\contactus.html:24
+msgid "Your message has been sent successfully!"
+msgstr ""
+
+#: .\app\templates\contactus.html:29
+#, fuzzy
+#| msgid "Full Name"
+msgid "Your Name"
+msgstr "სრული სახელი"
+
+#: .\app\templates\contactus.html:30
+#, fuzzy
+#| msgid "Email"
+msgid "Your Email"
+msgstr "ემაილი"
+
+#: .\app\templates\contactus.html:31
+msgid "Your Message"
+msgstr ""
+
+#: .\app\templates\contactus.html:32
+msgid "Send Message"
+msgstr ""
+
 #: .\app\templates\favorites.html:18 .\app\templates\layout.html:30
 #: .\app\templates\layout.html:135
 msgid "Favorites"
@@ -170,10 +249,6 @@ msgstr "ყველა უფლება დაცულია"
 msgid "Main"
 msgstr "მთავარი"
 
-#: .\app\templates\layout.html:141
-msgid "Made by Saba Dumbadze"
-msgstr "შექმნილია საბა დუმბაძის მიერ"
-
 #: .\app\templates\product.html:86
 msgid "Size:"
 msgstr "ზომა:"
@@ -230,3 +305,6 @@ msgstr "ჩემი შეკვეთები"
 #: .\app\templates\profile.html:90
 msgid "Order"
 msgstr "შეკვეთები"
+
+#~ msgid "Made by Saba Dumbadze"
+#~ msgstr "შექმნილია საბა დუმბაძის მიერ"
