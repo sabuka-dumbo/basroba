@@ -142,7 +142,22 @@ def aboutus_view(request):
     return render(request, "aboutus.html")
 
 def contactus_view(request):
-    return render(request, "contactus.html")
+    success = False
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        full_message = f"Message from {name} ({email}):\n\n{message}"
+        send_mail(
+            subject=f"Contact Form: {name}",
+            message=full_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.DEFAULT_FROM_EMAIL],
+        )
+        success = True
+
+    return render(request, 'contactus.html', {'success': success})
 
 def favorites(request):
     if request.user.is_authenticated:
