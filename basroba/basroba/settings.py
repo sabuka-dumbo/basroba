@@ -21,10 +21,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
-    # Enable language switching
     'django.middleware.locale.LocaleMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -45,7 +42,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.i18n',  # ✅ needed for {% trans %}
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -75,14 +72,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-USE_I18N = True  # Enable Django’s translation system
-USE_L10N = True  # Enable localized formatting of data
-USE_TZ = True    # Keep timezone support (optional, but recommended)
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 
-LANGUAGE_CODE = 'en-us'  # Default language of your site
-TIME_ZONE = 'UTC'        # Your timezone
+LANGUAGE_CODE = 'en'
 
-# Static & Media files
+LANGUAGES = [
+    ('en', 'English'),
+    ('ka', 'Georgian'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+TIME_ZONE = 'UTC'
+
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
