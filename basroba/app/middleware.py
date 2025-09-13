@@ -7,8 +7,8 @@ class LanguageRedirectMiddleware:
 
     def __call__(self, request):
         ignored_paths = [
-            reverse('choose_language'),
-            reverse('set_language'),
+            '/choose_language/',
+            '/set_language/',
             '/admin/',
             '/static/',
             '/media/',
@@ -16,6 +16,5 @@ class LanguageRedirectMiddleware:
         if not request.session.get('language_chosen', False):
             if not any(request.path.startswith(path) for path in ignored_paths):
                 return redirect('choose_language')
-
         response = self.get_response(request)
         return response

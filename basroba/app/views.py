@@ -467,11 +467,5 @@ def change_address2(request):
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 def choose_language(request):
-    if request.method == 'POST':
-        lang = request.POST.get('language', 'en')
-        request.session['django_language'] = lang
-        request.session['language_chosen'] = True
-
-        return redirect('index')
-
+    # Just render the page; form posts to Django's set_language view
     return render(request, 'choose_language.html')
