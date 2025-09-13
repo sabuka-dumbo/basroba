@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-13 14:07+0400\n"
+"POT-Creation-Date: 2025-09-13 14:25+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,212 +12,221 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: .\app\templates\auth.html:14
+#: .\app\templates\auth.html:15
 msgid "Welcome Back"
 msgstr "კეთილი იყოს თქვენი დაბრუნება"
 
-#: .\app\templates\auth.html:20 .\app\templates\auth.html:43
+#: .\app\templates\auth.html:16
+msgid "Sign in to continue"
+msgstr "შედით ანგარიშში რომ გააგრძელოთ"
+
+#: .\app\templates\auth.html:21 .\app\templates\auth.html:44
 msgid "Email"
 msgstr "ემაილი"
 
-#: .\app\templates\auth.html:23 .\app\templates\auth.html:46
+#: .\app\templates\auth.html:24 .\app\templates\auth.html:47
 msgid "Password"
 msgstr "პაროლი"
 
-#: .\app\templates\auth.html:25 .\app\templates\auth.html:52
+#: .\app\templates\auth.html:26 .\app\templates\auth.html:53
 msgid "Login"
 msgstr "შესვლა"
 
-#: .\app\templates\auth.html:28
+#: .\app\templates\auth.html:29
 msgid "Don't have an account?"
 msgstr "არ გაქვთ ანგარიში?"
 
-#: .\app\templates\auth.html:29 .\app\templates\auth.html:48
-#: .\app\templates\layout.html:31
+#: .\app\templates\auth.html:30 .\app\templates\auth.html:49
+#: .\app\templates\layout.html:32
 msgid "Register"
 msgstr "დარეგისტრირდით"
 
-#: .\app\templates\auth.html:34
+#: .\app\templates\auth.html:35
 msgid "Create Account"
 msgstr "შექმენით ანგარიში"
 
-#: .\app\templates\auth.html:35
+#: .\app\templates\auth.html:36
 msgid "Sign up to get started"
 msgstr "დარეგისტრირდით"
 
-#: .\app\templates\auth.html:40
+#: .\app\templates\auth.html:41
 msgid "Full Name"
 msgstr "სრული სახელი"
 
-#: .\app\templates\auth.html:51
+#: .\app\templates\auth.html:52
 msgid "Already have an account?"
 msgstr "უკვე გაქვთ ანგარიში?"
 
-#: .\app\templates\cart.html:17 .\app\templates\layout.html:28
-#: .\app\templates\layout.html:133
+#: .\app\templates\cart.html:18 .\app\templates\layout.html:29
+#: .\app\templates\layout.html:134
 msgid "Cart"
 msgstr "კალათა"
 
-#: .\app\templates\cart.html:30
+#: .\app\templates\cart.html:31
 msgid "Color"
 msgstr "ფერი"
 
-#: .\app\templates\cart.html:30
+#: .\app\templates\cart.html:31
 msgid "Size"
 msgstr "ზომა"
 
-#: .\app\templates\cart.html:39
+#: .\app\templates\cart.html:40
 msgid "Your cart is empty."
 msgstr "თქვენი კალათა ცარიელია"
 
-#: .\app\templates\cart.html:45
+#: .\app\templates\cart.html:46
 msgid "Total Product Price"
 msgstr "მთლიანი პროდუქტის ფასი"
 
-#: .\app\templates\cart.html:49
+#: .\app\templates\cart.html:50
 #, python-format
 msgid "Tax %% (Tax)"
 msgstr "საგადასახადო %% (Tax)"
 
-#: .\app\templates\cart.html:53
+#: .\app\templates\cart.html:54
 msgid "Total Amount"
 msgstr "ჯამი"
 
-#: .\app\templates\cart.html:57
+#: .\app\templates\cart.html:58
 msgid "Checkout"
 msgstr "გადახდა"
 
-#: .\app\templates\favorites.html:17 .\app\templates\layout.html:29
-#: .\app\templates\layout.html:134
+#: .\app\templates\choose_language.html:8
+#: .\app\templates\choose_language.html:76
+msgid "Choose Language"
+msgstr ""
+
+#: .\app\templates\favorites.html:18 .\app\templates\layout.html:30
+#: .\app\templates\layout.html:135
 msgid "Favorites"
 msgstr "ფავორიტები"
 
-#: .\app\templates\favorites.html:28
+#: .\app\templates\favorites.html:29
 msgid "Size: No size chosen"
 msgstr "ზომა: არ არის არჩეული"
 
-#: .\app\templates\favorites.html:29
+#: .\app\templates\favorites.html:30
 msgid "Color: No color chosen"
 msgstr "ფერი: არ არის არჩეული"
 
-#: .\app\templates\favorites.html:40
+#: .\app\templates\favorites.html:41
 msgid "You have no favorite items."
 msgstr "თქვენ არ გაქვთ დამატებული ფავორიტი ნივთები"
 
-#: .\app\templates\index.html:27
+#: .\app\templates\index.html:28
 msgid "CATEGORIES"
 msgstr "კატეგორიები"
 
-#: .\app\templates\index.html:33
+#: .\app\templates\index.html:34
 msgid "Jackets"
 msgstr "მოსაცმელი"
 
-#: .\app\templates\index.html:40
+#: .\app\templates\index.html:41
 msgid "Accessories"
 msgstr "აქსესუარები"
 
-#: .\app\templates\index.html:47
+#: .\app\templates\index.html:48
 msgid "Bags"
 msgstr "ჩანთები"
 
-#: .\app\templates\index.html:54
+#: .\app\templates\index.html:55
 msgid "PRODUCTS"
 msgstr "პროდუქტები"
 
-#: .\app\templates\index.html:63 .\app\templates\product.html:55
-#: .\app\templates\products.html:24
+#: .\app\templates\index.html:64 .\app\templates\product.html:56
+#: .\app\templates\products.html:25
 msgid "Sold Out"
 msgstr "ამოიყიდა"
 
-#: .\app\templates\layout.html:18
+#: .\app\templates\layout.html:19
 msgid "BE WHO YOU ARE"
 msgstr "BE WHO YOU ARE"
 
-#: .\app\templates\layout.html:23 .\app\templates\layout.html:132
+#: .\app\templates\layout.html:24 .\app\templates\layout.html:133
 msgid "Products"
 msgstr "პროდუქტები"
 
-#: .\app\templates\layout.html:24
+#: .\app\templates\layout.html:25
 msgid "About Us"
 msgstr "ჩვენს შესახებ"
 
-#: .\app\templates\layout.html:25
+#: .\app\templates\layout.html:26
 msgid "Contact"
 msgstr "კონტაქტი"
 
-#: .\app\templates\layout.html:27 .\app\templates\layout.html:135
+#: .\app\templates\layout.html:28 .\app\templates\layout.html:136
 msgid "Profile"
 msgstr "პროფილი"
 
-#: .\app\templates\layout.html:114
+#: .\app\templates\layout.html:115
 msgid "Copyright 2025 Basroba"
 msgstr "Copyright 2025 Basroba"
 
-#: .\app\templates\layout.html:115
+#: .\app\templates\layout.html:116
 msgid "All rights reserved."
 msgstr "ყველა უფლება დაცულია"
 
-#: .\app\templates\layout.html:131
+#: .\app\templates\layout.html:132
 msgid "Main"
 msgstr "მთავარი"
 
-#: .\app\templates\layout.html:140
+#: .\app\templates\layout.html:141
 msgid "Made by Saba Dumbadze"
 msgstr "შექმნილია საბა დუმბაძის მიერ"
 
-#: .\app\templates\product.html:85
+#: .\app\templates\product.html:86
 msgid "Size:"
 msgstr "ზომა:"
 
-#: .\app\templates\product.html:98
+#: .\app\templates\product.html:99
 msgid "Remove from Favorites"
 msgstr "ფავორიტებიდან წაშლა"
 
-#: .\app\templates\product.html:100 .\app\templates\product.html:112
+#: .\app\templates\product.html:101 .\app\templates\product.html:113
 msgid "Add to Favorites"
 msgstr "ფავორიტებში დამატება"
 
-#: .\app\templates\product.html:104
+#: .\app\templates\product.html:105
 msgid "Remove from Cart"
 msgstr "ამოიღეთ კალათიდან"
 
-#: .\app\templates\product.html:106 .\app\templates\product.html:116
+#: .\app\templates\product.html:107 .\app\templates\product.html:117
 msgid "Add to Cart"
 msgstr "დაამატეთ კალათაში"
 
-#: .\app\templates\profile.html:16 .\app\templates\profile.html:34
-#: .\app\templates\profile.html:72
+#: .\app\templates\profile.html:17 .\app\templates\profile.html:35
+#: .\app\templates\profile.html:73
 msgid "Add Address"
 msgstr "დაამატეთ მისამართ"
 
-#: .\app\templates\profile.html:27 .\app\templates\profile.html:44
+#: .\app\templates\profile.html:28 .\app\templates\profile.html:45
 msgid "Save"
 msgstr "შეინახეთ"
 
-#: .\app\templates\profile.html:51
+#: .\app\templates\profile.html:52
 msgid "Profile Information"
 msgstr "პროფილის ინფორმაცია"
 
-#: .\app\templates\profile.html:52
+#: .\app\templates\profile.html:53
 msgid "Orders"
 msgstr "შეკვეთები"
 
-#: .\app\templates\profile.html:53
+#: .\app\templates\profile.html:54
 msgid "Address Information"
 msgstr "მისამართის ინფორმაცია"
 
-#: .\app\templates\profile.html:78
+#: .\app\templates\profile.html:79
 msgid "Change"
 msgstr "შეცვალე"
 
-#: .\app\templates\profile.html:79
+#: .\app\templates\profile.html:80
 msgid "Delete"
 msgstr "წაშალე"
 
-#: .\app\templates\profile.html:86
+#: .\app\templates\profile.html:87
 msgid "My Orders"
 msgstr "ჩემი შეკვეთები"
 
-#: .\app\templates\profile.html:89
+#: .\app\templates\profile.html:90
 msgid "Order"
 msgstr "შეკვეთები"
