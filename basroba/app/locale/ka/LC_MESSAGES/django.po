@@ -1,3 +1,9 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -10,40 +16,31 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\app\templates\aboutus.html:13
 msgid "Who We Are"
 msgstr "ვინ ვართ ჩვენ"
 
 #: .\app\templates\aboutus.html:14
-msgid ""
-"Basroba is a modern online shop dedicated to high-quality products with "
-"style and convenience. We value our customers and aim to create a seamless "
-"shopping experience."
-msgstr ""
+msgid "Basroba is a modern online shop dedicated to high-quality products with style and convenience. We value our customers and aim to create a seamless shopping experience."
+msgstr "Basroba არის თანამედროვე ონლაინ მაღაზია, რომელიც ეძღვნება მაღალი ხარისხის პროდუქტებს. ჩვენ ვაფასებთ ჩვენს მომხმარებლებს და ვცდილობთ შეუფერხებელ შოპინგის გამოცდილებას შევთავაზოთ."
 
 #: .\app\templates\aboutus.html:23
 msgid "What We Offer"
-msgstr ""
+msgstr "რას გთავაზობთ ჩვენ"
 
 #: .\app\templates\aboutus.html:24
-msgid ""
-"We offer a wide range of products including clothing, accessories, and bags. "
-"Every item is carefully selected to meet our standards of quality, design, "
-"and affordability."
-msgstr ""
+msgid "We offer a wide range of products including clothing, accessories, and bags. Every item is carefully selected to meet our standards of quality, design, and affordability."
+msgstr "ჩვენ გთავაზობთ ფართო ასორტიმენტს პროდუქტების, მათ შორის ტანსაცმელი, აქსესუარები და ჩანთები. თითოეული პროდუქტი ყურადღებით არის არჩეული, რათა შეესაბამებოდეს ხარისხის, დიზაინის და ხელმისაწვდომობის სტანდარტებს."
 
 #: .\app\templates\aboutus.html:33
 msgid "Our Mission"
-msgstr ""
+msgstr "ჩვენი მისია"
 
 #: .\app\templates\aboutus.html:34
-msgid ""
-"Our mission is to make shopping enjoyable and effortless. We strive to "
-"provide the best customer service, fast delivery, and products that you will "
-"love."
-msgstr ""
+msgid "Our mission is to make shopping enjoyable and effortless. We strive to provide the best customer service, fast delivery, and products that you will love."
+msgstr "ჩვენი მისიაა შოპინგი მხიარული და მარტივი გახდეს. ვცდილობთ შევთავაზოთ საუკეთესო მომხმარებელთა მომსახურება, სწრაფი მიწოდება და პროდუქტები, რომლებიც თქვენ მოგეწონებათ."
 
 #: .\app\templates\auth.html:15
 msgid "Welcome Back"
@@ -51,7 +48,7 @@ msgstr "კეთილი იყოს თქვენი დაბრუნე
 
 #: .\app\templates\auth.html:16
 msgid "Sign in to continue"
-msgstr "შედით ანგარიშში რომ გააგრძელოთ"
+msgstr "შედით ანგარიშში, რომ გააგრძელოთ"
 
 #: .\app\templates\auth.html:21 .\app\templates\auth.html:44
 msgid "Email"
@@ -143,17 +140,17 @@ msgstr "ემაილი"
 
 #: .\app\templates\contactus.html:19
 msgid "Phone:"
-msgstr ""
+msgstr "ტელეფონი:"
 
 #: .\app\templates\contactus.html:20
 #, fuzzy
 #| msgid "Add Address"
 msgid "Address:"
-msgstr "დაამატეთ მისამართ"
+msgstr "მისამართი:"
 
 #: .\app\templates\contactus.html:24
 msgid "Your message has been sent successfully!"
-msgstr ""
+msgstr "თქვენი შეტყობინება წარმატებით გაიგზავნა"
 
 #: .\app\templates\contactus.html:29
 #, fuzzy
@@ -169,11 +166,11 @@ msgstr "ემაილი"
 
 #: .\app\templates\contactus.html:31
 msgid "Your Message"
-msgstr ""
+msgstr "თქვენი შეტყობინება"
 
 #: .\app\templates\contactus.html:32
 msgid "Send Message"
-msgstr ""
+msgstr "გაგზავნე შეტყობინება"
 
 #: .\app\templates\favorites.html:18 .\app\templates\layout.html:30
 #: .\app\templates\layout.html:135
@@ -284,7 +281,7 @@ msgstr "პროფილის ინფორმაცია"
 
 #: .\app\templates\profile.html:53
 msgid "Orders"
-msgstr "შეკვეთა"
+msgstr "შეკვეთები"
 
 #: .\app\templates\profile.html:54
 msgid "Address Information"
@@ -304,7 +301,7 @@ msgstr "ჩემი შეკვეთები"
 
 #: .\app\templates\profile.html:90
 msgid "Order"
-msgstr "შეკვეთები"
+msgstr "შეკვეთა"
 
 #~ msgid "Made by Saba Dumbadze"
 #~ msgstr "შექმნილია საბა დუმბაძის მიერ"
