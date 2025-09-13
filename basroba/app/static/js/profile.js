@@ -178,7 +178,7 @@ function open_change_address(address_id) {
 function change_address(address_id) {
     document.getElementById("address-form2").style.display = "none";
 
-    fetch("/api/change_address2/", {
+    fetch("/api/change_address22/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
