@@ -127,8 +127,8 @@ def cart(request):
     if request.user.is_authenticated:
         cart_items = []
         if request.user.is_authenticated:
-            cart_items = CartItem.objects.all().filter(user=request.user)
-
+            cart_items = CartItem.objects.all().filter(user=request.user, Item__is_sold_out=False)
+            
         return render(request, "cart.html", {
             "cart_items": cart_items
         })
