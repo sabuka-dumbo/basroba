@@ -101,11 +101,6 @@ class CartItem(models.Model):
     def __str__(self):
         return f"{self.user} saved to cart:"
     
-    def is_sold_out(self):
-        if self.Item.is_sold_out():
-            self.delete()
-        return "Sold Out"
-
 class FavoriteItem(models.Model):
     user = models.ForeignKey(User, related_name="userfavorite", on_delete=models.CASCADE)
     Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item2", default=None)
