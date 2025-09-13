@@ -100,7 +100,7 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.user} saved to cart:"
-    
+
 class FavoriteItem(models.Model):
     user = models.ForeignKey(User, related_name="userfavorite", on_delete=models.CASCADE)
     Item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="item2", default=None)
