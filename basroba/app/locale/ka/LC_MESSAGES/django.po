@@ -94,7 +94,7 @@ msgstr "გადახდა"
 #: .\app\templates\choose_language.html:8
 #: .\app\templates\choose_language.html:76
 msgid "Choose Language"
-msgstr ""
+msgstr "აირჩიეთ ენა"
 
 #: .\app\templates\favorites.html:18 .\app\templates\layout.html:30
 #: .\app\templates\layout.html:135
@@ -209,7 +209,7 @@ msgstr "პროფილის ინფორმაცია"
 
 #: .\app\templates\profile.html:53
 msgid "Orders"
-msgstr "შეკვეთები"
+msgstr "შეკვეთა"
 
 #: .\app\templates\profile.html:54
 msgid "Address Information"
