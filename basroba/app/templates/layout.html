@@ -21,8 +21,8 @@
                 <div id="menu-together">
                     <div class="navs-navs">
                         <a href="{% url 'products' category_name='all' %}" class="nav nav1">{% trans "Products" %}</a>
-                        <a href="{% url 'about' %}" class="nav nav1">{% trans "About Us" %}</a>
-                        <a href="{% url 'contact' %}" class="nav nav1">{% trans "Contact" %}</a>
+                        <a href="{% url 'aboutus' %}" class="nav nav1">{% trans "About Us" %}</a>
+                        <a href="{% url 'contactus' %}" class="nav nav1">{% trans "Contact" %}</a>
                         {% if user.is_authenticated %}
                             <a href="{% url 'profile' %}" class="nav nav4">{% trans "Profile" %}</a>
                             <a href="{% url 'cart' %}" class="nav nav5">{% trans "Cart" %}</a>
