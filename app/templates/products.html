@@ -3,8 +3,23 @@
 {% load i18n %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<title>{% block title %}Products - Basroba{% endblock %}</title>
+<meta name="description" content="{% block meta_description %}Browse and shop a wide range of high-quality products at Basroba. Find your favorite items, check prices, and enjoy a seamless online shopping experience.{% endblock %}">
+<meta name="keywords" content="Basroba, products, online store, shopping, buy online, electronics, fashion, accessories">
+<meta name="author" content="Basroba">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="Products - Basroba">
+<meta property="og:description" content="Explore and purchase top-quality products at Basroba online store. Check availability and pricing easily.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% static 'pics/MainLogo.png' %}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Products - Basroba">
+<meta name="twitter:description" content="Shop a wide variety of products at Basroba. View prices, availability, and add to your cart online.">
+<meta name="twitter:image" content="{% static 'pics/MainLogo.png' %}">
 {% endblock %}
+
 
 
 {% block title %}

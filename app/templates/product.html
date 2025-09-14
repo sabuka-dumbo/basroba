@@ -3,7 +3,21 @@
 {% load i18n %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+<title>{{ product.Product_name }} - Basroba</title>
+<meta name="description" content="Buy {{ product.Product_name }} online at Basroba. {{ product.product_description }} Check availability, price, and add to your cart or favorites.">
+<meta name="keywords" content="{{ product.Product_name }}, {{ product.Product_Category }}, Basroba, online store, buy online, shopping">
+<meta name="author" content="Basroba">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{{ product.Product_name }} - Basroba">
+<meta property="og:description" content="{{ product.product_description }}">
+<meta property="og:type" content="product">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{{ product.Product_image1.url }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ product.Product_name }} - Basroba">
+<meta name="twitter:description" content="{{ product.product_description }}">
+<meta name="twitter:image" content="{{ product.Product_image1.url }}">
     <style>
         /* Message bar */
         #message-bar {

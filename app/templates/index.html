@@ -4,6 +4,20 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<title>BASROBA - Online Store for Jackets, Bags, and Accessories</title>
+<meta name="description" content="Discover BASROBA's collection of jackets, bags, and accessories. Shop online for high-quality products and enjoy fast delivery.">
+<meta name="keywords" content="BASROBA, jackets, bags, accessories, online shopping, fashion, clothing, buy online">
+<meta name="author" content="BASROBA">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="BASROBA - Online Store for Jackets, Bags, and Accessories">
+<meta property="og:description" content="Discover BASROBA's collection of jackets, bags, and accessories. Shop online for high-quality products and enjoy fast delivery.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% static 'pics/MainLogo.png' %}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BASROBA - Online Store for Jackets, Bags, and Accessories">
+<meta name="twitter:description" content="Discover BASROBA's collection of jackets, bags, and accessories. Shop online for high-quality products and enjoy fast delivery.">
+<meta name="twitter:image" content="{% static 'pics/MainLogo.png' %}">
 {% endblock %}
 
 

@@ -3,6 +3,28 @@
 {% load i18n %}
 
 {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - BASROBA</title>
+    <meta name="description" content="View your shopping cart at BASROBA. Adjust quantities, check totals, and proceed to checkout.">
+    <meta name="keywords" content="BASROBA, shopping cart, checkout, products, online store">
+    <meta name="author" content="BASROBA">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Cart - BASROBA">
+    <meta property="og:description" content="View your shopping cart at BASROBA. Adjust quantities, check totals, and proceed to checkout.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'pics/MainLogo.png' %}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cart - BASROBA">
+    <meta name="twitter:description" content="View your shopping cart at BASROBA. Adjust quantities, check totals, and proceed to checkout.">
+    <meta name="twitter:image" content="{% static 'pics/MainLogo.png' %}">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 {% endblock %}
 

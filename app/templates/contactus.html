@@ -2,6 +2,24 @@
 {% load static %}
 {% load i18n %}
 
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <title>Contact Us - BASROBA</title>
+    <meta name="description" content="Get in touch with BASROBA. Contact us via email, phone, or visit our store in Tbilisi, Georgia.">
+    <meta name="keywords" content="BASROBA, contact, email, phone, Tbilisi, Georgia, customer support, message">
+    <meta name="author" content="BASROBA">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="Contact Us - BASROBA">
+    <meta property="og:description" content="Get in touch with BASROBA. Contact us via email, phone, or visit our store in Tbilisi, Georgia.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'pics/MainLogo.png' %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us - BASROBA">
+    <meta name="twitter:description" content="Get in touch with BASROBA. Contact us via email, phone, or visit our store in Tbilisi, Georgia.">
+    <meta name="twitter:image" content="{% static 'pics/MainLogo.png' %}">
+{% endblock %}
+
 {% block title %}Contact Us{% endblock %}
 
 {% block body %}

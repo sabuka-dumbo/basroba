@@ -3,9 +3,24 @@
 {% load i18n %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/favorites.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/favorites.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<title>BASROBA Favorites - Your Favorite Products</title>
+<meta name="description" content="View all your favorite products at BASROBA. Keep track of the jackets, bags, and accessories you love and shop them online.">
+<meta name="keywords" content="BASROBA, favorites, wishlist, jackets, bags, accessories, online shopping, fashion">
+<meta name="author" content="BASROBA">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="BASROBA Favorites - Your Favorite Products">
+<meta property="og:description" content="View all your favorite products at BASROBA. Keep track of the jackets, bags, and accessories you love and shop them online.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% static 'pics/MainLogo.png' %}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BASROBA Favorites - Your Favorite Products">
+<meta name="twitter:description" content="View all your favorite products at BASROBA. Keep track of the jackets, bags, and accessories you love and shop them online.">
+<meta name="twitter:image" content="{% static 'pics/MainLogo.png' %}">
 {% endblock %}
+
 
 
 {% block title %}

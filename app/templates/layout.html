@@ -6,11 +6,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}Basroba - Quality Products Online{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}Shop high-quality products at Basroba. Explore our diverse selection and enjoy a seamless online shopping experience.{% endblock %}">
+        <meta name="keywords" content="Basroba, online store, products, shopping, cart, favorites, quality products">
+        <meta name="author" content="Basroba">
+        <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri }}{% endblock %}">
         <link rel="stylesheet" href="{% static 'css/layout.css' %}">
-
+        <meta property="og:title" content="{% block og_title %}Basroba - Quality Products Online{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}Discover and shop top-quality products at Basroba. Easy online shopping with favorites and cart features.{% endblock %}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:image" content="{% static 'pics/MainLogo.png' %}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{% block twitter_title %}Basroba - Quality Products Online{% endblock %}">
+        <meta name="twitter:description" content="{% block twitter_description %}Shop the best products online at Basroba with an easy and secure shopping experience.{% endblock %}">
+        <meta name="twitter:image" content="{% static 'pics/MainLogo.png' %}">
         {% block head %}{% endblock %}
     </head>
+
     <body>
         <nav>
             <div class="navigation-div1">
