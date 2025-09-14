@@ -476,3 +476,9 @@
 .Peach     { background-color: peachpuff; color: peachpuff; }
 .Skyblue   { background-color: skyblue; color: skyblue; }
 .Fuchsia   { background-color: fuchsia; color: fuchsia; }
+
+@media screen and (max-width: 500px) {
+    .buttons-div button {
+        font-size: 16px;
+    }
+}
