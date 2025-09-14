@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-13 14:54+0400\n"
+"POT-Creation-Date: 2025-09-14 18:14+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,24 +23,42 @@ msgid "Who We Are"
 msgstr "ვინ ვართ ჩვენ"
 
 #: .\app\templates\aboutus.html:14
-msgid "Basroba is a modern online shop dedicated to high-quality products with style and convenience. We value our customers and aim to create a seamless shopping experience."
-msgstr "Basroba არის თანამედროვე ონლაინ მაღაზია, რომელიც ეძღვნება მაღალი ხარისხის პროდუქტებს. ჩვენ ვაფასებთ ჩვენს მომხმარებლებს და ვცდილობთ შეუფერხებელ შოპინგის გამოცდილებას შევთავაზოთ."
+msgid ""
+"Basroba is a modern online shop dedicated to high-quality products with "
+"style and convenience. We value our customers and aim to create a seamless "
+"shopping experience."
+msgstr ""
+"Basroba არის თანამედროვე ონლაინ მაღაზია, რომელიც ეძღვნება მაღალი ხარისხის "
+"პროდუქტებს. ჩვენ ვაფასებთ ჩვენს მომხმარებლებს და ვცდილობთ შეუფერხებელ "
+"შოპინგის გამოცდილებას შევთავაზოთ."
 
 #: .\app\templates\aboutus.html:23
 msgid "What We Offer"
 msgstr "რას გთავაზობთ ჩვენ"
 
 #: .\app\templates\aboutus.html:24
-msgid "We offer a wide range of products including clothing, accessories, and bags. Every item is carefully selected to meet our standards of quality, design, and affordability."
-msgstr "ჩვენ გთავაზობთ ფართო ასორტიმენტს პროდუქტების, მათ შორის ტანსაცმელი, აქსესუარები და ჩანთები. თითოეული პროდუქტი ყურადღებით არის არჩეული, რათა შეესაბამებოდეს ხარისხის, დიზაინის და ხელმისაწვდომობის სტანდარტებს."
+msgid ""
+"We offer a wide range of products including clothing, accessories, and bags. "
+"Every item is carefully selected to meet our standards of quality, design, "
+"and affordability."
+msgstr ""
+"ჩვენ გთავაზობთ ფართო ასორტიმენტს პროდუქტების, მათ შორის ტანსაცმელი, "
+"აქსესუარები და ჩანთები. თითოეული პროდუქტი ყურადღებით არის არჩეული, რათა "
+"შეესაბამებოდეს ხარისხის, დიზაინის და ხელმისაწვდომობის სტანდარტებს."
 
 #: .\app\templates\aboutus.html:33
 msgid "Our Mission"
 msgstr "ჩვენი მისია"
 
 #: .\app\templates\aboutus.html:34
-msgid "Our mission is to make shopping enjoyable and effortless. We strive to provide the best customer service, fast delivery, and products that you will love."
-msgstr "ჩვენი მისიაა შოპინგი მხიარული და მარტივი გახდეს. ვცდილობთ შევთავაზოთ საუკეთესო მომხმარებელთა მომსახურება, სწრაფი მიწოდება და პროდუქტები, რომლებიც თქვენ მოგეწონებათ."
+msgid ""
+"Our mission is to make shopping enjoyable and effortless. We strive to "
+"provide the best customer service, fast delivery, and products that you will "
+"love."
+msgstr ""
+"ჩვენი მისიაა შოპინგი მხიარული და მარტივი გახდეს. ვცდილობთ შევთავაზოთ "
+"საუკეთესო მომხმარებელთა მომსახურება, სწრაფი მიწოდება და პროდუქტები, რომლებიც "
+"თქვენ მოგეწონებათ."
 
 #: .\app\templates\auth.html:15
 msgid "Welcome Back"
@@ -67,7 +85,7 @@ msgid "Don't have an account?"
 msgstr "არ გაქვთ ანგარიში?"
 
 #: .\app\templates\auth.html:30 .\app\templates\auth.html:49
-#: .\app\templates\layout.html:32
+#: .\app\templates\layout.html:31
 msgid "Register"
 msgstr "დარეგისტრირდით"
 
@@ -87,8 +105,8 @@ msgstr "სრული სახელი"
 msgid "Already have an account?"
 msgstr "უკვე გაქვთ ანგარიში?"
 
-#: .\app\templates\cart.html:18 .\app\templates\layout.html:29
-#: .\app\templates\layout.html:134
+#: .\app\templates\cart.html:18 .\app\templates\layout.html:28
+#: .\app\templates\layout.html:133
 msgid "Cart"
 msgstr "კალათა"
 
@@ -122,7 +140,7 @@ msgid "Checkout"
 msgstr "გადახდა"
 
 #: .\app\templates\choose_language.html:8
-#: .\app\templates\choose_language.html:76
+#: .\app\templates\choose_language.html:31
 msgid "Choose Language"
 msgstr "აირჩიეთ ენა"
 
@@ -172,8 +190,8 @@ msgstr "თქვენი შეტყობინება"
 msgid "Send Message"
 msgstr "გაგზავნე შეტყობინება"
 
-#: .\app\templates\favorites.html:18 .\app\templates\layout.html:30
-#: .\app\templates\layout.html:135
+#: .\app\templates\favorites.html:18 .\app\templates\layout.html:29
+#: .\app\templates\layout.html:134
 msgid "Favorites"
 msgstr "ფავორიტები"
 
@@ -214,35 +232,31 @@ msgstr "პროდუქტები"
 msgid "Sold Out"
 msgstr "ამოიყიდა"
 
-#: .\app\templates\layout.html:19
-msgid "BE WHO YOU ARE"
-msgstr "BE WHO YOU ARE"
-
-#: .\app\templates\layout.html:24 .\app\templates\layout.html:133
+#: .\app\templates\layout.html:23 .\app\templates\layout.html:132
 msgid "Products"
 msgstr "პროდუქტები"
 
-#: .\app\templates\layout.html:25
+#: .\app\templates\layout.html:24
 msgid "About Us"
 msgstr "ჩვენს შესახებ"
 
-#: .\app\templates\layout.html:26
+#: .\app\templates\layout.html:25
 msgid "Contact"
 msgstr "კონტაქტი"
 
-#: .\app\templates\layout.html:28 .\app\templates\layout.html:136
+#: .\app\templates\layout.html:27 .\app\templates\layout.html:135
 msgid "Profile"
 msgstr "პროფილი"
 
-#: .\app\templates\layout.html:115
+#: .\app\templates\layout.html:114
 msgid "Copyright 2025 Basroba"
 msgstr "Copyright 2025 Basroba"
 
-#: .\app\templates\layout.html:116
+#: .\app\templates\layout.html:115
 msgid "All rights reserved."
 msgstr "ყველა უფლება დაცულია"
 
-#: .\app\templates\layout.html:132
+#: .\app\templates\layout.html:131
 msgid "Main"
 msgstr "მთავარი"
 
@@ -302,6 +316,9 @@ msgstr "ჩემი შეკვეთები"
 #: .\app\templates\profile.html:90
 msgid "Order"
 msgstr "შეკვეთა"
+
+#~ msgid "BE WHO YOU ARE"
+#~ msgstr "BE WHO YOU ARE"
 
 #~ msgid "Made by Saba Dumbadze"
 #~ msgstr "შექმნილია საბა დუმბაძის მიერ"

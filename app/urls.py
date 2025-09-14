@@ -3,6 +3,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.index, name='index'),
@@ -36,3 +37,6 @@ urlpatterns = [
     path("api/change_address1/", views.change_address1, name="change_address1"),
     path("api/change_address22/", views.change_address2, name="change_address2"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
